@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UltFamilyBalance_DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="UltFamilyBalance_DataModelStoreContainer">
+          <EntitySet Name="CreditCount" EntityType="UltFamilyBalance_DataModel.Store.CreditCount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Entry" EntityType="UltFamilyBalance_DataModel.Store.Entry" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntryDirection" EntityType="UltFamilyBalance_DataModel.Store.EntryDirection" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntryType" EntityType="UltFamilyBalance_DataModel.Store.EntryType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntryTypeGroup" EntityType="UltFamilyBalance_DataModel.Store.EntryTypeGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="UltFamilyBalance_DataModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CreditCount_User" Association="UltFamilyBalance_DataModel.Store.FK_CreditCount_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="CreditCount" EntitySet="CreditCount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entry_EntryType" Association="UltFamilyBalance_DataModel.Store.FK_Entry_EntryType">
+            <End Role="EntryType" EntitySet="EntryType" />
+            <End Role="Entry" EntitySet="Entry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entry_User" Association="UltFamilyBalance_DataModel.Store.FK_Entry_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Entry" EntitySet="Entry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntryType_EntryDirection" Association="UltFamilyBalance_DataModel.Store.FK_EntryType_EntryDirection">
+            <End Role="EntryDirection" EntitySet="EntryDirection" />
+            <End Role="EntryType" EntitySet="EntryType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntryType_EntryTypeGroup" Association="UltFamilyBalance_DataModel.Store.FK_EntryType_EntryTypeGroup">
+            <End Role="EntryTypeGroup" EntitySet="EntryTypeGroup" />
+            <End Role="EntryType" EntitySet="EntryType" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CreditCount">
+          <Key>
+            <PropertyRef Name="CreditCountId" />
+          </Key>
+          <Property Name="CreditCountId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CreditCountYear" Type="int" Nullable="false" />
+          <Property Name="CreditCountMonth" Type="int" Nullable="false" />
+          <Property Name="CreditCountIncoming" Type="decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="CreditCountOutgoing" Type="decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entry">
+          <Key>
+            <PropertyRef Name="EntryId" />
+          </Key>
+          <Property Name="EntryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntryTypeId" Type="int" Nullable="false" />
+          <Property Name="EntryAmount" Type="decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="EntryNote" Type="nvarchar(max)" />
+          <Property Name="EntryYear" Type="int" Nullable="false" />
+          <Property Name="EntryMonth" Type="int" Nullable="false" />
+          <Property Name="EntryDay" Type="int" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryDateIns" Type="datetime" Nullable="false" />
+          <Property Name="EntryDateUpd" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntryDirection">
+          <Key>
+            <PropertyRef Name="EntryDirectionId" />
+          </Key>
+          <Property Name="EntryDirectionId" Type="int" Nullable="false" />
+          <Property Name="EntryDirectionName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="EntryDirectionDesc" Type="nvarchar(max)" />
+          <Property Name="EntryDirectionMultiplier" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntryType">
+          <Key>
+            <PropertyRef Name="EntryTypeId" />
+          </Key>
+          <Property Name="EntryTypeId" Type="int" Nullable="false" />
+          <Property Name="EntryTypeName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="EntryTypeDesc" Type="nvarchar(max)" />
+          <Property Name="EntryDirectionId" Type="int" Nullable="false" />
+          <Property Name="EntryTypeRequireNote" Type="tinyint" Nullable="false" />
+          <Property Name="EntryTypeGroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="EntryTypeGroup">
+          <Key>
+            <PropertyRef Name="EntryTypeGroupId" />
+          </Key>
+          <Property Name="EntryTypeGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntryTypeGroupName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="EntryTypeGroupDesc" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserUsername" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="UserSalt" Type="nchar" Nullable="false" MaxLength="12" />
+          <Property Name="UserPass" Type="nchar" Nullable="false" MaxLength="32" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserSurname" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_CreditCount_User">
+          <End Role="User" Type="UltFamilyBalance_DataModel.Store.User" Multiplicity="1" />
+          <End Role="CreditCount" Type="UltFamilyBalance_DataModel.Store.CreditCount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CreditCount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entry_EntryType">
+          <End Role="EntryType" Type="UltFamilyBalance_DataModel.Store.EntryType" Multiplicity="1" />
+          <End Role="Entry" Type="UltFamilyBalance_DataModel.Store.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryType">
+              <PropertyRef Name="EntryTypeId" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="EntryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entry_User">
+          <End Role="User" Type="UltFamilyBalance_DataModel.Store.User" Multiplicity="1" />
+          <End Role="Entry" Type="UltFamilyBalance_DataModel.Store.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntryType_EntryDirection">
+          <End Role="EntryDirection" Type="UltFamilyBalance_DataModel.Store.EntryDirection" Multiplicity="1" />
+          <End Role="EntryType" Type="UltFamilyBalance_DataModel.Store.EntryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryDirection">
+              <PropertyRef Name="EntryDirectionId" />
+            </Principal>
+            <Dependent Role="EntryType">
+              <PropertyRef Name="EntryDirectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntryType_EntryTypeGroup">
+          <End Role="EntryTypeGroup" Type="UltFamilyBalance_DataModel.Store.EntryTypeGroup" Multiplicity="0..1" />
+          <End Role="EntryType" Type="UltFamilyBalance_DataModel.Store.EntryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryTypeGroup">
+              <PropertyRef Name="EntryTypeGroupId" />
+            </Principal>
+            <Dependent Role="EntryType">
+              <PropertyRef Name="EntryTypeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ult.FamilyBalance" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="UltFamilyBalanceContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CreditCounts" EntityType="Ult.FamilyBalance.CreditCount" />
+          <EntitySet Name="Entries" EntityType="Ult.FamilyBalance.Entry" />
+          <EntitySet Name="EntryDirections" EntityType="Ult.FamilyBalance.EntryDirection" />
+          <EntitySet Name="EntryTypes" EntityType="Ult.FamilyBalance.EntryType" />
+          <EntitySet Name="EntryTypeGroups" EntityType="Ult.FamilyBalance.EntryTypeGroup" />
+          <EntitySet Name="Users" EntityType="Ult.FamilyBalance.User" />
+          <AssociationSet Name="FK_CreditCount_User" Association="Ult.FamilyBalance.FK_CreditCount_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CreditCount" EntitySet="CreditCounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entry_EntryType" Association="Ult.FamilyBalance.FK_Entry_EntryType">
+            <End Role="EntryType" EntitySet="EntryTypes" />
+            <End Role="Entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entry_User" Association="Ult.FamilyBalance.FK_Entry_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntryType_EntryDirection" Association="Ult.FamilyBalance.FK_EntryType_EntryDirection">
+            <End Role="EntryDirection" EntitySet="EntryDirections" />
+            <End Role="EntryType" EntitySet="EntryTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntryType_EntryTypeGroup" Association="Ult.FamilyBalance.FK_EntryType_EntryTypeGroup">
+            <End Role="EntryTypeGroup" EntitySet="EntryTypeGroups" />
+            <End Role="EntryType" EntitySet="EntryTypes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CreditCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Incoming" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Outgoing" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="UserId" Type="Int32" Nullable="false" a:GetterAccess="Protected" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Protected" />
+          <NavigationProperty Name="User" Relationship="Ult.FamilyBalance.FK_CreditCount_User" FromRole="CreditCount" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Entry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="TypeId" a:GetterAccess="Protected" a:SetterAccess="Protected" Nullable="false" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Month" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Day" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="DateInsert" Type="DateTime" Nullable="false" />
+          <Property Name="DateUpdate" Type="DateTime" />
+          <Property xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="UserId" a:GetterAccess="Protected" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="Type" Relationship="Ult.FamilyBalance.FK_Entry_EntryType" FromRole="Entry" ToRole="EntryType" />
+          <NavigationProperty Name="User" Relationship="Ult.FamilyBalance.FK_Entry_User" FromRole="Entry" ToRole="User" />
+        </EntityType>
+        <EntityType Name="EntryDirection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Multiplier" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="DirectionId" a:GetterAccess="Protected" a:SetterAccess="Protected" Nullable="false" Type="Int32" />
+          <Property Name="NoteRequired" Type="Byte" Nullable="false" />
+          <Property xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="GroupId" a:GetterAccess="Protected" a:SetterAccess="Protected" Type="Int32" />
+          <NavigationProperty Name="Entries" Relationship="Ult.FamilyBalance.FK_Entry_EntryType" FromRole="EntryType" ToRole="Entry" />
+          <NavigationProperty Name="Direction" Relationship="Ult.FamilyBalance.FK_EntryType_EntryDirection" FromRole="EntryType" ToRole="EntryDirection" />
+          <NavigationProperty Name="Group" Relationship="Ult.FamilyBalance.FK_EntryType_EntryTypeGroup" FromRole="EntryType" ToRole="EntryTypeGroup" />
+        </EntityType>
+        <EntityType Name="EntryTypeGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Types" Relationship="Ult.FamilyBalance.FK_EntryType_EntryTypeGroup" FromRole="EntryTypeGroup" ToRole="EntryType" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="true" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_CreditCount_User">
+          <End Role="User" Type="Ult.FamilyBalance.User" Multiplicity="1" />
+          <End Role="CreditCount" Type="Ult.FamilyBalance.CreditCount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CreditCount">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entry_EntryType">
+          <End Role="EntryType" Type="Ult.FamilyBalance.EntryType" Multiplicity="1" />
+          <End Role="Entry" Type="Ult.FamilyBalance.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entry_User">
+          <End Role="User" Type="Ult.FamilyBalance.User" Multiplicity="1" />
+          <End Role="Entry" Type="Ult.FamilyBalance.Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntryType_EntryDirection">
+          <End Role="EntryDirection" Type="Ult.FamilyBalance.EntryDirection" Multiplicity="1" />
+          <End Role="EntryType" Type="Ult.FamilyBalance.EntryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryDirection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EntryType">
+              <PropertyRef Name="DirectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntryType_EntryTypeGroup">
+          <End Role="EntryTypeGroup" Type="Ult.FamilyBalance.EntryTypeGroup" Multiplicity="0..1" />
+          <End Role="EntryType" Type="Ult.FamilyBalance.EntryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntryTypeGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EntryType">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UltFamilyBalance_DataModelStoreContainer" CdmEntityContainer="UltFamilyBalanceContext">
+          <EntitySetMapping Name="CreditCounts"><EntityTypeMapping TypeName="Ult.FamilyBalance.CreditCount"><MappingFragment StoreEntitySet="CreditCount">
+            <ScalarProperty Name="Id" ColumnName="CreditCountId" />
+            <ScalarProperty Name="Year" ColumnName="CreditCountYear" />
+            <ScalarProperty Name="Month" ColumnName="CreditCountMonth" />
+            <ScalarProperty Name="Incoming" ColumnName="CreditCountIncoming" />
+            <ScalarProperty Name="Outgoing" ColumnName="CreditCountOutgoing" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Entries"><EntityTypeMapping TypeName="Ult.FamilyBalance.Entry"><MappingFragment StoreEntitySet="Entry">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TypeId" ColumnName="EntryTypeId" />
+                <ScalarProperty Name="Id" ColumnName="EntryId" />
+            <ScalarProperty Name="Amount" ColumnName="EntryAmount" />
+            <ScalarProperty Name="Note" ColumnName="EntryNote" />
+            <ScalarProperty Name="Year" ColumnName="EntryYear" />
+            <ScalarProperty Name="Month" ColumnName="EntryMonth" />
+            <ScalarProperty Name="Day" ColumnName="EntryDay" />
+            <ScalarProperty Name="Date" ColumnName="EntryDate" />
+            <ScalarProperty Name="DateInsert" ColumnName="EntryDateIns" />
+            <ScalarProperty Name="DateUpdate" ColumnName="EntryDateUpd" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="EntryDirections"><EntityTypeMapping TypeName="Ult.FamilyBalance.EntryDirection"><MappingFragment StoreEntitySet="EntryDirection">
+            <ScalarProperty Name="Id" ColumnName="EntryDirectionId" />
+            <ScalarProperty Name="Name" ColumnName="EntryDirectionName" />
+            <ScalarProperty Name="Description" ColumnName="EntryDirectionDesc" />
+            <ScalarProperty Name="Multiplier" ColumnName="EntryDirectionMultiplier" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="EntryTypes"><EntityTypeMapping TypeName="Ult.FamilyBalance.EntryType"><MappingFragment StoreEntitySet="EntryType">
+            <ScalarProperty Name="Id" ColumnName="EntryTypeId" />
+            <ScalarProperty Name="Name" ColumnName="EntryTypeName" />
+            <ScalarProperty Name="Description" ColumnName="EntryTypeDesc" />
+            <ScalarProperty Name="DirectionId" ColumnName="EntryDirectionId" />
+            <ScalarProperty Name="NoteRequired" ColumnName="EntryTypeRequireNote" />
+            <ScalarProperty Name="GroupId" ColumnName="EntryTypeGroupId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="EntryTypeGroups"><EntityTypeMapping TypeName="Ult.FamilyBalance.EntryTypeGroup"><MappingFragment StoreEntitySet="EntryTypeGroup">
+            <ScalarProperty Name="Id" ColumnName="EntryTypeGroupId" />
+            <ScalarProperty Name="Name" ColumnName="EntryTypeGroupName" />
+            <ScalarProperty Name="Description" ColumnName="EntryTypeGroupDesc" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="Ult.FamilyBalance.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="Id" ColumnName="UserId" />
+            <ScalarProperty Name="Username" ColumnName="UserUsername" />
+            <ScalarProperty Name="Salt" ColumnName="UserSalt" />
+            <ScalarProperty Name="Password" ColumnName="UserPass" />
+            <ScalarProperty Name="Name" ColumnName="UserName" />
+            <ScalarProperty Name="Surname" ColumnName="UserSurname" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model2">
+        <EntityTypeShape EntityType="Ult.FamilyBalance.CreditCount" Width="1.5" PointX="5.25" PointY="5.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ult.FamilyBalance.Entry" Width="1.5" PointX="5.25" PointY="1" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ult.FamilyBalance.EntryDirection" Width="1.75" PointX="0.625" PointY="1.625" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ult.FamilyBalance.EntryType" Width="1.5" PointX="3" PointY="1.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ult.FamilyBalance.EntryTypeGroup" Width="1.5" PointX="0.75" PointY="5.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ult.FamilyBalance.User" Width="1.5" PointX="3" PointY="5.5" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="Ult.FamilyBalance.FK_CreditCount_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.6487939453125" />
+          <ConnectorPoint PointX="5.25" PointY="6.6487939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Ult.FamilyBalance.FK_Entry_EntryType" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.74974609375" />
+          <ConnectorPoint PointX="5.25" PointY="2.74974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="Ult.FamilyBalance.FK_Entry_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.5" />
+          <ConnectorPoint PointX="4.875" PointY="5.125" />
+          <ConnectorPoint PointX="4.875" PointY="3.6654740052083334" />
+          <ConnectorPoint PointX="5.25" PointY="3.6654740052083334" />
+        </AssociationConnector>
+        <AssociationConnector Association="Ult.FamilyBalance.FK_EntryType_EntryDirection" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.375" PointY="2.5189925130208337" />
+          <ConnectorPoint PointX="3" PointY="2.5189925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="Ult.FamilyBalance.FK_EntryType_EntryTypeGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.875" />
+          <ConnectorPoint PointX="2.625" PointY="5.5" />
+          <ConnectorPoint PointX="2.625" PointY="4.4994921875" />
+          <ConnectorPoint PointX="3" PointY="4.1244921875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
