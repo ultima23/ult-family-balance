@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltFamilyBalance", "UltFamilyBalance\UltFamilyBalance.csproj", "{99E3416E-2812-4802-96FD-D66AA87DCE5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ult.Core", "..\..\Ult.Core\Ult.Core\Ult.Core.csproj", "{A0D36180-884A-4344-900C-3C92E46D70ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99E3416E-2812-4802-96FD-D66AA87DCE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E3416E-2812-4802-96FD-D66AA87DCE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E3416E-2812-4802-96FD-D66AA87DCE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E3416E-2812-4802-96FD-D66AA87DCE5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D36180-884A-4344-900C-3C92E46D70ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D36180-884A-4344-900C-3C92E46D70ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D36180-884A-4344-900C-3C92E46D70ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D36180-884A-4344-900C-3C92E46D70ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
