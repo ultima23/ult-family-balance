@@ -11,9 +11,9 @@ using Ult.FamilyBalance.UI.Pages;
 using Ult.FamilyBalance.Model;
 using System.Data.Objects;
 
-namespace Ult.FamilyBalance
+namespace Ult.FamilyBalance.UI
 {
-    public partial class PageOutgoingList : UserControl, IPage
+    public partial class PageOutgoingList : UserControl, IPage, INavigablePage<Entry>
     {
 
         // -----------------------------------------------------------------------------------------------------------
@@ -24,9 +24,9 @@ namespace Ult.FamilyBalance
         // 
         private UltFamilyBalanceContext _context;
 
-
+        //
         private bool _useDateFrom;
-
+        //
         private bool _useDateTo;
         // 
         private DateTime _dateFrom;
@@ -105,6 +105,37 @@ namespace Ult.FamilyBalance
             get { return this as Control; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Entry SelectedEntity
+        {
+            get 
+            {
+                if (HasSelectedEntity)
+                {
+
+                    var obj = dgvOutgoing.Rows[dgvOutgoing.SelectedRows[0].Index].DataBoundItem;
+
+                    // Entry entry = _context.Entries.Single<Entry>(e => entry.Id == obj.Id);
+
+                    return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool HasSelectedEntity
+        {
+            get { return (dgvOutgoing.SelectedRows.Count > 0); }
+        }
+
         #endregion
         // -----------------------------------------------------------------------------------------------------------
 
@@ -165,8 +196,8 @@ namespace Ult.FamilyBalance
                                  && (_amountMax == -1 || e.Amount <= _amountMax)
                            select new { e.Id, e.Date, e.Type.Name, e.Amount, e.DateUpdate };
             // Incoming entries
-            dgvIncoming.AutoGenerateColumns = false;
-            dgvIncoming.DataSource = outgoing;
+            dgvOutgoing.AutoGenerateColumns = false;
+            dgvOutgoing.DataSource = outgoing;
         }
 
         private void RefreshUI()
@@ -221,6 +252,26 @@ namespace Ult.FamilyBalance
         public void UpdateSize(Size size)
         {
             Size = size;
+        }
+
+        public void First()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Last()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Next()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Prev()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -358,6 +409,35 @@ namespace Ult.FamilyBalance
             {
                 _amountMax = Convert.ToInt32(numMaxAmount.Value);
                 RefreshList();
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                Entry new_entry = new Entry();
+
+                IDetail<Entry> detail = new DetailOutgoingEntry();
+
+                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry);
+                form_detail.ShowDialog();
+
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (HasSelectedEntity)
+                {
+                    //
+                    IDetail<Entry> detail = new DetailOutgoingEntry();
+                    //
+                    FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, SelectedEntity);
+                    form_detail.ShowDialog();
+                }
             }
         }
 

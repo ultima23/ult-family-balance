@@ -29,6 +29,5 @@ namespace Ult.FamilyBalance.Model
             Multiplier = -1
         };
 
-
     }
 }

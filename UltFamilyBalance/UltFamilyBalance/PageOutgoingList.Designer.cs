@@ -1,4 +1,4 @@
-﻿namespace Ult.FamilyBalance
+﻿namespace Ult.FamilyBalance.UI
 {
     partial class PageOutgoingList
     {
@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupEntryList = new System.Windows.Forms.GroupBox();
-            this.dgvIncoming = new System.Windows.Forms.DataGridView();
+            this.dgvOutgoing = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupIncomingFilters = new System.Windows.Forms.GroupBox();
             this.cbxUseDateTo = new System.Windows.Forms.CheckBox();
             this.cbxUseDateFrom = new System.Windows.Forms.CheckBox();
@@ -50,19 +56,22 @@
             this.cbxMinAmount = new System.Windows.Forms.CheckBox();
             this.numMaxAmount = new System.Windows.Forms.NumericUpDown();
             this.numMinAmount = new System.Windows.Forms.NumericUpDown();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.contextGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupEntryList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIncoming)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutgoing)).BeginInit();
             this.groupIncomingFilters.SuspendLayout();
             this.groupTypeFilter.SuspendLayout();
             this.groupTitle.SuspendLayout();
             this.groupAmountFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinAmount)).BeginInit();
+            this.contextGrid.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupEntryList
@@ -70,37 +79,90 @@
             this.groupEntryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupEntryList.Controls.Add(this.dgvIncoming);
+            this.groupEntryList.Controls.Add(this.dgvOutgoing);
             this.groupEntryList.Location = new System.Drawing.Point(3, 29);
             this.groupEntryList.Name = "groupEntryList";
-            this.groupEntryList.Size = new System.Drawing.Size(490, 330);
+            this.groupEntryList.Size = new System.Drawing.Size(490, 333);
             this.groupEntryList.TabIndex = 0;
             this.groupEntryList.TabStop = false;
             // 
-            // dgvIncoming
+            // dgvOutgoing
             // 
-            this.dgvIncoming.AllowUserToAddRows = false;
-            this.dgvIncoming.AllowUserToDeleteRows = false;
-            this.dgvIncoming.AllowUserToResizeRows = false;
-            this.dgvIncoming.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.dgvOutgoing.AllowUserToAddRows = false;
+            this.dgvOutgoing.AllowUserToDeleteRows = false;
+            this.dgvOutgoing.AllowUserToResizeRows = false;
+            this.dgvOutgoing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvIncoming.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dgvIncoming.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvIncoming.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncoming.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvOutgoing.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvOutgoing.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvOutgoing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOutgoing.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Date,
             this.Amount,
             this.Type,
             this.LastUpdate});
-            this.dgvIncoming.Location = new System.Drawing.Point(3, 9);
-            this.dgvIncoming.MultiSelect = false;
-            this.dgvIncoming.Name = "dgvIncoming";
-            this.dgvIncoming.RowHeadersVisible = false;
-            this.dgvIncoming.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIncoming.Size = new System.Drawing.Size(484, 318);
-            this.dgvIncoming.TabIndex = 1;
+            this.dgvOutgoing.Location = new System.Drawing.Point(3, 9);
+            this.dgvOutgoing.MultiSelect = false;
+            this.dgvOutgoing.Name = "dgvOutgoing";
+            this.dgvOutgoing.RowHeadersVisible = false;
+            this.dgvOutgoing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvOutgoing.Size = new System.Drawing.Size(484, 320);
+            this.dgvOutgoing.TabIndex = 1;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.Width = 32;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.Date.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Date.Width = 75;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.Width = 80;
+            // 
+            // Type
+            // 
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type.DataPropertyName = "Name";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // LastUpdate
+            // 
+            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.LastUpdate.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm:ss";
+            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.LastUpdate.HeaderText = "LastUpdate";
+            this.LastUpdate.Name = "LastUpdate";
+            this.LastUpdate.Width = 120;
             // 
             // groupIncomingFilters
             // 
@@ -289,72 +351,81 @@
             this.numMinAmount.TabIndex = 0;
             this.numMinAmount.ValueChanged += new System.EventHandler(this.numMinAmount_ValueChanged);
             // 
-            // Id
+            // btnNew
             // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.Width = 32;
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Location = new System.Drawing.Point(3, 368);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(75, 23);
+            this.btnNew.TabIndex = 5;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // Date
+            // btnEdit
             // 
-            this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "dd/MM/yyyy";
-            this.Date.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Date.Width = 75;
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.Location = new System.Drawing.Point(84, 368);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 6;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // Amount
+            // btnDelete
             // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.Width = 80;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(165, 368);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // Type
+            // contextGrid
             // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.DataPropertyName = "Name";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.contextGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextGrid.Name = "contextGrid";
+            this.contextGrid.Size = new System.Drawing.Size(108, 70);
             // 
-            // LastUpdate
+            // newToolStripMenuItem
             // 
-            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.LastUpdate.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.Format = "dd/MM/yyyy HH:mm:ss";
-            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle12;
-            this.LastUpdate.HeaderText = "LastUpdate";
-            this.LastUpdate.Name = "LastUpdate";
-            this.LastUpdate.Width = 120;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // PageOutgoingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.groupAmountFilters);
             this.Controls.Add(this.groupTitle);
             this.Controls.Add(this.groupTypeFilter);
             this.Controls.Add(this.groupIncomingFilters);
             this.Controls.Add(this.groupEntryList);
             this.Name = "PageOutgoingList";
-            this.Size = new System.Drawing.Size(671, 362);
+            this.Size = new System.Drawing.Size(671, 396);
             this.groupEntryList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIncoming)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutgoing)).EndInit();
             this.groupIncomingFilters.ResumeLayout(false);
             this.groupIncomingFilters.PerformLayout();
             this.groupTypeFilter.ResumeLayout(false);
@@ -364,6 +435,7 @@
             this.groupAmountFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinAmount)).EndInit();
+            this.contextGrid.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -371,7 +443,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupEntryList;
-        private System.Windows.Forms.DataGridView dgvIncoming;
+        private System.Windows.Forms.DataGridView dgvOutgoing;
         private System.Windows.Forms.GroupBox groupIncomingFilters;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpDateFrom;
@@ -393,6 +465,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastUpdate;
+        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ContextMenuStrip contextGrid;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 
     }
 }
