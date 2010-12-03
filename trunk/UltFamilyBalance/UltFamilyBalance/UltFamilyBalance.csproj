@@ -94,6 +94,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\DetailOutgoingEntry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\DetailOutgoingEntry.Designer.cs">
+      <DependentUpon>DetailOutgoingEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\IDetail.cs" />
     <Compile Include="UI\Pages\IPageList.cs" />
     <Compile Include="UI\Pages\IPage.cs" />
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\DetailOutgoingEntry.resx">
+      <DependentUpon>DetailOutgoingEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageEntry.resx">
       <DependentUpon>PageEntry.cs</DependentUpon>

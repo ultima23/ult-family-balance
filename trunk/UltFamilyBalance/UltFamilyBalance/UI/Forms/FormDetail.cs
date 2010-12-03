@@ -26,10 +26,15 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
         #region CONSTRUCTOR
 
-        public FormDetail(IDetail<TEntity> detail)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="detail"></param>
+        /// <param name="entity"></param>
+        public FormDetail(IDetail<TEntity> detail, TEntity entity)
         {
             InitializeComponent();
-            Init(detail);
+            Init(detail, entity);
         }
 
         #endregion
@@ -42,18 +47,28 @@ namespace Ult.FamilyBalance.UI
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        protected void Init(IDetail<TEntity> detail)
+        protected void Init(IDetail<TEntity> detail, TEntity entity)
         {
             if (detail == null) throw new ArgumentNullException("detail", "Detail should not be null");
-            _detail = detail;
-            RegisterDetail(_detail);
+            // Detail registering
+            RegisterDetail(detail);
+            // Initialization
+            _detail.Init(entity);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="detail"></param>
         private void RegisterDetail(IDetail<TEntity> detail)
         {
+            _detail = detail;
             panelDetail.Controls.Add(_detail.Control);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void UnregisterDetail()
         {
             panelDetail.Controls.Remove(_detail.Control);

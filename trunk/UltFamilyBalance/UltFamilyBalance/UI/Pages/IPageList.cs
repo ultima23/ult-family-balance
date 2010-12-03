@@ -7,11 +7,48 @@ using System.Data.Objects;
 
 namespace Ult.FamilyBalance.UI.Pages
 {
-    public interface IPageList<TEntity>
+    /// <summary>
+    /// Standard interface for a navigable page
+    /// </summary>
+    /// <typeparam name="TEntity">Type of the entity handled by the page</typeparam>
+    public interface INavigablePage<TEntity>
     {
 
-        void Init(UltFamilyBalanceContext context, ObjectQuery<TEntity> list);
+        /// <summary>
+        /// Currently selected entity into page
+        /// </summary>
+        TEntity SelectedEntity
+        {
+            get;
+        }
 
+        /// <summary>
+        /// True if the page has an entity selected
+        /// </summary>
+        bool HasSelectedEntity
+        {
+            get;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void First();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void Last();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void Next();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void Prev();
 
     }
 }
