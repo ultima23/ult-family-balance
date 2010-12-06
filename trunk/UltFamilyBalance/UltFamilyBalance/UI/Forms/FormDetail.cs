@@ -41,6 +41,18 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
 
         // -----------------------------------------------------------------------------------------------------------
+        #region PROPERTIES
+
+        public string Title
+        {
+            get { return Text; }
+            set { Text = value; }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
         #region PRIVATE METHODS
 
         /// <summary>
@@ -95,6 +107,24 @@ namespace Ult.FamilyBalance.UI
         private void FormDetail_Resize(object sender, EventArgs e)
         {
             _detail.UpdateSize(panelDetail.Size);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Entity verification
+            if (_detail.Verify())
+            {
+                _detail.Save();
+                // Closing dialog
+                DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _detail.Cancel();
+            // Closing dialog
+            DialogResult = DialogResult.Cancel;
         }
 
         // ---

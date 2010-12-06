@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Ult.FamilyBalance.UI.Pages;
 using Ult.FamilyBalance.Model;
 using System.Data.Objects;
+using Ult.Util;
 
 namespace Ult.FamilyBalance.UI
 {
@@ -114,12 +115,7 @@ namespace Ult.FamilyBalance.UI
             {
                 if (HasSelectedEntity)
                 {
-
-                    var obj = dgvOutgoing.Rows[dgvOutgoing.SelectedRows[0].Index].DataBoundItem;
-
-                    // Entry entry = _context.Entries.Single<Entry>(e => entry.Id == obj.Id);
-
-                    return null;
+                    return dgvOutgoing.Rows[dgvOutgoing.SelectedRows[0].Index].DataBoundItem as Entry;
                 }
                 else
                 {
@@ -188,13 +184,13 @@ namespace Ult.FamilyBalance.UI
             ObjectQuery<Entry> entries = _context.Entries;
             // Incoming entries query
             var outgoing = from e in entries
-                           where    e.Type.Direction.Id == EntryDirection.OutgoingId 
+                           where e.Type.Direction.Id == EntryDirection.OutgoingId
                                  && (!_useDateTo || e.Date <= _dateTo)
                                  && (!_useDateFrom || e.Date >= _dateFrom)
                                  && (_type.Id == 0 || _type.Id == e.Type.Id)
                                  && (_amountMin == -1 || e.Amount >= _amountMin)
                                  && (_amountMax == -1 || e.Amount <= _amountMax)
-                           select new { e.Id, e.Date, e.Type.Name, e.Amount, e.DateUpdate };
+                           select e;
             // Incoming entries
             dgvOutgoing.AutoGenerateColumns = false;
             dgvOutgoing.DataSource = outgoing;
@@ -203,6 +199,50 @@ namespace Ult.FamilyBalance.UI
         private void RefreshUI()
         {
             labelTitle.Text = Title;
+        }
+
+
+        private void EditEntry()
+        {
+            if (HasSelectedEntity)
+            {
+                //
+                IDetail<Entry> detail = new DetailOutgoingEntry();
+                //
+                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, SelectedEntity);
+                form_detail.Title = Title + " Edit";
+                form_detail.ShowDialog();
+            }
+        }
+
+        private void NewEntry()
+        {
+            Entry new_entry = new Entry();
+            new_entry.Date = DateTime.Now;
+            new_entry.DateInsert = DateTime.Now;
+            new_entry.DateUpdate = DateTime.Now;
+            new_entry.User = UltFamilyBalance.GetUltFamilyBalance().User;
+            //
+            IDetail<Entry> detail = new DetailOutgoingEntry();
+            //
+            FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry);
+            form_detail.Title = Title + " New";
+            form_detail.ShowDialog();
+        }
+
+        private void DeleteEntry()
+        {
+            if (HasSelectedEntity)
+            {
+                // Delete user confirm
+                if (UIUtils.Confirm("Are you sure to delete the selected entry?\r\nThis operation cannot be reverted."))
+                {
+                    _context.DeleteObject(this.SelectedEntity);
+                    _context.SaveChanges();
+                    // Move to the previous entity
+                    Prev();
+                }
+            }
         }
 
         #endregion
@@ -416,13 +456,7 @@ namespace Ult.FamilyBalance.UI
         {
             if (_status != PageStatus.Processing)
             {
-                Entry new_entry = new Entry();
-
-                IDetail<Entry> detail = new DetailOutgoingEntry();
-
-                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry);
-                form_detail.ShowDialog();
-
+                NewEntry();
             }
         }
 
@@ -430,14 +464,15 @@ namespace Ult.FamilyBalance.UI
         {
             if (_status != PageStatus.Processing)
             {
-                if (HasSelectedEntity)
-                {
-                    //
-                    IDetail<Entry> detail = new DetailOutgoingEntry();
-                    //
-                    FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, SelectedEntity);
-                    form_detail.ShowDialog();
-                }
+                EditEntry();
+            }
+        }
+
+        private void dgvOutgoing_DoubleClick(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                EditEntry();
             }
         }
 
