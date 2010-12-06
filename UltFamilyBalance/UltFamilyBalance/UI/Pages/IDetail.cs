@@ -44,6 +44,11 @@ namespace Ult.FamilyBalance.UI.Pages
         void Init(TEntity entity);
 
         /// <summary>
+        /// Validates current entity
+        /// </summary>
+        bool Verify();
+
+        /// <summary>
         /// Save detail changes
         /// </summary>
         void Save();

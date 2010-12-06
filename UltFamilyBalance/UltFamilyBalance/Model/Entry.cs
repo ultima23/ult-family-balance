@@ -12,6 +12,14 @@ namespace Ult.FamilyBalance.Model
     {
 
         /// <summary>
+        /// Shortcut to typename
+        /// </summary>
+        public string TypeName
+        {
+            get { return Type != null ? Type.Name : "Unknown"; }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -21,4 +29,5 @@ namespace Ult.FamilyBalance.Model
         }
 
     }
+
 }

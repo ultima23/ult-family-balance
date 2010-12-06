@@ -53,7 +53,7 @@
             this.groupEntry.Controls.Add(this.tlpEntry);
             this.groupEntry.Location = new System.Drawing.Point(3, -2);
             this.groupEntry.Name = "groupEntry";
-            this.groupEntry.Size = new System.Drawing.Size(512, 384);
+            this.groupEntry.Size = new System.Drawing.Size(408, 384);
             this.groupEntry.TabIndex = 0;
             this.groupEntry.TabStop = false;
             // 
@@ -81,7 +81,7 @@
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpEntry.Size = new System.Drawing.Size(500, 359);
+            this.tlpEntry.Size = new System.Drawing.Size(396, 359);
             this.tlpEntry.TabIndex = 0;
             // 
             // label1
@@ -142,8 +142,9 @@
             // maskedEntityAmount
             // 
             this.maskedEntityAmount.Location = new System.Drawing.Point(87, 5);
+            this.maskedEntityAmount.Mask = "€ #####,00";
             this.maskedEntityAmount.Name = "maskedEntityAmount";
-            this.maskedEntityAmount.Size = new System.Drawing.Size(271, 20);
+            this.maskedEntityAmount.Size = new System.Drawing.Size(303, 20);
             this.maskedEntityAmount.TabIndex = 4;
             // 
             // dateEntityDate
@@ -152,7 +153,7 @@
             this.dateEntityDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateEntityDate.Location = new System.Drawing.Point(87, 37);
             this.dateEntityDate.Name = "dateEntityDate";
-            this.dateEntityDate.Size = new System.Drawing.Size(271, 20);
+            this.dateEntityDate.Size = new System.Drawing.Size(303, 20);
             this.dateEntityDate.TabIndex = 5;
             // 
             // comboEntityType
@@ -161,7 +162,7 @@
             this.comboEntityType.FormattingEnabled = true;
             this.comboEntityType.Location = new System.Drawing.Point(87, 69);
             this.comboEntityType.Name = "comboEntityType";
-            this.comboEntityType.Size = new System.Drawing.Size(271, 21);
+            this.comboEntityType.Size = new System.Drawing.Size(303, 21);
             this.comboEntityType.TabIndex = 6;
             // 
             // textEntryNote
@@ -171,11 +172,12 @@
             this.textEntryNote.Location = new System.Drawing.Point(87, 101);
             this.textEntryNote.Multiline = true;
             this.textEntryNote.Name = "textEntryNote";
-            this.textEntryNote.Size = new System.Drawing.Size(271, 253);
+            this.textEntryNote.Size = new System.Drawing.Size(303, 253);
             this.textEntryNote.TabIndex = 7;
             // 
             // errorProvider
             // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
             // DetailOutgoingEntry
@@ -184,7 +186,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupEntry);
             this.Name = "DetailOutgoingEntry";
-            this.Size = new System.Drawing.Size(518, 385);
+            this.Size = new System.Drawing.Size(414, 385);
             this.groupEntry.ResumeLayout(false);
             this.tlpEntry.ResumeLayout(false);
             this.tlpEntry.PerformLayout();

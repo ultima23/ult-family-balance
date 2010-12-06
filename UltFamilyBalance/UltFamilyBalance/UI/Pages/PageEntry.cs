@@ -128,5 +128,11 @@ namespace Ult.FamilyBalance.UI.Pages
                 Tracer.Debug(ex);
             }
         }
+
+
+        public bool Verify()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
