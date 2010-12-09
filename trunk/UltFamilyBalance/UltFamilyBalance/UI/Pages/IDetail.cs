@@ -41,7 +41,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// Initializer
         /// </summary>
         /// <param name="entity"></param>
-        void Init(TEntity entity);
+        void Init(TEntity entity, params object[] args);
 
         /// <summary>
         /// Validates current entity
@@ -51,12 +51,12 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         /// Save detail changes
         /// </summary>
-        void Save();
+        IDetailResult Save();
 
         /// <summary>
         /// Cancel detail changes
         /// </summary>
-        void Cancel();
+        IDetailResult Cancel();
 
         /// <summary>
         /// Refresh page data
@@ -71,4 +71,18 @@ namespace Ult.FamilyBalance.UI.Pages
         void UpdateSize(Size size);
 
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum IDetailResult
+    {
+        None,
+        AddSucces,
+        AddFailed,
+        UpdateSuccess,
+        UpdateFailed,
+        Cancel
+    }
+
 }

@@ -30,17 +30,14 @@ namespace Ult.FamilyBalance.UI
         {
             this.tscMain = new System.Windows.Forms.ToolStripContainer();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusBarPage = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurazioneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestioneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usciteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aggiungiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuovaEntrataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contoCorrenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aggiungiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +70,6 @@ namespace Ult.FamilyBalance.UI
             this.toSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusBarPage = new System.Windows.Forms.ToolStripStatusLabel();
             this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -107,6 +103,12 @@ namespace Ult.FamilyBalance.UI
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(729, 22);
             this.statusBar.TabIndex = 0;
+            // 
+            // toolStripStatusBarPage
+            // 
+            this.toolStripStatusBarPage.Name = "toolStripStatusBarPage";
+            this.toolStripStatusBarPage.Size = new System.Drawing.Size(12, 17);
+            this.toolStripStatusBarPage.Text = "-";
             // 
             // menuStrip1
             // 
@@ -155,48 +157,17 @@ namespace Ult.FamilyBalance.UI
             // 
             // usciteToolStripMenuItem
             // 
-            this.usciteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultaToolStripMenuItem1,
-            this.aggiungiToolStripMenuItem});
             this.usciteToolStripMenuItem.Name = "usciteToolStripMenuItem";
             this.usciteToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.usciteToolStripMenuItem.Text = "Uscite";
-            // 
-            // consultaToolStripMenuItem1
-            // 
-            this.consultaToolStripMenuItem1.Name = "consultaToolStripMenuItem1";
-            this.consultaToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
-            this.consultaToolStripMenuItem1.Text = "Consulta";
-            this.consultaToolStripMenuItem1.Click += new System.EventHandler(this.consultaToolStripMenuItem1_Click);
-            // 
-            // aggiungiToolStripMenuItem
-            // 
-            this.aggiungiToolStripMenuItem.Name = "aggiungiToolStripMenuItem";
-            this.aggiungiToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.aggiungiToolStripMenuItem.Text = "Aggiungi";
+            this.usciteToolStripMenuItem.Click += new System.EventHandler(this.usciteToolStripMenuItem_Click);
             // 
             // entrateToolStripMenuItem
             // 
-            this.entrateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultaToolStripMenuItem,
-            this.nuovaEntrataToolStripMenuItem});
             this.entrateToolStripMenuItem.Name = "entrateToolStripMenuItem";
             this.entrateToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.entrateToolStripMenuItem.Text = "Entrate";
-            // 
-            // consultaToolStripMenuItem
-            // 
-            this.consultaToolStripMenuItem.Name = "consultaToolStripMenuItem";
-            this.consultaToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.consultaToolStripMenuItem.Text = "Consulta";
-            this.consultaToolStripMenuItem.Click += new System.EventHandler(this.consultaToolStripMenuItem_Click);
-            // 
-            // nuovaEntrataToolStripMenuItem
-            // 
-            this.nuovaEntrataToolStripMenuItem.Name = "nuovaEntrataToolStripMenuItem";
-            this.nuovaEntrataToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.nuovaEntrataToolStripMenuItem.Text = "Aggiungi";
-            this.nuovaEntrataToolStripMenuItem.Click += new System.EventHandler(this.nuovaEntrataToolStripMenuItem_Click);
+            this.entrateToolStripMenuItem.Click += new System.EventHandler(this.entrateToolStripMenuItem_Click);
             // 
             // contoCorrenteToolStripMenuItem
             // 
@@ -210,13 +181,13 @@ namespace Ult.FamilyBalance.UI
             // consultaToolStripMenuItem2
             // 
             this.consultaToolStripMenuItem2.Name = "consultaToolStripMenuItem2";
-            this.consultaToolStripMenuItem2.Size = new System.Drawing.Size(123, 22);
+            this.consultaToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.consultaToolStripMenuItem2.Text = "Consulta";
             // 
             // aggiungiToolStripMenuItem1
             // 
             this.aggiungiToolStripMenuItem1.Name = "aggiungiToolStripMenuItem1";
-            this.aggiungiToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.aggiungiToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.aggiungiToolStripMenuItem1.Text = "Aggiungi";
             // 
             // reportToolStripMenuItem
@@ -430,20 +401,14 @@ namespace Ult.FamilyBalance.UI
             this.creditsToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.creditsToolStripMenuItem.Text = "Credits";
             // 
-            // toolStripStatusBarPage
-            // 
-            this.toolStripStatusBarPage.Name = "toolStripStatusBarPage";
-            this.toolStripStatusBarPage.Size = new System.Drawing.Size(12, 17);
-            this.toolStripStatusBarPage.Text = "-";
-            // 
-            // MainForm
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 502);
             this.Controls.Add(this.tscMain);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "MainForm";
+            this.Name = "FormMain";
             this.Text = "Ult Famyly Balance";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
@@ -469,11 +434,7 @@ namespace Ult.FamilyBalance.UI
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem usciteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aggiungiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem entrateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuovaEntrataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contoCorrenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem aggiungiToolStripMenuItem1;

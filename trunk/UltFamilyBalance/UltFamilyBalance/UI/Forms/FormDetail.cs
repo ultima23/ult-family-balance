@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using Ult.FamilyBalance.UI.Pages;
 using Ult.Util;
+using Ult.Commons;
 
 namespace Ult.FamilyBalance.UI
 {
@@ -19,6 +20,10 @@ namespace Ult.FamilyBalance.UI
         #region FIELDS
 
         private IDetail<TEntity> _detail;
+
+        private IDetailResult _result;
+
+        private Logger _log;
 
         #endregion
         // -----------------------------------------------------------------------------------------------------------
@@ -31,10 +36,10 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         /// <param name="detail"></param>
         /// <param name="entity"></param>
-        public FormDetail(IDetail<TEntity> detail, TEntity entity)
+        public FormDetail(IDetail<TEntity> detail, TEntity entity, params object[] args)
         {
             InitializeComponent();
-            Init(detail, entity);
+            Init(detail, entity, args);
         }
 
         #endregion
@@ -49,6 +54,11 @@ namespace Ult.FamilyBalance.UI
             set { Text = value; }
         }
 
+        public IDetailResult Result
+        {
+            get { return _result;  }
+        }
+
         #endregion
         // -----------------------------------------------------------------------------------------------------------
 
@@ -59,13 +69,19 @@ namespace Ult.FamilyBalance.UI
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        protected void Init(IDetail<TEntity> detail, TEntity entity)
+        protected void Init(IDetail<TEntity> detail, TEntity entity, params object[] args)
         {
+            // Parameters check
             if (detail == null) throw new ArgumentNullException("detail", "Detail should not be null");
+            if (entity == null) throw new ArgumentNullException("entity", "Entity should not be null");
+            // retrieve logger instance
+            _log = Logger.GetDefaultLogger();
             // Detail registering
             RegisterDetail(detail);
             // Initialization
-            _detail.Init(entity);
+            _detail.Init(entity, args);
+            //
+            _result = IDetailResult.None;
         }
 
         /// <summary>
@@ -111,18 +127,28 @@ namespace Ult.FamilyBalance.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Entity verification
-            if (_detail.Verify())
+            try
             {
-                _detail.Save();
-                // Closing dialog
-                DialogResult = DialogResult.OK;
+                // Entity verification
+                if (_detail.Verify())
+                {
+                    // Entity save
+                    _result = _detail.Save();
+                    // Closing dialog
+                    DialogResult = DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error("FormDetail > btnSave_Click() handler error:", ex);
+                UIUtils.Error("FormDetail > btnSave_Click() handler error:", ex.Message);
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            _detail.Cancel();
+            // Cancelling modify
+            _result = _detail.Cancel();
             // Closing dialog
             DialogResult = DialogResult.Cancel;
         }
@@ -133,4 +159,5 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
 
     }
+
 }

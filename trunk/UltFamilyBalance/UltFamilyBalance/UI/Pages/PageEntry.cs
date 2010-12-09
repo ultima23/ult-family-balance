@@ -3,136 +3,512 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Ult.FamilyBalance.UI.Pages;
 using Ult.FamilyBalance.Model;
-using Ult.Commons;
+using System.Data.Objects;
 using Ult.Util;
+using Ult.Commons;
+using Ult.Core.Utils;
 
-
-namespace Ult.FamilyBalance.UI.Pages
+namespace Ult.FamilyBalance.UI
 {
-    public partial class PageEntry : UserControl, IDetail<Entry>
+    public partial class PageEntry : UserControl, IPage, INavigablePage<Entry>
     {
 
+        // -----------------------------------------------------------------------------------------------------------
+        #region FIELDS
+
+
+        private EntryDirection _direction;
+        // 
+        private PageStatus _status;
         //
-        private Entry _entry;
+        ObjectQuery<Entry> _entries;
+        // 
+        private UltFamilyBalanceContext _context;
+
+        private Logger _log;
+
         //
-        private UltFamilyBalance _context;
+        private bool _useDateFrom;
+        //
+        private bool _useDateTo;
+        // 
+        private DateTime _dateFrom;
+        //
+        private DateTime _dateTo;
+
+        private EntryType _type;
+
+        private int _amountMin;
+
+        private int _amountMax;
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region CONSTRUCTORS
 
         /// <summary>
-        /// Constructor
+        /// 
         /// </summary>
         public PageEntry()
         {
-            //
             InitializeComponent();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected void Bind()
-        {
-            //
-            maskedEntityAmount.DataBindings.Add("Text", _entry, "Amount");
-            dateEntityDate.DataBindings.Add("Value", _entry, "Date");
-            textEntryNote.DataBindings.Add("Text", _entry, "Note");
-            //
-            comboEntityType.DisplayMember = "Name";
-            comboEntityType.DataSource = _context.Context.EntryTypes;
-            comboEntityType.DataBindings.Add("SelectedItem", _entry, "Type");
-        }
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PROPERTIES
 
         /// <summary>
         /// 
         /// </summary>
-        public Entry Entity
+        public string Title
         {
-            get { return _entry; }
+            get { return "Outgoing Entries"; }
         }
 
-        public bool HasPendingChanges
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Active
         {
-            get { return _entry != null && _entry.EntityState != EntityState.Unchanged; }
-        }
-
-        public void Init(Entry entity)
-        {
-            // Page initalization
-            _context = UltFamilyBalance.GetUltFamilyBalance();
-            _entry = entity;
-            // Binds UI componenets
-            Bind();
-        }
-
-        private void buttonConfirm_Click(object sender, EventArgs e)
-        {
-            try
+            get
             {
-                Logger.GetDefaultLogger().Debug(_entry.ToString());
-
-                _context.Context.AddToEntries(_entry);
-                _context.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                UIUtils.Message(ex.InnerException.Message);
-                Tracer.Debug(ex);
+                return _status != PageStatus.Unknown &&
+                       _status != PageStatus.Init;
             }
         }
 
-        public void Refresh(params object[] args)
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool CanHide
         {
-            throw new NotImplementedException();
+            get { return _status != PageStatus.Processing &&
+                         _status != PageStatus.Locked;
+            }
         }
 
-        public void UpdateSize(Size size)
+        /// <summary>
+        /// 
+        /// </summary>
+        public PageStatus Status
         {
-            this.Size = size;
+            get { return _status; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Control Control
         {
             get { return this as Control; }
         }
 
-        public void Save()
+        /// <summary>
+        /// 
+        /// </summary>
+        public Entry SelectedEntity
         {
-            try
+            get 
             {
-                Logger.GetDefaultLogger().Debug(_entry.ToString());
-
-                _context.Context.AddToEntries(_entry);
-                _context.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                UIUtils.Message(ex.InnerException.Message);
-                Tracer.Debug(ex);
+                if (HasSelectedEntity)
+                {
+                    return dgvOutgoing.Rows[dgvOutgoing.SelectedRows[0].Index].DataBoundItem as Entry;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
-        public void Cancel()
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool HasSelectedEntity
         {
-            try
+            get { return (dgvOutgoing.SelectedRows.Count > 0); }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PRIVATE METHODS
+
+        private void DefaultFilters()
+        {
+            _useDateFrom = true;
+            _useDateTo = true;
+            _dateFrom = DateTimeUtils.ToMidnight(DateTime.Today.AddMonths(-1));
+            _dateTo = DateTimeUtils.Midnight;
+            _type = EntryType.AllOutgoing;
+            _amountMin = -1;
+            _amountMax = -1;
+        }
+
+        private void RefreshFilters()
+        {
+            cbxUseDateTo.Checked = _useDateTo;
+            cbxUseDateFrom.Checked = _useDateFrom;
+            dtpDateFrom.Value = _dateFrom;
+            dtpDateTo.Value = _dateTo;
+            dtpDateFrom.Enabled = _useDateFrom;
+            dtpDateTo.Enabled = _useDateTo;
+            cmbTypes.SelectedItem = _type;
+            cbxMinAmount.Checked = _amountMin > -1;
+            cbxMaxAmount.Checked = _amountMax > -1;
+            numMinAmount.Enabled = _amountMin > -1;
+            numMaxAmount.Enabled = _amountMax > -1;
+        }
+
+        private void RefreshTypes()
+        {
+            // Outgoing types 
+            var types = from t in _context.EntryTypes
+                        where t.Direction.Id == _direction.Id
+                        select t;
+            List<EntryType> list = new List<EntryType>();
+            list.Add((_direction.Id == EntryDirection.OutgoingId) ? EntryType.AllOutgoing : EntryType.AllIncoming);
+            list.AddRange(types);
+            // 
+            cmbTypes.DisplayMember = "Name";
+            cmbTypes.DataSource = list;
+        }
+
+        private void RefreshList()
+        {
+            // Data refresh
+            _context.Refresh(RefreshMode.StoreWins, _entries);
+            // Incoming entries query
+            var outgoing =  from e in _entries
+                            where e.Type.Direction.Id == _direction.Id
+                                 && (!_useDateTo || e.Date <= _dateTo)
+                                 && (!_useDateFrom || e.Date >= _dateFrom)
+                                 && (_type.Id == 0 || _type.Id == e.Type.Id)
+                                 && (_amountMin == -1 || e.Amount >= _amountMin)
+                                 && (_amountMax == -1 || e.Amount <= _amountMax)
+                            // orderby Date descending
+                            select e;
+            // Incoming entries
+            dgvOutgoing.AutoGenerateColumns = false;
+            dgvOutgoing.DataSource = outgoing;
+        }
+
+        private void RefreshUI()
+        {
+            labelTitle.Text = Title;
+        }
+
+        private void EditEntry()
+        {
+            if (HasSelectedEntity)
             {
-                _context.Context.Refresh(RefreshMode.StoreWins, _entry);
-            }
-            catch (Exception ex)
-            {
-                UIUtils.Message(ex.InnerException.Message);
-                Tracer.Debug(ex);
+                //
+                IDetail<Entry> detail = new DetailEntry();
+                //
+                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, SelectedEntity, _direction);
+                form_detail.Title = Title + " Edit";
+                form_detail.ShowDialog();
+                //
+                RefreshList();
             }
         }
 
+        private void NewEntry()
+        {
+            Entry new_entry = new Entry();
+            new_entry.Date = DateTime.Now;
+            new_entry.DateInsert = DateTime.Now;
+            new_entry.DateUpdate = DateTime.Now;
+            new_entry.User = UltFamilyBalance.GetUltFamilyBalance().User;
+            //
+            IDetail<Entry> detail = new DetailEntry();
+            //
+            FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry, _direction);
+            form_detail.Title = Title + " New";
+            form_detail.ShowDialog();
+            //
+            RefreshList();
+        }
 
-        public bool Verify()
+        private void DeleteEntry()
+        {
+            if (HasSelectedEntity)
+            {
+                // Delete user confirm
+                if (UIUtils.Confirm("Are you sure to delete the selected entry?\r\nThis operation cannot be reverted."))
+                {
+                    _context.DeleteObject(this.SelectedEntity);
+                    _context.SaveChanges();
+                    //
+                    RefreshList();
+                    // Move to the previous entity
+                    // Prev();
+                }
+            }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PUBLIC METHODS
+
+        public void Init(params object[] args)
+        {
+            // Parameters check
+            if (args.Length < 1) throw new ArgumentException("Parameters 'direction' are missing");
+            if (!(args[0] is EntryDirection)) throw new ArgumentException("Parameter 'direction' (EntryDirection) missing or wrong");
+            // Entry direction definition
+            _direction = args[0] as EntryDirection;
+            // Logger
+            _log = Logger.GetDefaultLogger();
+            // Context
+            _context = UltFamilyBalance.GetUltFamilyBalance().Context;
+            //
+            DefaultFilters();
+            // STATUS: Init
+            _status = PageStatus.Init;
+        }
+
+        public void Open(Size size)
+        {
+            //
+            UpdateSize(size);
+            // Entries
+            _entries = _context.Entries;
+            //
+            Refresh();
+            // STATUS: Active
+            _status = PageStatus.Active;
+        }
+
+        public void Refresh(params object[] args)
+        {
+            // STATUS: Processing
+            _status = PageStatus.Processing;
+            // Refresh
+            RefreshUI();
+            RefreshTypes();
+            RefreshFilters();
+            RefreshList();
+            // STATUS: Active
+            _status = PageStatus.Active;
+        }
+
+        public void Close()
+        {
+            // STATUS: Active
+            _status = PageStatus.Ready;
+        }
+
+        public void UpdateSize(Size size)
+        {
+            Size = size;
+        }
+
+        public void First()
         {
             throw new NotImplementedException();
         }
+
+        public void Last()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Next()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Prev()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region UI EVENT EHANDLERS
+
+        private void chbUseDateFrom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxUseDateFrom.Checked)
+                {
+                    dtpDateFrom.Enabled = true;
+                    _useDateFrom = true;
+                    _dateFrom = dtpDateFrom.Value;
+                }
+                else
+                {
+                    dtpDateFrom.Enabled = false;
+                    _useDateFrom = false;
+                    
+                }
+                RefreshList();
+            }
+        }
+
+        private void chbUseDateTo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxUseDateTo.Checked)
+                {
+                    dtpDateTo.Enabled = true;
+                    _useDateTo = true;
+                    _dateTo = dtpDateTo.Value;
+                }
+                else
+                {
+                    dtpDateTo.Enabled = false;
+                    _useDateTo = false;
+                }
+                RefreshList();
+            }
+        }
+
+        private void dtpDateTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (_dateTo != dtpDateTo.Value)
+                {
+                    _dateTo = DateTimeUtils.ToMidnight(dtpDateTo.Value);
+                    RefreshList();
+                }
+            }
+        }
+
+        private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (_dateFrom != dtpDateFrom.Value)
+                {
+                    _dateFrom = DateTimeUtils.ToMidnight(dtpDateFrom.Value);
+                    RefreshList();
+                }
+            }
+        }
+
+        private void cmbTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                EntryType type = cmbTypes.SelectedItem as EntryType;
+                if (type != null && type != _type)
+                {
+                    _type = type;
+                    RefreshList();
+                }
+            }
+        }
+
+        private void cbxMinAmount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxMinAmount.Checked)
+                {
+                    numMinAmount.Enabled = true;
+                    _amountMin = Convert.ToInt32(numMinAmount.Value);
+                }
+                else
+                {
+                    numMinAmount.Enabled = false;
+                    _amountMin = -1;
+                    
+                }
+                RefreshList();
+            }
+        }
+
+        private void numMinAmount_ValueChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                
+                _amountMin = Convert.ToInt32(numMinAmount.Value);
+                RefreshList();
+            }
+        }
+
+        private void cbxMaxAmount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxMaxAmount.Checked)
+                {
+                    numMaxAmount.Enabled = true;
+                    _amountMax = Convert.ToInt32(numMaxAmount.Value);
+                }
+                else
+                {
+                    numMaxAmount.Enabled = false;
+                    _amountMax = -1;
+                }
+                RefreshList();
+            }
+        }
+
+        private void numMaxAmount_ValueChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                _amountMax = Convert.ToInt32(numMaxAmount.Value);
+                RefreshList();
+            }
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                NewEntry();
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                EditEntry();
+            }
+        }
+
+        private void dgvOutgoing_DoubleClick(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                EditEntry();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteEntry();
+        }
+
+        //---
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
     }
 }
