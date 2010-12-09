@@ -78,14 +78,6 @@ namespace Ult.FamilyBalance.UI
         {
             _page = null;
             _pages = new Dictionary<string, IPage>();
-            /*
-            _logger.Debug("DEBUG LOG MESSAGE");
-            _logger.Info("INFO LOG MESSAGE");
-            _logger.Warning("WARNING LOG MESSAGE");
-            _logger.Error("ERROR LOG MESSAGE");
-            _logger.Fatal("FATAL LOG MESSAGE");
-            Tracer.Trace("TEST TRACE TEST TRACE");
-            */
         }
 
         /// <summary>
@@ -100,7 +92,26 @@ namespace Ult.FamilyBalance.UI
             {
                 // 
                 page = (IPage)Activator.CreateInstance(type);
-                page.Init();
+                page.Init(new object[] {});
+                // Adds the page to the created pages
+                _pages.Add(type.Name, page);
+            }
+            return page;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private IPage CreatePage(Type type, params object[] args)
+        {
+            IPage page = GetPage(type.Name);
+            if (page == null)
+            {
+                // Dynamic page creation
+                page = (IPage)Activator.CreateInstance(type);
+                page.Init(args);
                 // Adds the page to the created pages
                 _pages.Add(type.Name, page);
             }
@@ -177,9 +188,6 @@ namespace Ult.FamilyBalance.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'ultFamilyBalance_dataDataSet.vwEntries' table. You can move, or remove it, as needed.
-            // this.vwEntriesTableAdapter.Fill(this.ultFamilyBalance_dataDataSet.vwEntries);
-
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -190,31 +198,16 @@ namespace Ult.FamilyBalance.UI
             }
         }
 
-        private void nuovaEntrataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void usciteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            PageEntry page = new PageEntry();
-            panelContent.Controls.Add(page);
-            page.Init(_ufb.Context);
-            */
-
-            // SetActivePage(new PageListEntry());
-
+            // 
+            SetPage(CreatePage(typeof(PageEntry), EntryDirection.OutgoingReference));
         }
 
-        private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void entrateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            PageListEntry page = new PageListEntry();
-            panelContent.Controls.Add(page);
-            page.Init(_ufb.Context, _ufb.Context.Entries);
-            */
-            SetPage(CreatePage(typeof(PageListEntry)));
-        }
-
-        private void consultaToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            SetPage(CreatePage(typeof(PageOutgoingList)));
+            // 
+            SetPage(CreatePage(typeof(PageEntry), EntryDirection.IncomingReference));
         }
 
         // --

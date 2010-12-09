@@ -57,7 +57,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         ///  Initialize the current page
         /// </summary>
-        void Init();
+        void Init(params object[] args);
 
         /// <summary>
         /// Open the page with the provided size

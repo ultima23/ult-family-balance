@@ -62,21 +62,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PageOutgoingList.cs">
+    <Compile Include="UI\Pages\PageEntry.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PageOutgoingList.Designer.cs">
-      <DependentUpon>PageOutgoingList.cs</DependentUpon>
+    <Compile Include="UI\Pages\PageEntry.Designer.cs">
+      <DependentUpon>PageEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Entry.cs" />
     <Compile Include="Model\EntryDirection.cs" />
     <Compile Include="Model\EntryType.cs" />
-    <Compile Include="PageListEntry.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PageListEntry.Designer.cs">
-      <DependentUpon>PageListEntry.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Forms\FormDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,29 +88,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\DetailOutgoingEntry.cs">
+    <Compile Include="UI\Pages\DetailEntry.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Pages\DetailOutgoingEntry.Designer.cs">
-      <DependentUpon>DetailOutgoingEntry.cs</DependentUpon>
+    <Compile Include="UI\Pages\DetailEntry.Designer.cs">
+      <DependentUpon>DetailEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\IDetail.cs" />
     <Compile Include="UI\Pages\IPageList.cs" />
     <Compile Include="UI\Pages\IPage.cs" />
-    <Compile Include="UI\Pages\PageEntry.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Pages\PageEntry.Designer.cs">
-      <DependentUpon>PageEntry.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UltFamilyBalance.cs" />
-    <EmbeddedResource Include="PageOutgoingList.resx">
-      <DependentUpon>PageOutgoingList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PageListEntry.resx">
-      <DependentUpon>PageListEntry.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Pages\PageEntry.resx">
+      <DependentUpon>PageEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\FormDetail.resx">
       <DependentUpon>FormDetail.cs</DependentUpon>
@@ -124,11 +109,8 @@
     <EmbeddedResource Include="UI\Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Pages\DetailOutgoingEntry.resx">
-      <DependentUpon>DetailOutgoingEntry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Pages\PageEntry.resx">
-      <DependentUpon>PageEntry.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Pages\DetailEntry.resx">
+      <DependentUpon>DetailEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
