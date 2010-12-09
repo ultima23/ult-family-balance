@@ -247,7 +247,8 @@ namespace Ult.FamilyBalance.Model
         /// <param name="month">Initial value of the Month property.</param>
         /// <param name="incoming">Initial value of the Incoming property.</param>
         /// <param name="outgoing">Initial value of the Outgoing property.</param>
-        public static CreditCount CreateCreditCount(global::System.Int32 id, global::System.Int32 year, global::System.Int32 month, global::System.Decimal incoming, global::System.Decimal outgoing)
+        /// <param name="dateInsert">Initial value of the DateInsert property.</param>
+        public static CreditCount CreateCreditCount(global::System.Int32 id, global::System.Int32 year, global::System.Int32 month, global::System.Decimal incoming, global::System.Decimal outgoing, global::System.DateTime dateInsert)
         {
             CreditCount creditCount = new CreditCount();
             creditCount.Id = id;
@@ -255,6 +256,7 @@ namespace Ult.FamilyBalance.Model
             creditCount.Month = month;
             creditCount.Incoming = incoming;
             creditCount.Outgoing = outgoing;
+            creditCount.DateInsert = dateInsert;
             return creditCount;
         }
 
@@ -407,6 +409,78 @@ namespace Ult.FamilyBalance.Model
         private global::System.Int32 _UserId;
         partial void OnUserIdChanging(global::System.Int32 value);
         partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Balance
+        {
+            get
+            {
+                return _Balance;
+            }
+            set
+            {
+                OnBalanceChanging(value);
+                ReportPropertyChanging("Balance");
+                _Balance = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Balance");
+                OnBalanceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Balance;
+        partial void OnBalanceChanging(Nullable<global::System.Decimal> value);
+        partial void OnBalanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateInsert
+        {
+            get
+            {
+                return _DateInsert;
+            }
+            set
+            {
+                OnDateInsertChanging(value);
+                ReportPropertyChanging("DateInsert");
+                _DateInsert = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateInsert");
+                OnDateInsertChanged();
+            }
+        }
+        private global::System.DateTime _DateInsert;
+        partial void OnDateInsertChanging(global::System.DateTime value);
+        partial void OnDateInsertChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateUpdated
+        {
+            get
+            {
+                return _DateUpdated;
+            }
+            set
+            {
+                OnDateUpdatedChanging(value);
+                ReportPropertyChanging("DateUpdated");
+                _DateUpdated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateUpdated");
+                OnDateUpdatedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateUpdated;
+        partial void OnDateUpdatedChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateUpdatedChanged();
 
         #endregion
     
