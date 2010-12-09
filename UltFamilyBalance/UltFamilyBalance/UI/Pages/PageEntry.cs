@@ -22,7 +22,7 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
         #region FIELDS
 
-
+        //
         private EntryDirection _direction;
         // 
         private PageStatus _status;
@@ -73,7 +73,7 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         public string Title
         {
-            get { return "Outgoing Entries"; }
+            get { return _direction == EntryDirection.OutgoingReference ? "Uscite" : "Entrate"; }
         }
 
         /// <summary>
@@ -117,13 +117,13 @@ namespace Ult.FamilyBalance.UI
         /// <summary>
         /// 
         /// </summary>
-        public Entry SelectedEntity
+        public Entry CurrentEntity
         {
             get 
             {
-                if (HasSelectedEntity)
+                if (HasCurrentEntity)
                 {
-                    return dgvOutgoing.Rows[dgvOutgoing.SelectedRows[0].Index].DataBoundItem as Entry;
+                    return dgvEntries.Rows[dgvEntries.SelectedRows[0].Index].DataBoundItem as Entry;
                 }
                 else
                 {
@@ -135,9 +135,9 @@ namespace Ult.FamilyBalance.UI
         /// <summary>
         /// 
         /// </summary>
-        public bool HasSelectedEntity
+        public bool HasCurrentEntity
         {
-            get { return (dgvOutgoing.SelectedRows.Count > 0); }
+            get { return (dgvEntries.SelectedRows.Count > 0); }
         }
 
         #endregion
@@ -152,7 +152,7 @@ namespace Ult.FamilyBalance.UI
             _useDateTo = true;
             _dateFrom = DateTimeUtils.ToMidnight(DateTime.Today.AddMonths(-1));
             _dateTo = DateTimeUtils.Midnight;
-            _type = EntryType.AllOutgoing;
+            _type = _direction == EntryDirection.OutgoingReference ? EntryType.AllOutgoing : EntryType.AllIncoming;
             _amountMin = -1;
             _amountMax = -1;
         }
@@ -201,23 +201,23 @@ namespace Ult.FamilyBalance.UI
                             // orderby Date descending
                             select e;
             // Incoming entries
-            dgvOutgoing.AutoGenerateColumns = false;
-            dgvOutgoing.DataSource = outgoing;
+            dgvEntries.AutoGenerateColumns = false;
+            dgvEntries.DataSource = outgoing;
         }
 
-        private void RefreshUI()
+        private void RefreshText()
         {
             labelTitle.Text = Title;
         }
 
         private void EditEntry()
         {
-            if (HasSelectedEntity)
+            if (HasCurrentEntity)
             {
                 //
                 IDetail<Entry> detail = new DetailEntry();
                 //
-                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, SelectedEntity, _direction);
+                FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, CurrentEntity, _direction);
                 form_detail.Title = Title + " Edit";
                 form_detail.ShowDialog();
                 //
@@ -244,12 +244,12 @@ namespace Ult.FamilyBalance.UI
 
         private void DeleteEntry()
         {
-            if (HasSelectedEntity)
+            if (HasCurrentEntity)
             {
                 // Delete user confirm
                 if (UIUtils.Confirm("Are you sure to delete the selected entry?\r\nThis operation cannot be reverted."))
                 {
-                    _context.DeleteObject(this.SelectedEntity);
+                    _context.DeleteObject(this.CurrentEntity);
                     _context.SaveChanges();
                     //
                     RefreshList();
@@ -299,7 +299,7 @@ namespace Ult.FamilyBalance.UI
             // STATUS: Processing
             _status = PageStatus.Processing;
             // Refresh
-            RefreshUI();
+            RefreshText();
             RefreshTypes();
             RefreshFilters();
             RefreshList();
@@ -318,24 +318,33 @@ namespace Ult.FamilyBalance.UI
             Size = size;
         }
 
-        public void First()
+        public void MoveFirst()
         {
-            throw new NotImplementedException();
         }
 
-        public void Last()
+        public void MoveLast()
         {
-            throw new NotImplementedException();
+            try
+            {
+                int selected = 0;
+                if (dgvEntries.SelectedRows.Count > 0)
+                {
+                    selected = dgvEntries.SelectedRows[0].Index;
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error("", ex);
+                
+            }
         }
 
-        public void Next()
+        public void MoveNext()
         {
-            throw new NotImplementedException();
         }
 
-        public void Prev()
+        public void MovePrev()
         {
-            throw new NotImplementedException();
         }
 
         #endregion

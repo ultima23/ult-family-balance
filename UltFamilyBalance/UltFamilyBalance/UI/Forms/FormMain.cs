@@ -85,16 +85,16 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private IPage CreatePage(Type type)
+        private IPage CreatePage(string key, Type type)
         {
-            IPage page = GetPage(type.Name);
+            IPage page = GetPage(key);
             if (page == null)
             {
                 // 
                 page = (IPage)Activator.CreateInstance(type);
                 page.Init(new object[] {});
                 // Adds the page to the created pages
-                _pages.Add(type.Name, page);
+                _pages.Add(key, page);
             }
             return page;
         }
@@ -104,16 +104,16 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private IPage CreatePage(Type type, params object[] args)
+        private IPage CreatePage(string key, Type type, params object[] args)
         {
-            IPage page = GetPage(type.Name);
+            IPage page = GetPage(key);
             if (page == null)
             {
                 // Dynamic page creation
                 page = (IPage)Activator.CreateInstance(type);
                 page.Init(args);
                 // Adds the page to the created pages
-                _pages.Add(type.Name, page);
+                _pages.Add(key, page);
             }
             return page;
         }
@@ -201,13 +201,24 @@ namespace Ult.FamilyBalance.UI
         private void usciteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage(typeof(PageEntry), EntryDirection.OutgoingReference));
+            SetPage(CreatePage("uscite", typeof(PageEntry), EntryDirection.OutgoingReference));
         }
 
         private void entrateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage(typeof(PageEntry), EntryDirection.IncomingReference));
+            SetPage(CreatePage("entrate", typeof(PageEntry), EntryDirection.IncomingReference));
+        }
+
+        private void totaliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void contoCorrenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 
+            SetPage(CreatePage("conto", typeof(PageCreditCount)));
         }
 
         // --

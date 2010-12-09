@@ -38,15 +38,15 @@
             this.dtpEntityDate = new System.Windows.Forms.DateTimePicker();
             this.cmbEntityType = new System.Windows.Forms.ComboBox();
             this.txtEntryNote = new System.Windows.Forms.TextBox();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelAmount = new System.Windows.Forms.Panel();
-            this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.lblEntryAmount = new System.Windows.Forms.Label();
+            this.numAmount = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupEntry.SuspendLayout();
             this.tlpEntry.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panelAmount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupEntry
@@ -99,7 +99,7 @@
             this.lblEntryAmountTitle.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblEntryAmountTitle.Size = new System.Drawing.Size(74, 30);
             this.lblEntryAmountTitle.TabIndex = 0;
-            this.lblEntryAmountTitle.Text = "Amount";
+            this.lblEntryAmountTitle.Text = "Importo";
             this.lblEntryAmountTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEntryDateTitle
@@ -113,7 +113,7 @@
             this.lblEntryDateTitle.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblEntryDateTitle.Size = new System.Drawing.Size(74, 30);
             this.lblEntryDateTitle.TabIndex = 1;
-            this.lblEntryDateTitle.Text = "Date";
+            this.lblEntryDateTitle.Text = "Data";
             this.lblEntryDateTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEntryTypeTitle
@@ -127,7 +127,7 @@
             this.lblEntryTypeTitle.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblEntryTypeTitle.Size = new System.Drawing.Size(74, 30);
             this.lblEntryTypeTitle.TabIndex = 2;
-            this.lblEntryTypeTitle.Text = "Type";
+            this.lblEntryTypeTitle.Text = "Categoria";
             this.lblEntryTypeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblentryNoteTitle
@@ -171,11 +171,6 @@
             this.txtEntryNote.Size = new System.Drawing.Size(303, 263);
             this.txtEntryNote.TabIndex = 3;
             // 
-            // errorProvider
-            // 
-            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider.ContainerControl = this;
-            // 
             // panelAmount
             // 
             this.panelAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -188,6 +183,16 @@
             this.panelAmount.Size = new System.Drawing.Size(310, 24);
             this.panelAmount.TabIndex = 0;
             this.panelAmount.TabStop = true;
+            // 
+            // lblEntryAmount
+            // 
+            this.lblEntryAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEntryAmount.AutoSize = true;
+            this.lblEntryAmount.Location = new System.Drawing.Point(290, 6);
+            this.lblEntryAmount.Name = "lblEntryAmount";
+            this.lblEntryAmount.Size = new System.Drawing.Size(13, 13);
+            this.lblEntryAmount.TabIndex = 10;
+            this.lblEntryAmount.Text = "€";
             // 
             // numAmount
             // 
@@ -205,30 +210,25 @@
             this.numAmount.TabIndex = 1;
             this.numAmount.ThousandsSeparator = true;
             // 
-            // lblEntryAmount
+            // errorProvider
             // 
-            this.lblEntryAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEntryAmount.AutoSize = true;
-            this.lblEntryAmount.Location = new System.Drawing.Point(290, 6);
-            this.lblEntryAmount.Name = "lblEntryAmount";
-            this.lblEntryAmount.Size = new System.Drawing.Size(13, 13);
-            this.lblEntryAmount.TabIndex = 10;
-            this.lblEntryAmount.Text = "€";
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
-            // DetailOutgoingEntry
+            // DetailEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupEntry);
-            this.Name = "DetailOutgoingEntry";
+            this.Name = "DetailEntry";
             this.Size = new System.Drawing.Size(414, 385);
             this.groupEntry.ResumeLayout(false);
             this.tlpEntry.ResumeLayout(false);
             this.tlpEntry.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.panelAmount.ResumeLayout(false);
             this.panelAmount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -17,7 +17,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         /// Currently selected entity into page
         /// </summary>
-        TEntity SelectedEntity
+        TEntity CurrentEntity
         {
             get;
         }
@@ -25,7 +25,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         /// True if the page has an entity selected
         /// </summary>
-        bool HasSelectedEntity
+        bool HasCurrentEntity
         {
             get;
         }
@@ -33,22 +33,22 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         /// 
         /// </summary>
-        void First();
+        void MoveFirst();
 
         /// <summary>
         /// 
         /// </summary>
-        void Last();
+        void MoveLast();
 
         /// <summary>
         /// 
         /// </summary>
-        void Next();
+        void MoveNext();
 
         /// <summary>
         /// 
         /// </summary>
-        void Prev();
+        void MovePrev();
 
     }
 }

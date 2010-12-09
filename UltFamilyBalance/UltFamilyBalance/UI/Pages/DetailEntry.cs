@@ -168,13 +168,13 @@ namespace Ult.FamilyBalance.UI.Pages
                 // Amout validation
                 if (numAmount.Value <= 0)
                 {
-                    errorProvider.SetError(numAmount, "Amount should be greater than 0");
+                    errorProvider.SetError(numAmount, "L'importo è richiesto e deve essere maggiore di zero");
                     entity_verified = false;
                 }
                 // Type validation
                 if (cmbEntityType.SelectedIndex == -1)
                 {
-                    errorProvider.SetError(cmbEntityType, String.Format("Entry type for entry of type {0} is required but not provided;", _entry.TypeName));
+                    errorProvider.SetError(cmbEntityType, String.Format("La categoria è richiestea e non è stata selezionata alcuna categoria", _entry.TypeName));
                     entity_verified = false;
                 }
                 else
@@ -183,7 +183,7 @@ namespace Ult.FamilyBalance.UI.Pages
                     // Note validation
                     if (type != null && type.NoteRequired > 0 && String.IsNullOrEmpty(txtEntryNote.Text))
                     {
-                        errorProvider.SetError(txtEntryNote, String.Format("Note for entry of type {0} is required but not provided;", _entry.TypeName));
+                        errorProvider.SetError(txtEntryNote, String.Format("Le note per la categoria {0} sono richieste ma non sono state inserite", _entry.TypeName));
                         entity_verified = false;
                     }
                 }

@@ -14,16 +14,16 @@ namespace Ult.FamilyBalance.Model
         public static readonly EntryType AllOutgoing = new EntryType()
         {
             Id = 0,
-            Name = "All Outgoing",
-            Description = "All Outgoing",
+            Name = "Tutte (uscite)",
+            Description = "Tutte (uscite)",
             Direction = EntryDirection.OutgoingReference
         };
 
         public static readonly EntryType AllIncoming = new EntryType()
         {
             Id = 0,
-            Name = "All Incoming",
-            Description = "All Incoming",
+            Name = "Tutte (entrate)",
+            Description = "Tutte (entrate)",
             Direction = EntryDirection.IncomingReference
         };
 
