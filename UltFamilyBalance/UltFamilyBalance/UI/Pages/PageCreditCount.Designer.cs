@@ -134,6 +134,7 @@
             this.dgvCreditCounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCreditCounts.Size = new System.Drawing.Size(483, 324);
             this.dgvCreditCounts.TabIndex = 1;
+            this.dgvCreditCounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCreditCounts_CellDoubleClick);
             // 
             // btnDelete
             // 
@@ -384,13 +385,13 @@
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
             this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Total.Width = 50;
+            this.Total.Width = 70;
             // 
             // LastUpdate
             // 
             this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LastUpdate.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.Format = "dd/MM/yyyy HH:mm:ss";
             this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle8;
             this.LastUpdate.HeaderText = "Ultima Modifica";

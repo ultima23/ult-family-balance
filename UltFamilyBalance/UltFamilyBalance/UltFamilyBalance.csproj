@@ -63,10 +63,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CreditCount.cs" />
-    <Compile Include="PageCreditCount.cs">
+    <Compile Include="UI\Pages\DetailCreditCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PageCreditCount.Designer.cs">
+    <Compile Include="UI\Pages\DetailCreditCount.Designer.cs">
+      <DependentUpon>DetailCreditCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\PageCreditCount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PageCreditCount.Designer.cs">
       <DependentUpon>PageCreditCount.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\PageEntry.cs">
@@ -102,12 +108,15 @@
       <DependentUpon>DetailEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\IDetail.cs" />
-    <Compile Include="UI\Pages\IPageList.cs" />
+    <Compile Include="UI\Pages\INavigablePage.cs" />
     <Compile Include="UI\Pages\IPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UltFamilyBalance.cs" />
-    <EmbeddedResource Include="PageCreditCount.resx">
+    <EmbeddedResource Include="UI\Pages\DetailCreditCount.resx">
+      <DependentUpon>DetailCreditCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\PageCreditCount.resx">
       <DependentUpon>PageCreditCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageEntry.resx">

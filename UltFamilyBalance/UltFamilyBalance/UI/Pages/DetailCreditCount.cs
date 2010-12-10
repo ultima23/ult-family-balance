@@ -11,19 +11,38 @@ using System.Windows.Forms;
 using Ult.FamilyBalance.Model;
 using Ult.Commons;
 using Ult.Util;
+using Ult.Core.Utils;
+using System.Globalization;
 
 
 namespace Ult.FamilyBalance.UI.Pages
 {
-    public partial class DetailEntry : UserControl, IDetail<Entry>
+    public partial class DetailCreditCount : UserControl, IDetail<CreditCount>
     {
 
         // -----------------------------------------------------------------------------------------------------------
+        #region CONSTANTS
+
+        /// <summary>
+        /// Numbers of years to show
+        /// </summary>
+        public const int YearsNumber = 10;
+
+        /// <summary>
+        /// Numbers of years in the past to show
+        /// </summary>
+        public const int PastYearsNumber = 2;
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
         #region FIELDS
+    
         // 
         private EntryDirection _direction;
         // 
-        private Entry _entry;
+        private CreditCount _creditCount;
         // Logger
         private Logger _log; 
         // 
@@ -38,7 +57,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <summary>
         /// Constructor
         /// </summary>
-        public DetailEntry()
+        public DetailCreditCount()
         {
             //
             InitializeComponent();
@@ -55,14 +74,14 @@ namespace Ult.FamilyBalance.UI.Pages
             get { return this as Control; }
         }
 
-        public Entry Entity
+        public CreditCount Entity
         {
-            get { return _entry; }
+            get { return _creditCount; }
         }
 
         public bool HasPendingChanges
         {
-            get { return _entry != null && _entry.EntityState != EntityState.Unchanged; }
+            get { return _creditCount != null && _creditCount.EntityState != EntityState.Unchanged; }
         }
 
         #endregion
@@ -71,18 +90,26 @@ namespace Ult.FamilyBalance.UI.Pages
         // -----------------------------------------------------------------------------------------------------------
         #region PRIVATE METHODS
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private void RefreshTypes()
+
+        private void LoadYears()
         {
-            // Types list
-            var types = from t in _context.Context.EntryTypes
-                        where t.Direction.Id == _direction.Id
-                        select t;
-            //
-            cmbEntityType.DisplayMember = "Name";
-            cmbEntityType.DataSource = types;
+            int[] years = DateTimeUtils.GetYearInterval(DetailCreditCount.PastYearsNumber, DetailCreditCount.YearsNumber);
+
+            cmbYear.Items.Clear();
+            for (int i = 0; i < DetailCreditCount.YearsNumber; i++)
+            {
+                cmbYear.Items.Add(years[i]);
+            }
+        }
+
+        private void LoadMonths()
+        {
+            string[] months = DateTimeUtils.GetMonthNames(new CultureInfo("it-IT"));
+            cmbMonth.Items.Clear();
+            for (int i = 0; i < months.Length; i++)
+            {
+                cmbMonth.Items.Add(months[i]);
+            }
         }
 
         /// <summary>
@@ -90,10 +117,11 @@ namespace Ult.FamilyBalance.UI.Pages
         /// </summary>
         private void EntityToUI()
         {
-            numAmount.Value = _entry.Amount;
-            dtpEntityDate.Value = _entry.Date;
-            txtEntryNote.Text = _entry.Note;
-            cmbEntityType.SelectedItem = _entry.Type;
+            cmbYear.SelectedIndex = cmbYear.Items.IndexOf(_creditCount.Year);
+            cmbMonth.SelectedIndex = _creditCount.Month -1;
+            numIncoming.Value = _creditCount.Incoming;
+            numOutgoing.Value = _creditCount.Outgoing;
+            numBalance.Value = _creditCount.Balance ?? 0;
         }
 
         /// <summary>
@@ -101,12 +129,22 @@ namespace Ult.FamilyBalance.UI.Pages
         /// </summary>
         private void UIToEntity()
         {
-            _entry.Amount = numAmount.Value;
-            _entry.Date = dtpEntityDate.Value;
-            _entry.Note = txtEntryNote.Text;
-            _entry.Type = cmbEntityType.SelectedItem as EntryType;
-            _entry.DateUpdate = DateTime.Now;
-            _entry.DateInsert = (_entry.EntityState == EntityState.Added) ? DateTime.Now : _entry.DateInsert;
+            _creditCount.Year = (int) cmbYear.SelectedItem;
+            _creditCount.Month = cmbMonth.SelectedIndex + 1;
+            _creditCount.Incoming = numIncoming.Value;
+            _creditCount.Outgoing = numOutgoing.Value;
+            // Balance value check
+            if (numBalance.Value == 0)
+            {
+                _creditCount.Balance = null;
+            }
+            else
+            {
+                _creditCount.Balance = numBalance.Value;
+            }
+            _creditCount.DateUpdate = DateTime.Now;
+            _creditCount.DateInsert = (_creditCount.EntityState == EntityState.Added) ? DateTime.Now : _creditCount.DateInsert;
+
         }
 
         #endregion
@@ -119,21 +157,18 @@ namespace Ult.FamilyBalance.UI.Pages
         /// 
         /// </summary>
         /// <param name="entity"></param>
-        public void Init(Entry entity, params object[] args)
+        public void Init(CreditCount creditCount, params object[] args)
         {
             // parameters check
-            if (entity == null) throw new ArgumentNullException("entity", "Entity should not be null or empty");
-            if (args.Length < 1) throw new ArgumentNullException("Parameters 'direction' is missing");
-            if (!(args[0] is EntryDirection)) throw new ArgumentNullException("Parameters 'direction' is missing or wrong");
-            // Direction
-            _direction = args[0] as EntryDirection;
+            if (creditCount == null) throw new ArgumentNullException("entity", "Entity should not be null or empty");
             // Logger
             _log = Logger.GetDefaultLogger();
             // Page initalization
             _context = UltFamilyBalance.GetUltFamilyBalance();
-            _entry = entity;
-            // Types refresh
-            RefreshTypes();
+            _creditCount = creditCount;
+            // Combo years loading
+            LoadYears();
+            LoadMonths();
             // Binds UI componenets
             EntityToUI();
         }       
@@ -144,7 +179,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <param name="args"></param>
         public void Refresh(params object[] args)
         {
-            numAmount.Focus();
+            numIncoming.Focus();
         }
 
         /// <summary>
@@ -167,27 +202,17 @@ namespace Ult.FamilyBalance.UI.Pages
             {
                 // clear previous errors
                 errorProvider.Clear();
-                // Amout validation
-                if (numAmount.Value <= 0)
+                // Incoming validation
+                if (numIncoming.Value <= 0)
                 {
-                    errorProvider.SetError(numAmount, "L'importo è richiesto e deve essere maggiore di zero");
+                    errorProvider.SetError(numIncoming, "L'importo dell'entrata è richiesto e deve essere maggiore di zero");
                     entity_verified = false;
                 }
-                // Type validation
-                if (cmbEntityType.SelectedIndex == -1)
+                // Outgoing validation
+                if (numOutgoing.Value <= 0)
                 {
-                    errorProvider.SetError(cmbEntityType, String.Format("La categoria è richiestea e non è stata selezionata alcuna categoria", _entry.TypeName));
+                    errorProvider.SetError(numOutgoing, "L'importo delle uscite è richiesto e deve essere maggiore di zero");
                     entity_verified = false;
-                }
-                else
-                {
-                    EntryType type = cmbEntityType.SelectedItem as EntryType;
-                    // Note validation
-                    if (type != null && type.NoteRequired > 0 && String.IsNullOrEmpty(txtEntryNote.Text))
-                    {
-                        errorProvider.SetError(txtEntryNote, String.Format("Le note per la categoria {0} sono richieste ma non sono state inserite", _entry.TypeName));
-                        entity_verified = false;
-                    }
                 }
             }
             catch (Exception ex)
@@ -195,7 +220,7 @@ namespace Ult.FamilyBalance.UI.Pages
                 // verify error
                 entity_verified = false;
                 // Log
-                _log.Error("DetailEntry > Verify() error: {0}", ex.Message);
+                _log.Error("DetailCreditCount > Verify() error: {0}", ex.Message);
                 Tracer.Debug(ex);
                 // User message
                 UIUtils.Error(ex.InnerException.Message);
@@ -214,7 +239,7 @@ namespace Ult.FamilyBalance.UI.Pages
             try
             {
                 // check if we are adding a new entry
-                adding = _entry.EntityState == EntityState.Added;
+                adding = _creditCount.EntityState == EntityState.Added;
                 // Updating entity from controls 
                 UIToEntity();
                 // Object save
@@ -222,11 +247,11 @@ namespace Ult.FamilyBalance.UI.Pages
                 // Result
                 result = adding ? IDetailResult.AddSucces : IDetailResult.UpdateSuccess;
                 // Log
-                _log.Info("Outgoing entry saved: {0}", _entry);
+                _log.Info("Outgoing entry saved: {0}", _creditCount);
             }
             catch (OptimisticConcurrencyException)
             {
-                _context.Context.Refresh(RefreshMode.ClientWins, _entry);
+                _context.Context.Refresh(RefreshMode.ClientWins, _creditCount);
                 // Result
                 result = adding ? IDetailResult.AddFailed : IDetailResult.UpdateFailed;
             }
@@ -235,7 +260,7 @@ namespace Ult.FamilyBalance.UI.Pages
                 // Result
                 result = adding ? IDetailResult.AddFailed : IDetailResult.UpdateFailed;
                 // Log
-                _log.Error("DetailEntry > Save() error: {0}", ex);
+                _log.Error("DetailCreditCount > Save() error: {0}", ex);
                 Tracer.Debug(ex);
                 // User message
                 UIUtils.Error(ex.InnerException.Message);
@@ -251,18 +276,18 @@ namespace Ult.FamilyBalance.UI.Pages
             try
             {
                 // checks for object state
-                if (_entry.EntityState != EntityState.Added)
+                if (_creditCount.EntityState != EntityState.Added)
                 {
-                    _context.Context.Refresh(RefreshMode.StoreWins, _entry);
+                    _context.Context.Refresh(RefreshMode.StoreWins, _creditCount);
                 }
                 else
                 {
-                    _context.Context.Detach(_entry);
+                    _context.Context.Detach(_creditCount);
                 }
             }
             catch (Exception ex)
             {
-                _log.Error("DetailEntry > Cancel() error: {0}", ex);
+                _log.Error("DetailCreditCount > Cancel() error: {0}", ex);
                 Tracer.Debug(ex);
                 UIUtils.Error(ex.InnerException.Message);
             }

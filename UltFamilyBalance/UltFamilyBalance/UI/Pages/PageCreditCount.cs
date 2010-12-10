@@ -12,14 +12,12 @@ using Ult.Commons;
 using Ult.FamilyBalance.UI.Pages;
 using Ult.FamilyBalance.Model;
 using Ult.Core.Utils;
-
-
+using Ult.Util;
 
 namespace Ult.FamilyBalance.UI
 {
-    public partial class PageCreditCount : UserControl, IPage
+    public partial class PageCreditCount : UserControl, IPage, INavigablePage<CreditCount>
     {
-
 
         // -----------------------------------------------------------------------------------------------------------
         #region FIELDS
@@ -27,12 +25,11 @@ namespace Ult.FamilyBalance.UI
         // 
         private PageStatus _status;
         //
-        ObjectQuery<CreditCount> _creditCounts;
+        private ObjectQuery<CreditCount> _creditCounts;
         // 
         private UltFamilyBalanceContext _context;
-
+        // 
         private Logger _log;
-
         //
         private bool _useDateFrom;
         //
@@ -111,8 +108,37 @@ namespace Ult.FamilyBalance.UI
             get { return this as Control; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public CreditCount CurrentEntity
+        {
+            get
+            {
+                if (HasCurrentEntity)
+                {
+                    return dgvCreditCounts.Rows[dgvCreditCounts.SelectedRows[0].Index].DataBoundItem as CreditCount;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool HasCurrentEntity
+        {
+            get { return (dgvCreditCounts.SelectedRows.Count > 0); }
+        }
+
         #endregion
         // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PRIVATE METHODS
 
         private void DefaultFilters()
         {
@@ -159,6 +185,59 @@ namespace Ult.FamilyBalance.UI
         {
             labelTitle.Text = Title;
         }
+
+        private void EditCreditCount()
+        {
+            if (HasCurrentEntity)
+            {
+                //
+                IDetail<CreditCount> detail = new DetailCreditCount();
+                //
+                FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, CurrentEntity, new object[] { });
+                form_detail.Title = "Modifica " + Title;
+                form_detail.ShowDialog();
+                //
+                RefreshList();
+            }
+        }
+
+        private void NewCreditCount()
+        {
+            CreditCount new_credit_count = new CreditCount();
+            new_credit_count.Year = DateTime.Now.Year;
+            new_credit_count.Month = DateTime.Now.Month;
+            new_credit_count.DateInsert = DateTime.Now;
+            new_credit_count.DateUpdate = DateTime.Now;
+            new_credit_count.User = UltFamilyBalance.GetUltFamilyBalance().User;
+            //
+            IDetail<CreditCount> detail = new DetailCreditCount();
+            //
+            FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, new_credit_count, new object[] { });
+            form_detail.Title = "Nuovo " + Title;
+            form_detail.ShowDialog();
+            //
+            RefreshList();
+        }
+
+        private void DeleteCreditCount()
+        {
+            if (HasCurrentEntity)
+            {
+                // Delete user confirm
+                if (UIUtils.Confirm("Sei sicuro di voler eliminare il resoconto mensile corrente?\r\nQuesta operazione non potrà essere recuperata."))
+                {
+                    _context.DeleteObject(CurrentEntity);
+                    _context.SaveChanges();
+                    //
+                    RefreshList();
+                    // Move to the previous entity
+                    // Prev();
+                }
+            }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
 
         // -----------------------------------------------------------------------------------------------------------
         #region PUBLIC METHODS
@@ -240,27 +319,30 @@ namespace Ult.FamilyBalance.UI
         }
 
         #endregion
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            // 
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            // 
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            //
-        }
         // -----------------------------------------------------------------------------------------------------------
-
 
         // -----------------------------------------------------------------------------------------------------------
         #region UI EVENT HANDLERS
 
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            NewCreditCount();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            EditCreditCount();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteCreditCount();
+        }
+
+        private void dgvCreditCounts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            EditCreditCount();
+        }
 
         // ---
 
