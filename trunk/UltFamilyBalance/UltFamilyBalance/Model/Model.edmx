@@ -207,7 +207,7 @@
           <NavigationProperty Name="User" Relationship="Ult.FamilyBalance.FK_CreditCount_User" FromRole="CreditCount" ToRole="User" />
           <Property Type="Decimal" Name="Balance" Precision="12" Scale="2" />
           <Property Type="DateTime" Name="DateInsert" Nullable="false" />
-          <Property Type="DateTime" Name="DateUpdated" />
+          <Property Type="DateTime" Name="DateUpdate" />
         </EntityType>
         <EntityType Name="Entry">
           <Key>
@@ -338,7 +338,7 @@
         <EntityContainerMapping StorageEntityContainer="UltFamilyBalance_DataModelStoreContainer" CdmEntityContainer="UltFamilyBalanceContext">
           <EntitySetMapping Name="CreditCounts"><EntityTypeMapping TypeName="Ult.FamilyBalance.CreditCount"><MappingFragment StoreEntitySet="CreditCount">
             <ScalarProperty Name="Balance" ColumnName="CreditCountBalance" />
-                <ScalarProperty Name="DateUpdated" ColumnName="CreditCountDateUpd" />
+                <ScalarProperty Name="DateUpdate" ColumnName="CreditCountDateUpd" />
                 <ScalarProperty Name="DateInsert" ColumnName="CreditCountDateIns" />
                 <ScalarProperty Name="Id" ColumnName="CreditCountId" />
             <ScalarProperty Name="Year" ColumnName="CreditCountYear" />

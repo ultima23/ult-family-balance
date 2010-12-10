@@ -23,6 +23,8 @@ namespace Ult.FamilyBalance.UI
         #region FIELDS
 
         //
+        private int _index;
+        //
         private EntryDirection _direction;
         // 
         private PageStatus _status;
@@ -150,7 +152,7 @@ namespace Ult.FamilyBalance.UI
         {
             _useDateFrom = true;
             _useDateTo = true;
-            _dateFrom = DateTimeUtils.ToMidnight(DateTime.Today.AddMonths(-1));
+            _dateFrom = DateTime.Today.AddMonths(-1);
             _dateTo = DateTimeUtils.Midnight;
             _type = _direction == EntryDirection.OutgoingReference ? EntryType.AllOutgoing : EntryType.AllIncoming;
             _amountMin = -1;
@@ -203,11 +205,27 @@ namespace Ult.FamilyBalance.UI
             // Incoming entries
             dgvEntries.AutoGenerateColumns = false;
             dgvEntries.DataSource = outgoing;
+
+
+            // check position
+            if (_index > 0)
+            {
+                Move(_index);
+            }
+
         }
 
         private void RefreshText()
         {
             labelTitle.Text = Title;
+        }
+
+        private void Move(int index)
+        {
+            if (index > -1 && index < dgvEntries.Rows.Count)
+            {
+                dgvEntries.CurrentCell = dgvEntries.Rows[index].Cells[1];
+            }
         }
 
         private void EditEntry()
@@ -218,7 +236,7 @@ namespace Ult.FamilyBalance.UI
                 IDetail<Entry> detail = new DetailEntry();
                 //
                 FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, CurrentEntity, _direction);
-                form_detail.Title = Title + " Edit";
+                form_detail.Title = "Modifica " + Title;
                 form_detail.ShowDialog();
                 //
                 RefreshList();
@@ -236,7 +254,7 @@ namespace Ult.FamilyBalance.UI
             IDetail<Entry> detail = new DetailEntry();
             //
             FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry, _direction);
-            form_detail.Title = Title + " New";
+            form_detail.Title = "Nuova " + Title;
             form_detail.ShowDialog();
             //
             RefreshList();
@@ -247,14 +265,13 @@ namespace Ult.FamilyBalance.UI
             if (HasCurrentEntity)
             {
                 // Delete user confirm
-                if (UIUtils.Confirm("Are you sure to delete the selected entry?\r\nThis operation cannot be reverted."))
+                // if (UIUtils.Confirm("Are you sure to delete the selected entry?\r\nThis operation cannot be reverted."))
+                if (UIUtils.Confirm("Sei sicuro di voler eliminare l'elemento corrente?\r\nQuesta operazione non potrà essere recuperata."))
                 {
                     _context.DeleteObject(this.CurrentEntity);
                     _context.SaveChanges();
                     //
                     RefreshList();
-                    // Move to the previous entity
-                    // Prev();
                 }
             }
         }
@@ -276,6 +293,8 @@ namespace Ult.FamilyBalance.UI
             _log = Logger.GetDefaultLogger();
             // Context
             _context = UltFamilyBalance.GetUltFamilyBalance().Context;
+            // Current index
+            _index = 0;
             //
             DefaultFilters();
             // STATUS: Init
@@ -320,31 +339,46 @@ namespace Ult.FamilyBalance.UI
 
         public void MoveFirst()
         {
+            Move(0);
         }
 
         public void MoveLast()
         {
             try
             {
-                int selected = 0;
-                if (dgvEntries.SelectedRows.Count > 0)
-                {
-                    selected = dgvEntries.SelectedRows[0].Index;
-                }
+                Move(dgvEntries.RowCount - 1);
             }
             catch (Exception ex)
             {
-                _log.Error("", ex);
-                
+                _log.Error("MoveLast() error", ex);
+                UIUtils.Error("MoveLast() error: {0}", ex.Message);
             }
         }
 
         public void MoveNext()
         {
+            try
+            {
+                Move(_index + 1);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("MoveNext() error", ex);
+                UIUtils.Error("MoveNext() error: {0}", ex.Message);
+            }
         }
 
         public void MovePrev()
         {
+            try
+            {
+                Move(_index - 1);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("MovePrev() error", ex);
+                UIUtils.Error("MovePrev() error: {0}", ex.Message);
+            }
         }
 
         #endregion
@@ -410,7 +444,7 @@ namespace Ult.FamilyBalance.UI
             {
                 if (_dateFrom != dtpDateFrom.Value)
                 {
-                    _dateFrom = DateTimeUtils.ToMidnight(dtpDateFrom.Value);
+                    _dateFrom = DateTimeUtils.AfterMidnight(dtpDateFrom.Value);
                     RefreshList();
                 }
             }
@@ -512,6 +546,39 @@ namespace Ult.FamilyBalance.UI
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DeleteEntry();
+        }
+
+        private void dgvEntries_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvEntries.SelectedRows.Count > 0)
+            {
+                _index = dgvEntries.SelectedRows[0].Index;
+            }
+            else
+            {
+                _index = -1;
+            }
+
+        }
+
+        private void btnMoveFirst_Click(object sender, EventArgs e)
+        {
+            MoveFirst();
+        }
+
+        private void btnMovePrev_Click(object sender, EventArgs e)
+        {
+            MovePrev();
+        }
+
+        private void btnMoveNext_Click(object sender, EventArgs e)
+        {
+            MoveNext();
+        }
+
+        private void btnMoveLast_Click(object sender, EventArgs e)
+        {
+            MoveLast();
         }
 
         //---

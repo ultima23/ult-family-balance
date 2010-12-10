@@ -463,24 +463,24 @@ namespace Ult.FamilyBalance.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> DateUpdated
+        public Nullable<global::System.DateTime> DateUpdate
         {
             get
             {
-                return _DateUpdated;
+                return _DateUpdate;
             }
             set
             {
-                OnDateUpdatedChanging(value);
-                ReportPropertyChanging("DateUpdated");
-                _DateUpdated = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DateUpdated");
-                OnDateUpdatedChanged();
+                OnDateUpdateChanging(value);
+                ReportPropertyChanging("DateUpdate");
+                _DateUpdate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateUpdate");
+                OnDateUpdateChanged();
             }
         }
-        private Nullable<global::System.DateTime> _DateUpdated;
-        partial void OnDateUpdatedChanging(Nullable<global::System.DateTime> value);
-        partial void OnDateUpdatedChanged();
+        private Nullable<global::System.DateTime> _DateUpdate;
+        partial void OnDateUpdateChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateUpdateChanged();
 
         #endregion
     
