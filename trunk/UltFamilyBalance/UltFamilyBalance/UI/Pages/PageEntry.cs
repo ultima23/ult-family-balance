@@ -174,24 +174,8 @@ namespace Ult.FamilyBalance.UI
             numMaxAmount.Enabled = _amountMax > -1;
         }
 
-        private void RefreshTypes()
+        private void ApplyFilters()
         {
-            // Outgoing types 
-            var types = from t in _context.EntryTypes
-                        where t.Direction.Id == _direction.Id
-                        select t;
-            List<EntryType> list = new List<EntryType>();
-            list.Add((_direction.Id == EntryDirection.OutgoingId) ? EntryType.AllOutgoing : EntryType.AllIncoming);
-            list.AddRange(types);
-            // 
-            cmbTypes.DisplayMember = "Name";
-            cmbTypes.DataSource = list;
-        }
-
-        private void RefreshList()
-        {
-            // Data refresh
-            _context.Refresh(RefreshMode.StoreWins, _entries);
             // Incoming entries query
             var outgoing =  from e in _entries
                             where e.Type.Direction.Id == _direction.Id
@@ -205,14 +189,11 @@ namespace Ult.FamilyBalance.UI
             // Incoming entries
             dgvEntries.AutoGenerateColumns = false;
             dgvEntries.DataSource = outgoing;
-
-
             // check position
             if (_index > 0)
             {
-                Move(_index);
+                SetSelectedRow(_index);
             }
-
         }
 
         private void RefreshText()
@@ -220,12 +201,32 @@ namespace Ult.FamilyBalance.UI
             labelTitle.Text = Title;
         }
 
-        private void Move(int index)
+        private void SetSelectedRow(int index)
         {
             if (index > -1 && index < dgvEntries.Rows.Count)
             {
                 dgvEntries.CurrentCell = dgvEntries.Rows[index].Cells[1];
             }
+        }
+
+        private void LoadTypes()
+        {
+            // Outgoing types 
+            var types = from t in _context.EntryTypes
+                        where t.Direction.Id == _direction.Id
+                        select t;
+            List<EntryType> list = new List<EntryType>();
+            list.Add((_direction.Id == EntryDirection.OutgoingId) ? EntryType.AllOutgoing : EntryType.AllIncoming);
+            list.AddRange(types);
+            // 
+            cmbTypes.DisplayMember = "Name";
+            cmbTypes.DataSource = list;
+        }
+
+        private void LoadData()
+        {
+            // Data refresh
+            _context.Refresh(RefreshMode.StoreWins, _entries);
         }
 
         private void EditEntry()
@@ -239,25 +240,28 @@ namespace Ult.FamilyBalance.UI
                 form_detail.Title = "Modifica " + Title;
                 form_detail.ShowDialog();
                 //
-                RefreshList();
+                // ApplyFilters();
             }
         }
 
         private void NewEntry()
         {
+            // New entry init
             Entry new_entry = new Entry();
             new_entry.Date = DateTime.Now;
             new_entry.DateInsert = DateTime.Now;
             new_entry.DateUpdate = DateTime.Now;
             new_entry.User = UltFamilyBalance.GetUltFamilyBalance().User;
-            //
+            // Detail creation
             IDetail<Entry> detail = new DetailEntry();
-            //
+            // Detail show
             FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, new_entry, _direction);
             form_detail.Title = "Nuova " + Title;
             form_detail.ShowDialog();
-            //
-            RefreshList();
+            // Reloads data from database
+            LoadData();
+            // UI Refresh
+            Refresh(new object [] {});
         }
 
         private void DeleteEntry()
@@ -270,8 +274,12 @@ namespace Ult.FamilyBalance.UI
                 {
                     _context.DeleteObject(this.CurrentEntity);
                     _context.SaveChanges();
-                    //
-                    RefreshList();
+                    // Move to previous entry
+                    MovePrev();
+                    // Reloads data from database
+                    LoadData();
+                    // UI Refresh
+                    Refresh(new object[] { });
                 }
             }
         }
@@ -307,7 +315,10 @@ namespace Ult.FamilyBalance.UI
             UpdateSize(size);
             // Entries
             _entries = _context.Entries;
-            //
+            // Data loading
+            LoadData();
+            LoadTypes();
+            // UI Refresh
             Refresh();
             // STATUS: Active
             _status = PageStatus.Active;
@@ -319,9 +330,8 @@ namespace Ult.FamilyBalance.UI
             _status = PageStatus.Processing;
             // Refresh
             RefreshText();
-            RefreshTypes();
             RefreshFilters();
-            RefreshList();
+            ApplyFilters();
             // STATUS: Active
             _status = PageStatus.Active;
         }
@@ -339,14 +349,14 @@ namespace Ult.FamilyBalance.UI
 
         public void MoveFirst()
         {
-            Move(0);
+            SetSelectedRow(0);
         }
 
         public void MoveLast()
         {
             try
             {
-                Move(dgvEntries.RowCount - 1);
+                SetSelectedRow(dgvEntries.RowCount - 1);
             }
             catch (Exception ex)
             {
@@ -359,7 +369,7 @@ namespace Ult.FamilyBalance.UI
         {
             try
             {
-                Move(_index + 1);
+                SetSelectedRow(_index + 1);
             }
             catch (Exception ex)
             {
@@ -372,7 +382,7 @@ namespace Ult.FamilyBalance.UI
         {
             try
             {
-                Move(_index - 1);
+                SetSelectedRow(_index - 1);
             }
             catch (Exception ex)
             {
@@ -403,7 +413,7 @@ namespace Ult.FamilyBalance.UI
                     _useDateFrom = false;
                     
                 }
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -422,7 +432,7 @@ namespace Ult.FamilyBalance.UI
                     dtpDateTo.Enabled = false;
                     _useDateTo = false;
                 }
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -433,7 +443,7 @@ namespace Ult.FamilyBalance.UI
                 if (_dateTo != dtpDateTo.Value)
                 {
                     _dateTo = DateTimeUtils.ToMidnight(dtpDateTo.Value);
-                    RefreshList();
+                    ApplyFilters();
                 }
             }
         }
@@ -445,7 +455,7 @@ namespace Ult.FamilyBalance.UI
                 if (_dateFrom != dtpDateFrom.Value)
                 {
                     _dateFrom = DateTimeUtils.AfterMidnight(dtpDateFrom.Value);
-                    RefreshList();
+                    ApplyFilters();
                 }
             }
         }
@@ -458,7 +468,7 @@ namespace Ult.FamilyBalance.UI
                 if (type != null && type != _type)
                 {
                     _type = type;
-                    RefreshList();
+                    ApplyFilters();
                 }
             }
         }
@@ -478,7 +488,7 @@ namespace Ult.FamilyBalance.UI
                     _amountMin = -1;
                     
                 }
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -488,7 +498,7 @@ namespace Ult.FamilyBalance.UI
             {
                 
                 _amountMin = Convert.ToInt32(numMinAmount.Value);
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -506,7 +516,7 @@ namespace Ult.FamilyBalance.UI
                     numMaxAmount.Enabled = false;
                     _amountMax = -1;
                 }
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -515,7 +525,7 @@ namespace Ult.FamilyBalance.UI
             if (_status != PageStatus.Processing)
             {
                 _amountMax = Convert.ToInt32(numMaxAmount.Value);
-                RefreshList();
+                ApplyFilters();
             }
         }
 
@@ -550,15 +560,17 @@ namespace Ult.FamilyBalance.UI
 
         private void dgvEntries_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvEntries.SelectedRows.Count > 0)
+            if (_status != PageStatus.Processing)
             {
-                _index = dgvEntries.SelectedRows[0].Index;
+                if (dgvEntries.SelectedRows.Count > 0)
+                {
+                    _index = dgvEntries.SelectedRows[0].Index;
+                }
+                else
+                {
+                    _index = -1;
+                }
             }
-            else
-            {
-                _index = -1;
-            }
-
         }
 
         private void btnMoveFirst_Click(object sender, EventArgs e)

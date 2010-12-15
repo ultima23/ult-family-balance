@@ -135,14 +135,15 @@ namespace Ult.FamilyBalance
                 }
                 else
                 {
-                    // Login forcing if in debug
-                    #if DEBUG
+
                     if (usr == null)
                     {
                         usr = _context.Users.First<User>();
                     }
+                    // Login forcing if in debug
+                    #if DEBUG
+                    #endif
                 }
-                #endif
                 // user save
                 _user = usr;
             }
