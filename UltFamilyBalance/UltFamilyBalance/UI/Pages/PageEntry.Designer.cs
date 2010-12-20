@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageEntry));
             this.groupEntryList = new System.Windows.Forms.GroupBox();
             this.dgvEntries = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,17 +57,17 @@
             this.cbxMinAmount = new System.Windows.Forms.CheckBox();
             this.numMaxAmount = new System.Windows.Forms.NumericUpDown();
             this.numMinAmount = new System.Windows.Forms.NumericUpDown();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.contextGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMoveFirst = new System.Windows.Forms.Button();
-            this.btnMovePrev = new System.Windows.Forms.Button();
-            this.btnMoveNext = new System.Windows.Forms.Button();
             this.btnMoveLast = new System.Windows.Forms.Button();
+            this.btnMoveNext = new System.Windows.Forms.Button();
+            this.btnMovePrev = new System.Windows.Forms.Button();
+            this.btnMoveFirst = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.groupEntryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntries)).BeginInit();
             this.groupDatesFilters.SuspendLayout();
@@ -371,45 +370,6 @@
             this.numMinAmount.TabIndex = 0;
             this.numMinAmount.ValueChanged += new System.EventHandler(this.numMinAmount_ValueChanged);
             // 
-            // btnNew
-            // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
-            this.btnNew.Location = new System.Drawing.Point(3, 371);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 24);
-            this.btnNew.TabIndex = 5;
-            this.btnNew.Text = "Nuovo";
-            this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(84, 371);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 24);
-            this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "Modifica";
-            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(165, 371);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 24);
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Elimina";
-            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // contextGrid
             // 
             this.contextGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -437,32 +397,21 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
-            // btnMoveFirst
+            // btnMoveLast
             // 
-            this.btnMoveFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveFirst.Image = ((System.Drawing.Image)(resources.GetObject("btnMoveFirst.Image")));
-            this.btnMoveFirst.Location = new System.Drawing.Point(367, 371);
-            this.btnMoveFirst.Name = "btnMoveFirst";
-            this.btnMoveFirst.Size = new System.Drawing.Size(26, 24);
-            this.btnMoveFirst.TabIndex = 8;
-            this.btnMoveFirst.UseVisualStyleBackColor = true;
-            this.btnMoveFirst.Click += new System.EventHandler(this.btnMoveFirst_Click);
-            // 
-            // btnMovePrev
-            // 
-            this.btnMovePrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMovePrev.Image = ((System.Drawing.Image)(resources.GetObject("btnMovePrev.Image")));
-            this.btnMovePrev.Location = new System.Drawing.Point(399, 371);
-            this.btnMovePrev.Name = "btnMovePrev";
-            this.btnMovePrev.Size = new System.Drawing.Size(26, 24);
-            this.btnMovePrev.TabIndex = 9;
-            this.btnMovePrev.UseVisualStyleBackColor = true;
-            this.btnMovePrev.Click += new System.EventHandler(this.btnMovePrev_Click);
+            this.btnMoveLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveLast.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_last;
+            this.btnMoveLast.Location = new System.Drawing.Point(463, 371);
+            this.btnMoveLast.Name = "btnMoveLast";
+            this.btnMoveLast.Size = new System.Drawing.Size(26, 24);
+            this.btnMoveLast.TabIndex = 11;
+            this.btnMoveLast.UseVisualStyleBackColor = true;
+            this.btnMoveLast.Click += new System.EventHandler(this.btnMoveLast_Click);
             // 
             // btnMoveNext
             // 
             this.btnMoveNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveNext.Image = ((System.Drawing.Image)(resources.GetObject("btnMoveNext.Image")));
+            this.btnMoveNext.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_next;
             this.btnMoveNext.Location = new System.Drawing.Point(431, 371);
             this.btnMoveNext.Name = "btnMoveNext";
             this.btnMoveNext.Size = new System.Drawing.Size(26, 24);
@@ -470,16 +419,66 @@
             this.btnMoveNext.UseVisualStyleBackColor = true;
             this.btnMoveNext.Click += new System.EventHandler(this.btnMoveNext_Click);
             // 
-            // btnMoveLast
+            // btnMovePrev
             // 
-            this.btnMoveLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveLast.Image = ((System.Drawing.Image)(resources.GetObject("btnMoveLast.Image")));
-            this.btnMoveLast.Location = new System.Drawing.Point(463, 371);
-            this.btnMoveLast.Name = "btnMoveLast";
-            this.btnMoveLast.Size = new System.Drawing.Size(26, 24);
-            this.btnMoveLast.TabIndex = 11;
-            this.btnMoveLast.UseVisualStyleBackColor = true;
-            this.btnMoveLast.Click += new System.EventHandler(this.btnMoveLast_Click);
+            this.btnMovePrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMovePrev.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_previous;
+            this.btnMovePrev.Location = new System.Drawing.Point(399, 371);
+            this.btnMovePrev.Name = "btnMovePrev";
+            this.btnMovePrev.Size = new System.Drawing.Size(26, 24);
+            this.btnMovePrev.TabIndex = 9;
+            this.btnMovePrev.UseVisualStyleBackColor = true;
+            this.btnMovePrev.Click += new System.EventHandler(this.btnMovePrev_Click);
+            // 
+            // btnMoveFirst
+            // 
+            this.btnMoveFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveFirst.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_first;
+            this.btnMoveFirst.Location = new System.Drawing.Point(367, 371);
+            this.btnMoveFirst.Name = "btnMoveFirst";
+            this.btnMoveFirst.Size = new System.Drawing.Size(26, 24);
+            this.btnMoveFirst.TabIndex = 8;
+            this.btnMoveFirst.UseVisualStyleBackColor = true;
+            this.btnMoveFirst.Click += new System.EventHandler(this.btnMoveFirst_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Image = global::Ult.FamilyBalance.Properties.Resources.database_delete;
+            this.btnDelete.Location = new System.Drawing.Point(165, 371);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 24);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Elimina";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.Image = global::Ult.FamilyBalance.Properties.Resources.database_edit;
+            this.btnEdit.Location = new System.Drawing.Point(84, 371);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 24);
+            this.btnEdit.TabIndex = 6;
+            this.btnEdit.Text = "Modifica";
+            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Image = global::Ult.FamilyBalance.Properties.Resources.database_add;
+            this.btnNew.Location = new System.Drawing.Point(3, 371);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(75, 24);
+            this.btnNew.TabIndex = 5;
+            this.btnNew.Text = "Nuovo";
+            this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // PageEntry
             // 
