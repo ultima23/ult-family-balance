@@ -49,6 +49,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Credit.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,10 +65,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormExceptionReport.cs">
+    <Compile Include="UI\Forms\FormExceptionReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExceptionReport.Designer.cs">
+    <Compile Include="UI\Forms\FormExceptionReport.Designer.cs">
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\CreditCount.cs" />
@@ -119,7 +122,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UltFamilyBalance.cs" />
-    <EmbeddedResource Include="FormExceptionReport.resx">
+    <EmbeddedResource Include="UI\Forms\FormExceptionReport.resx">
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\DetailCreditCount.resx">
@@ -233,6 +236,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\resultset_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Credit.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

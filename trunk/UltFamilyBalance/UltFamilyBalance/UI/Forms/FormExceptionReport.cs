@@ -147,13 +147,6 @@ namespace Ult.FamilyBalance
             details.AppendFormat("  Row : {0}\r\n", _callerFrame.GetFileLineNumber());
             details.AppendFormat("  Column : {0}\r\n", _callerFrame.GetFileColumnNumber());
             details.AppendFormat("\r\n");
-            // Stack
-            details.AppendFormat("Caller stack: \r\n");
-            for (int i = 1; i < _stack.FrameCount; i++)
-            {
-                details.AppendFormat("  at {0}\r\n", DebugUtils.FormatStackFrame(_stack.GetFrame(i)));
-            }
-            details.AppendFormat("\r\n");
             //
             details.AppendFormat("Exception details: \r\n");
             details.AppendFormat("  Type: {0}\r\n", error.GetType().Name);
@@ -164,6 +157,13 @@ namespace Ult.FamilyBalance
             details.AppendFormat("\r\n");
             details.AppendFormat("Exception stack: \r\n");
             details.AppendFormat(error.StackTrace);
+            details.AppendFormat("\r\n");
+            // Stack
+            details.AppendFormat("Caller stack: \r\n");
+            for (int i = 1; i < _stack.FrameCount; i++)
+            {
+                details.AppendFormat("  at {0}\r\n", DebugUtils.FormatStackFrame(_stack.GetFrame(i)));
+            }
             details.AppendFormat("\r\n");
             return details.ToString();
         }

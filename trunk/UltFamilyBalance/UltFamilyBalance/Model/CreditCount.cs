@@ -13,5 +13,10 @@ namespace Ult.FamilyBalance.Model
             get { return String.Format("{0:MM}", new DateTime(Year, Month, 1)); }
         }
 
+        public string UserName
+        {
+            get { return User.Name ?? "<none>"; }
+        }
+
     }
 }
