@@ -188,6 +188,7 @@ namespace Ult.FamilyBalance.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            UIUtils.Setup();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)

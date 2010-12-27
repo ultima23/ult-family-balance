@@ -406,6 +406,7 @@ namespace Ult.FamilyBalance.UI
             this.ClientSize = new System.Drawing.Size(729, 502);
             this.Controls.Add(this.tscMain);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "Ult Family Balance";
             this.Load += new System.EventHandler(this.MainForm_Load);

@@ -26,8 +26,6 @@ namespace Ult.FamilyBalance.UI
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormMain());
 
-
-
             }
             catch (Exception ex)
             {
