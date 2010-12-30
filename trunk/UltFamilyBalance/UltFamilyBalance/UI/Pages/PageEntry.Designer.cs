@@ -36,11 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupEntryList = new System.Windows.Forms.GroupBox();
             this.dgvEntries = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupDatesFilters = new System.Windows.Forms.GroupBox();
             this.cbxUseDateTo = new System.Windows.Forms.CheckBox();
             this.cbxUseDateFrom = new System.Windows.Forms.CheckBox();
@@ -68,6 +63,11 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupEntryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntries)).BeginInit();
             this.groupDatesFilters.SuspendLayout();
@@ -120,68 +120,6 @@
             this.dgvEntries.TabIndex = 1;
             this.dgvEntries.SelectionChanged += new System.EventHandler(this.dgvEntries_SelectionChanged);
             this.dgvEntries.DoubleClick += new System.EventHandler(this.dgvOutgoing_DoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.Visible = false;
-            this.Id.Width = 32;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            this.Date.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Date.HeaderText = "Data";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Date.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.Date.Width = 75;
-            // 
-            // Amount
-            // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Amount.HeaderText = "Importo";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            this.Amount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.Amount.Width = 80;
-            // 
-            // Type
-            // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.DataPropertyName = "TypeName";
-            this.Type.HeaderText = "Categoria";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // LastUpdate
-            // 
-            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.LastUpdate.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy HH:mm:ss";
-            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.LastUpdate.HeaderText = "Ultima Modifica";
-            this.LastUpdate.Name = "LastUpdate";
-            this.LastUpdate.ReadOnly = true;
-            this.LastUpdate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LastUpdate.Width = 120;
             // 
             // groupDatesFilters
             // 
@@ -480,6 +418,68 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.Visible = false;
+            this.Id.Width = 32;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            this.Date.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Date.HeaderText = "Data";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Date.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Date.Width = 75;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Amount.HeaderText = "Importo";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            this.Amount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.Amount.Width = 80;
+            // 
+            // Type
+            // 
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type.DataPropertyName = "TypeName";
+            this.Type.HeaderText = "Categoria";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // LastUpdate
+            // 
+            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.LastUpdate.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy HH:mm:ss";
+            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.LastUpdate.HeaderText = "Ultima Modifica";
+            this.LastUpdate.Name = "LastUpdate";
+            this.LastUpdate.ReadOnly = true;
+            this.LastUpdate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.LastUpdate.Width = 120;
+            // 
             // PageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,15 +541,15 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Button btnMoveFirst;
+        private System.Windows.Forms.Button btnMovePrev;
+        private System.Windows.Forms.Button btnMoveNext;
+        private System.Windows.Forms.Button btnMoveLast;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastUpdate;
-        private System.Windows.Forms.Button btnMoveFirst;
-        private System.Windows.Forms.Button btnMovePrev;
-        private System.Windows.Forms.Button btnMoveNext;
-        private System.Windows.Forms.Button btnMoveLast;
 
     }
 }
