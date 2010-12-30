@@ -79,6 +79,7 @@ namespace Ult.FamilyBalance.UI.Pages
             // Types list
             var types = from t in _context.Context.EntryTypes
                         where t.Direction.Id == _direction.Id
+                        orderby t.Group.Id ascending
                         select t;
             //
             cmbEntityType.DisplayMember = "Name";
