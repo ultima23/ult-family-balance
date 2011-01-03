@@ -28,25 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupTitle = new System.Windows.Forms.GroupBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupEntryList = new System.Windows.Forms.GroupBox();
             this.dgvCreditCounts = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Incoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Outgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -56,16 +49,24 @@
             this.numMaxAmount = new System.Windows.Forms.NumericUpDown();
             this.numMinAmount = new System.Windows.Forms.NumericUpDown();
             this.groupDatesFilters = new System.Windows.Forms.GroupBox();
-            this.cbxUseDateTo = new System.Windows.Forms.CheckBox();
-            this.cbxUseDateFrom = new System.Windows.Forms.CheckBox();
+            this.cmbMonth = new System.Windows.Forms.ComboBox();
+            this.cmbYear = new System.Windows.Forms.ComboBox();
+            this.cbxUseYear = new System.Windows.Forms.CheckBox();
+            this.cbxUseMonth = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
             this.btnMoveLast = new System.Windows.Forms.Button();
             this.btnMoveNext = new System.Windows.Forms.Button();
             this.btnMovePrev = new System.Windows.Forms.Button();
             this.btnMoveFirst = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Incoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Outgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupTitle.SuspendLayout();
             this.groupEntryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCreditCounts)).BeginInit();
@@ -113,8 +114,8 @@
             this.dgvCreditCounts.AllowUserToAddRows = false;
             this.dgvCreditCounts.AllowUserToDeleteRows = false;
             this.dgvCreditCounts.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.LightYellow;
-            this.dgvCreditCounts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightYellow;
+            this.dgvCreditCounts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCreditCounts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -128,6 +129,7 @@
             this.Incoming,
             this.Outgoing,
             this.Total,
+            this.User,
             this.LastUpdate});
             this.dgvCreditCounts.Location = new System.Drawing.Point(3, 9);
             this.dgvCreditCounts.MultiSelect = false;
@@ -135,95 +137,9 @@
             this.dgvCreditCounts.ReadOnly = true;
             this.dgvCreditCounts.RowHeadersVisible = false;
             this.dgvCreditCounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCreditCounts.Size = new System.Drawing.Size(483, 324);
+            this.dgvCreditCounts.Size = new System.Drawing.Size(483, 325);
             this.dgvCreditCounts.TabIndex = 1;
             this.dgvCreditCounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCreditCounts_CellDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle18;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.Visible = false;
-            this.Id.Width = 32;
-            // 
-            // Year
-            // 
-            this.Year.DataPropertyName = "Year";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Year.DefaultCellStyle = dataGridViewCellStyle19;
-            this.Year.HeaderText = "Anno";
-            this.Year.Name = "Year";
-            this.Year.ReadOnly = true;
-            this.Year.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Year.Width = 50;
-            // 
-            // Month
-            // 
-            this.Month.DataPropertyName = "MonthName";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.NullValue = null;
-            this.Month.DefaultCellStyle = dataGridViewCellStyle20;
-            this.Month.HeaderText = "Mese";
-            this.Month.Name = "Month";
-            this.Month.ReadOnly = true;
-            this.Month.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Month.Width = 50;
-            // 
-            // Incoming
-            // 
-            this.Incoming.DataPropertyName = "Incoming";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.Format = "C2";
-            dataGridViewCellStyle21.NullValue = null;
-            this.Incoming.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Incoming.HeaderText = "Entrate";
-            this.Incoming.Name = "Incoming";
-            this.Incoming.ReadOnly = true;
-            this.Incoming.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Incoming.Width = 70;
-            // 
-            // Outgoing
-            // 
-            this.Outgoing.DataPropertyName = "Outgoing";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle22.Format = "C2";
-            dataGridViewCellStyle22.NullValue = null;
-            this.Outgoing.DefaultCellStyle = dataGridViewCellStyle22;
-            this.Outgoing.HeaderText = "Uscite";
-            this.Outgoing.Name = "Outgoing";
-            this.Outgoing.ReadOnly = true;
-            this.Outgoing.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Outgoing.Width = 70;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Balance";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle23.Format = "C2";
-            dataGridViewCellStyle23.NullValue = null;
-            this.Total.DefaultCellStyle = dataGridViewCellStyle23;
-            this.Total.HeaderText = "Saldo";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Total.Width = 70;
-            // 
-            // LastUpdate
-            // 
-            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LastUpdate.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.Format = "dd/MM/yyyy HH:mm:ss";
-            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle24;
-            this.LastUpdate.HeaderText = "Ultima Modifica";
-            this.LastUpdate.Name = "LastUpdate";
-            this.LastUpdate.ReadOnly = true;
             // 
             // btnDelete
             // 
@@ -330,12 +246,12 @@
             // groupDatesFilters
             // 
             this.groupDatesFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupDatesFilters.Controls.Add(this.cbxUseDateTo);
-            this.groupDatesFilters.Controls.Add(this.cbxUseDateFrom);
+            this.groupDatesFilters.Controls.Add(this.cmbMonth);
+            this.groupDatesFilters.Controls.Add(this.cmbYear);
+            this.groupDatesFilters.Controls.Add(this.cbxUseYear);
+            this.groupDatesFilters.Controls.Add(this.cbxUseMonth);
             this.groupDatesFilters.Controls.Add(this.label2);
-            this.groupDatesFilters.Controls.Add(this.dtpDateFrom);
             this.groupDatesFilters.Controls.Add(this.label1);
-            this.groupDatesFilters.Controls.Add(this.dtpDateTo);
             this.groupDatesFilters.Location = new System.Drawing.Point(498, 29);
             this.groupDatesFilters.Name = "groupDatesFilters";
             this.groupDatesFilters.Size = new System.Drawing.Size(167, 100);
@@ -343,23 +259,58 @@
             this.groupDatesFilters.TabStop = false;
             this.groupDatesFilters.Text = "Date";
             // 
-            // cbxUseDateTo
+            // cmbMonth
             // 
-            this.cbxUseDateTo.AutoSize = true;
-            this.cbxUseDateTo.Location = new System.Drawing.Point(12, 35);
-            this.cbxUseDateTo.Name = "cbxUseDateTo";
-            this.cbxUseDateTo.Size = new System.Drawing.Size(15, 14);
-            this.cbxUseDateTo.TabIndex = 5;
-            this.cbxUseDateTo.UseVisualStyleBackColor = true;
+            this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMonth.FormattingEnabled = true;
+            this.cmbMonth.Items.AddRange(new object[] {
+            "Gennaio",
+            "Febbraio",
+            "Marzo",
+            "Aprile",
+            "Maggio",
+            "Giugno",
+            "Luglio",
+            "Agosto",
+            "Settembre",
+            "Ottobre",
+            "Novembre",
+            "Dicembre"});
+            this.cmbMonth.Location = new System.Drawing.Point(33, 72);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(127, 21);
+            this.cmbMonth.TabIndex = 7;
+            this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
             // 
-            // cbxUseDateFrom
+            // cmbYear
             // 
-            this.cbxUseDateFrom.AutoSize = true;
-            this.cbxUseDateFrom.Location = new System.Drawing.Point(12, 75);
-            this.cbxUseDateFrom.Name = "cbxUseDateFrom";
-            this.cbxUseDateFrom.Size = new System.Drawing.Size(15, 14);
-            this.cbxUseDateFrom.TabIndex = 4;
-            this.cbxUseDateFrom.UseVisualStyleBackColor = true;
+            this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYear.FormattingEnabled = true;
+            this.cmbYear.Location = new System.Drawing.Point(33, 32);
+            this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(127, 21);
+            this.cmbYear.TabIndex = 6;
+            this.cmbYear.SelectedIndexChanged += new System.EventHandler(this.cmbYear_SelectedIndexChanged);
+            // 
+            // cbxUseYear
+            // 
+            this.cbxUseYear.AutoSize = true;
+            this.cbxUseYear.Location = new System.Drawing.Point(12, 35);
+            this.cbxUseYear.Name = "cbxUseYear";
+            this.cbxUseYear.Size = new System.Drawing.Size(15, 14);
+            this.cbxUseYear.TabIndex = 5;
+            this.cbxUseYear.UseVisualStyleBackColor = true;
+            this.cbxUseYear.CheckedChanged += new System.EventHandler(this.cbxUseYear_CheckedChanged);
+            // 
+            // cbxUseMonth
+            // 
+            this.cbxUseMonth.AutoSize = true;
+            this.cbxUseMonth.Location = new System.Drawing.Point(12, 75);
+            this.cbxUseMonth.Name = "cbxUseMonth";
+            this.cbxUseMonth.Size = new System.Drawing.Size(15, 14);
+            this.cbxUseMonth.TabIndex = 4;
+            this.cbxUseMonth.UseVisualStyleBackColor = true;
+            this.cbxUseMonth.CheckedChanged += new System.EventHandler(this.cbxUseMonth_CheckedChanged);
             // 
             // label2
             // 
@@ -370,18 +321,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "A partire dal";
             // 
-            // dtpDateFrom
-            // 
-            this.dtpDateFrom.Checked = false;
-            this.dtpDateFrom.CustomFormat = "dd / MM / yyyy";
-            this.dtpDateFrom.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtpDateFrom.Enabled = false;
-            this.dtpDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateFrom.Location = new System.Drawing.Point(31, 72);
-            this.dtpDateFrom.Name = "dtpDateFrom";
-            this.dtpDateFrom.Size = new System.Drawing.Size(130, 20);
-            this.dtpDateFrom.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -391,23 +330,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Fino al";
             // 
-            // dtpDateTo
-            // 
-            this.dtpDateTo.CustomFormat = "dd / MM / yyyy";
-            this.dtpDateTo.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtpDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateTo.Location = new System.Drawing.Point(31, 32);
-            this.dtpDateTo.Name = "dtpDateTo";
-            this.dtpDateTo.Size = new System.Drawing.Size(130, 20);
-            this.dtpDateTo.TabIndex = 0;
-            // 
             // btnMoveLast
             // 
             this.btnMoveLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveLast.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_last;
             this.btnMoveLast.Location = new System.Drawing.Point(466, 371);
             this.btnMoveLast.Name = "btnMoveLast";
-            this.btnMoveLast.Size = new System.Drawing.Size(26, 24);
+            this.btnMoveLast.Size = new System.Drawing.Size(26, 25);
             this.btnMoveLast.TabIndex = 16;
             this.btnMoveLast.UseVisualStyleBackColor = true;
             // 
@@ -417,7 +346,7 @@
             this.btnMoveNext.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_next;
             this.btnMoveNext.Location = new System.Drawing.Point(434, 371);
             this.btnMoveNext.Name = "btnMoveNext";
-            this.btnMoveNext.Size = new System.Drawing.Size(26, 24);
+            this.btnMoveNext.Size = new System.Drawing.Size(26, 25);
             this.btnMoveNext.TabIndex = 15;
             this.btnMoveNext.UseVisualStyleBackColor = true;
             // 
@@ -427,7 +356,7 @@
             this.btnMovePrev.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_previous;
             this.btnMovePrev.Location = new System.Drawing.Point(402, 371);
             this.btnMovePrev.Name = "btnMovePrev";
-            this.btnMovePrev.Size = new System.Drawing.Size(26, 24);
+            this.btnMovePrev.Size = new System.Drawing.Size(26, 25);
             this.btnMovePrev.TabIndex = 14;
             this.btnMovePrev.UseVisualStyleBackColor = true;
             // 
@@ -437,9 +366,104 @@
             this.btnMoveFirst.Image = global::Ult.FamilyBalance.Properties.Resources.resultset_first;
             this.btnMoveFirst.Location = new System.Drawing.Point(370, 371);
             this.btnMoveFirst.Name = "btnMoveFirst";
-            this.btnMoveFirst.Size = new System.Drawing.Size(26, 24);
+            this.btnMoveFirst.Size = new System.Drawing.Size(26, 25);
             this.btnMoveFirst.TabIndex = 13;
             this.btnMoveFirst.UseVisualStyleBackColor = true;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.Visible = false;
+            this.Id.Width = 32;
+            // 
+            // Year
+            // 
+            this.Year.DataPropertyName = "Year";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Year.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Year.HeaderText = "Anno";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            this.Year.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Year.Width = 42;
+            // 
+            // Month
+            // 
+            this.Month.DataPropertyName = "MonthName";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = null;
+            this.Month.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Month.HeaderText = "Mese";
+            this.Month.Name = "Month";
+            this.Month.ReadOnly = true;
+            this.Month.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Month.Width = 50;
+            // 
+            // Incoming
+            // 
+            this.Incoming.DataPropertyName = "Incoming";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Incoming.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Incoming.HeaderText = "Entrate";
+            this.Incoming.Name = "Incoming";
+            this.Incoming.ReadOnly = true;
+            this.Incoming.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Incoming.Width = 70;
+            // 
+            // Outgoing
+            // 
+            this.Outgoing.DataPropertyName = "Outgoing";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Outgoing.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Outgoing.HeaderText = "Uscite";
+            this.Outgoing.Name = "Outgoing";
+            this.Outgoing.ReadOnly = true;
+            this.Outgoing.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Outgoing.Width = 70;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Balance";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.Total.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Total.HeaderText = "Saldo";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Total.Width = 70;
+            // 
+            // User
+            // 
+            this.User.DataPropertyName = "UserName";
+            this.User.HeaderText = "Utente";
+            this.User.Name = "User";
+            this.User.ReadOnly = true;
+            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.User.Width = 70;
+            // 
+            // LastUpdate
+            // 
+            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LastUpdate.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.Format = "dd/MM/yyyy HH:mm:ss";
+            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle8;
+            this.LastUpdate.HeaderText = "Ultima Modifica";
+            this.LastUpdate.Name = "LastUpdate";
+            this.LastUpdate.ReadOnly = true;
             // 
             // PageCreditCount
             // 
@@ -487,23 +511,24 @@
         private System.Windows.Forms.NumericUpDown numMaxAmount;
         private System.Windows.Forms.NumericUpDown numMinAmount;
         private System.Windows.Forms.GroupBox groupDatesFilters;
-        private System.Windows.Forms.CheckBox cbxUseDateTo;
-        private System.Windows.Forms.CheckBox cbxUseDateFrom;
+        private System.Windows.Forms.CheckBox cbxUseYear;
+        private System.Windows.Forms.CheckBox cbxUseMonth;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtpDateFrom;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dtpDateTo;
+        private System.Windows.Forms.Button btnMoveLast;
+        private System.Windows.Forms.Button btnMoveNext;
+        private System.Windows.Forms.Button btnMovePrev;
+        private System.Windows.Forms.Button btnMoveFirst;
+        private System.Windows.Forms.ComboBox cmbYear;
+        private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DataGridViewTextBoxColumn Month;
         private System.Windows.Forms.DataGridViewTextBoxColumn Incoming;
         private System.Windows.Forms.DataGridViewTextBoxColumn Outgoing;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn User;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastUpdate;
-        private System.Windows.Forms.Button btnMoveLast;
-        private System.Windows.Forms.Button btnMoveNext;
-        private System.Windows.Forms.Button btnMovePrev;
-        private System.Windows.Forms.Button btnMoveFirst;
 
     }
 }

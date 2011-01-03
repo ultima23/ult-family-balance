@@ -42,7 +42,7 @@ namespace Ult.FamilyBalance.UI
             //
             _ufb = UltFamilyBalance.GetUltFamilyBalance();
             _ufb.Init("conn string not used now");
-            _ufb.Login("Luca", "luca");
+            // _ufb.Login("Luca", "luca");
             // Culture
             Application.CurrentCulture = CultureInfo.GetCultureInfo("it-IT");
             // Initialization
@@ -170,13 +170,40 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         private void RefreshStatusBar()
         {
-            if (HasActivePage)
+
+            if (_ufb.IsUserLogged)
             {
-                toolStripStatusBarPage.Text = String.Format("Current page: {0}", _page.Title);
+                toolStripUser.Text = String.Format("User: {0} ", _ufb.User.Name);
             }
             else
             {
-                toolStripStatusBarPage.Text = "Current page: -";
+                toolStripUser.Text = "User: - ";
+            }
+            
+
+            if (HasActivePage)
+            {
+                toolStripStatusBarPage.Text = String.Format("Current page: {0} ", _page.Title);
+            }
+            else
+            {
+                toolStripStatusBarPage.Text = "Current page: - ";
+            }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PUBLIC METHODS
+
+        public void Login()
+        {
+            FormLogin frm = new FormLogin();
+            frm.CanCancel = _ufb.IsUserLogged;
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                RefreshStatusBar();
             }
         }
 
@@ -189,6 +216,10 @@ namespace Ult.FamilyBalance.UI
         private void MainForm_Load(object sender, EventArgs e)
         {
             UIUtils.Setup();
+            //
+            RefreshStatusBar();
+            // Startup
+            tmrStartup.Enabled = true;
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -220,6 +251,18 @@ namespace Ult.FamilyBalance.UI
         {
             // 
             SetPage(CreatePage("conto", typeof(PageCreditCount)));
+        }
+
+        private void tmrStartup_Tick(object sender, EventArgs e)
+        {
+            tmrStartup.Enabled = false;
+            // Login
+            Login();
+        }
+
+        private void cambiaUtenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login();
         }
 
         // --

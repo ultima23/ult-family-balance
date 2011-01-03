@@ -120,12 +120,18 @@ namespace Ult.FamilyBalance
             // Checks if object is not initalized
             CheckNotInit();
             // Checks if an user is already logged in
-            CheckUserLoggedIn();
+            // CheckUserLoggedIn();
             // Execution
             try
             {
-                User usr = null;
-
+                // Current user
+                User usr = _user;
+                // If logged do logout
+                if (IsUserLogged)
+                {
+                    Logout();
+                }
+                // Search the user
                 var query = (from u in _context.Users where u.Username == username && u.Password == password select u);
                 // 
                 if (query.Count() > 0)
@@ -135,13 +141,12 @@ namespace Ult.FamilyBalance
                 }
                 else
                 {
-
+                    // Login forcing if in debug
+                    #if DEBUG
                     if (usr == null)
                     {
                         usr = _context.Users.First<User>();
                     }
-                    // Login forcing if in debug
-                    #if DEBUG
                     #endif
                 }
                 // user save

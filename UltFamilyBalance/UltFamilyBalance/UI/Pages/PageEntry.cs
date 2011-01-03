@@ -220,7 +220,7 @@ namespace Ult.FamilyBalance.UI
             list.Add((_direction.Id == EntryDirection.OutgoingId) ? EntryType.AllOutgoing : EntryType.AllIncoming);
             list.AddRange(types);
             // 
-            cmbTypes.DisplayMember = "Name";
+            cmbTypes.DisplayMember = "Description";
             cmbTypes.DataSource = list;
         }
 
@@ -240,8 +240,6 @@ namespace Ult.FamilyBalance.UI
                 FormDetail<Entry> form_detail = new FormDetail<Entry>(detail, CurrentEntity, _direction);
                 form_detail.Title = "Modifica " + Title;
                 form_detail.ShowDialog();
-                //
-                // ApplyFilters();
             }
         }
 
