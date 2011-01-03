@@ -675,7 +675,7 @@ namespace Ult.FamilyBalance.Model
             {
                 return _Year;
             }
-            private set
+            set
             {
                 OnYearChanging(value);
                 ReportPropertyChanging("Year");
@@ -699,7 +699,7 @@ namespace Ult.FamilyBalance.Model
             {
                 return _Month;
             }
-            private set
+            set
             {
                 OnMonthChanging(value);
                 ReportPropertyChanging("Month");
@@ -723,7 +723,7 @@ namespace Ult.FamilyBalance.Model
             {
                 return _Day;
             }
-            private set
+            set
             {
                 OnDayChanging(value);
                 ReportPropertyChanging("Day");

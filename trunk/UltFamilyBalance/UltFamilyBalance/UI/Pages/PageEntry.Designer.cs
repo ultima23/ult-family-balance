@@ -461,7 +461,7 @@
             // Type
             // 
             this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.DataPropertyName = "TypeName";
+            this.Type.DataPropertyName = "TypeDescription";
             this.Type.HeaderText = "Categoria";
             this.Type.Name = "Type";
             this.Type.ReadOnly = true;

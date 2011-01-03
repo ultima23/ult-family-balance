@@ -153,6 +153,18 @@ namespace Ult.FamilyBalance.UI
             DialogResult = DialogResult.Cancel;
         }
 
+        private void FormDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSave_Click(btnSave, new EventArgs());
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                btnCancel_Click(btnCancel, new EventArgs());
+            }
+        }
+
         // ---
 
         #endregion

@@ -13,6 +13,7 @@ using Ult.FamilyBalance.UI.Pages;
 using Ult.FamilyBalance.Model;
 using Ult.Core.Utils;
 using Ult.Util;
+using System.Globalization;
 
 namespace Ult.FamilyBalance.UI
 {
@@ -22,6 +23,8 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
         #region FIELDS
 
+        //
+        private int _index;
         // 
         private PageStatus _status;
         //
@@ -31,13 +34,13 @@ namespace Ult.FamilyBalance.UI
         // 
         private Logger _log;
         //
-        private bool _useDateFrom;
+        private bool _useYear;
         //
-        private bool _useDateTo;
+        private bool _useMonth;
         // 
-        private DateTime _dateFrom;
+        private int _year;
         //
-        private DateTime _dateTo;
+        private int _month;
 
         private int _amountMin;
 
@@ -142,48 +145,100 @@ namespace Ult.FamilyBalance.UI
 
         private void DefaultFilters()
         {
-            _useDateFrom = false;
-            _useDateTo = false;
-            _dateFrom = DateTimeUtils.ToMidnight(DateTime.Today.AddMonths(-1));
-            _dateTo = DateTimeUtils.Midnight;
+            _useYear = true;
+            _useMonth = false;
+            _year = DateTime.Today.Year;
+            _month = -1;
             _amountMin = -1;
             _amountMax = -1;
         }
 
         private void RefreshFilters()
         {
-            cbxUseDateTo.Checked = _useDateTo;
-            cbxUseDateFrom.Checked = _useDateFrom;
-            dtpDateFrom.Value = _dateFrom;
-            dtpDateTo.Value = _dateTo;
-            dtpDateFrom.Enabled = _useDateFrom;
-            dtpDateTo.Enabled = _useDateTo;
+            cbxUseYear.Checked = _useYear;
+            cbxUseMonth.Checked = _useMonth;
+            cmbYear.SelectedIndex = _useYear ? cmbYear.Items.IndexOf(_year) : -1;
+            cmbYear.Enabled = _useYear;
+            cmbMonth.SelectedIndex = _useMonth ? _month -1 : -1;
+            cmbMonth.Enabled = _useMonth;
             cbxMinAmount.Checked = _amountMin > -1;
             cbxMaxAmount.Checked = _amountMax > -1;
             numMinAmount.Enabled = _amountMin > -1;
             numMaxAmount.Enabled = _amountMax > -1;
         }
 
-        private void RefreshList()
+        private void ApplyFilters()
         {
-            // Data refresh
-            _context.Refresh(RefreshMode.StoreWins, _creditCounts);
+            // Save the currently selected row
+            SaveSelectedRow();
             // Incoming entries query
             var list =  from c in _creditCounts
-                        where    (!_useDateTo || c.Year <= _dateTo.Year)
-                            &&  (!_useDateFrom || c.Year >= _dateFrom.Year)
+                        where    (!_useYear || c.Year == _year)
+                            &&  (!_useMonth || c.Month == _month)
                             &&  (_amountMin == -1 || c.Balance >= _amountMin)
                             &&  (_amountMax == -1 || c.Balance <= _amountMax)
-                        // orderby Year, Month descending
+                        orderby c.Year descending, c.Month descending
                         select c;
             // Incoming entries
             dgvCreditCounts.AutoGenerateColumns = false;
             dgvCreditCounts.DataSource = list;
+            // check position
+            if (_index > 0)
+            {
+                SetSelectedRow(_index);
+            }
         }
 
         private void RefreshText()
         {
             labelTitle.Text = Title;
+        }
+
+        private void LoadYears()
+        {
+            int[] years = DateTimeUtils.GetYearInterval(DetailCreditCount.PastYearsNumber, DetailCreditCount.YearsNumber);
+
+            cmbYear.Items.Clear();
+            for (int i = 0; i < DetailCreditCount.YearsNumber; i++)
+            {
+                cmbYear.Items.Add(years[i]);
+            }
+        }
+
+        private void LoadMonths()
+        {
+            string[] months = DateTimeUtils.GetMonthNames(new CultureInfo("it-IT"));
+            cmbMonth.Items.Clear();
+            for (int i = 0; i < months.Length; i++)
+            {
+                cmbMonth.Items.Add(months[i]);
+            }
+        }
+
+        private void LoadData()
+        {
+            // Data refresh
+            _context.Refresh(RefreshMode.StoreWins, _creditCounts);
+        }
+
+        private void SaveSelectedRow()
+        {
+            if (dgvCreditCounts.SelectedRows.Count > 0)
+            {
+                SetSelectedRow(dgvCreditCounts.SelectedRows[0].Index);
+            }
+            else
+            {
+                _index = -1;
+            }
+        }
+
+        private void SetSelectedRow(int index)
+        {
+            if (index > -1 && index < dgvCreditCounts.Rows.Count)
+            {
+                dgvCreditCounts.CurrentCell = dgvCreditCounts.Rows[index].Cells[1];
+            }
         }
 
         private void EditCreditCount()
@@ -196,8 +251,6 @@ namespace Ult.FamilyBalance.UI
                 FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, CurrentEntity, new object[] { });
                 form_detail.Title = "Modifica " + Title;
                 form_detail.ShowDialog();
-                //
-                RefreshList();
             }
         }
 
@@ -215,8 +268,10 @@ namespace Ult.FamilyBalance.UI
             FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, new_credit_count, new object[] { });
             form_detail.Title = "Nuovo " + Title;
             form_detail.ShowDialog();
-            //
-            RefreshList();
+            // Reloads data from database
+            LoadData();
+            // UI Refresh
+            Refresh(new object [] {});
         }
 
         private void DeleteCreditCount()
@@ -228,10 +283,12 @@ namespace Ult.FamilyBalance.UI
                 {
                     _context.DeleteObject(CurrentEntity);
                     _context.SaveChanges();
-                    //
-                    RefreshList();
-                    // Move to the previous entity
-                    // Prev();
+                    // Move to previous entry
+                    MovePrev();
+                    // Reloads data from database
+                    LoadData();
+                    // UI Refresh
+                    Refresh(new object[] { });
                 }
             }
         }
@@ -260,7 +317,11 @@ namespace Ult.FamilyBalance.UI
             UpdateSize(size);
             // Entries
             _creditCounts = _context.CreditCounts;
-            //
+            // Data loading
+            LoadData();
+            LoadYears();
+            LoadMonths();
+            // Refresh
             Refresh();
             // STATUS: Active
             _status = PageStatus.Active;
@@ -273,7 +334,7 @@ namespace Ult.FamilyBalance.UI
             // Refresh
             RefreshText();
             RefreshFilters();
-            RefreshList();
+            ApplyFilters();
             // STATUS: Active
             _status = PageStatus.Active;
         }
@@ -291,31 +352,46 @@ namespace Ult.FamilyBalance.UI
 
         public void MoveFirst()
         {
+            SetSelectedRow(0);
         }
 
         public void MoveLast()
         {
             try
             {
-                int selected = 0;
-                if (dgvCreditCounts.SelectedRows.Count > 0)
-                {
-                    selected = dgvCreditCounts.SelectedRows[0].Index;
-                }
+                SetSelectedRow(dgvCreditCounts.RowCount - 1);
             }
             catch (Exception ex)
             {
-                _log.Error("", ex);
-
+                _log.Error("MoveLast() error", ex);
+                UIUtils.Error("MoveLast() error: {0}", ex.Message);
             }
         }
 
         public void MoveNext()
         {
+            try
+            {
+                SetSelectedRow(_index + 1);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("MoveNext() error", ex);
+                UIUtils.Error("MoveNext() error: {0}", ex.Message);
+            }
         }
 
         public void MovePrev()
         {
+            try
+            {
+                SetSelectedRow(_index - 1);
+            }
+            catch (Exception ex)
+            {
+                _log.Error("MovePrev() error", ex);
+                UIUtils.Error("MovePrev() error: {0}", ex.Message);
+            }
         }
 
         #endregion
@@ -342,6 +418,86 @@ namespace Ult.FamilyBalance.UI
         private void dgvCreditCounts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             EditCreditCount();
+        }
+
+        private void cbxUseYear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxUseYear.Checked)
+                {
+                    cmbYear.Enabled = true;
+                    if (cmbYear.SelectedIndex > -1)
+                    {
+                        _year = Convert.ToInt32(cmbYear.Text);
+                        _useYear = true;
+                    }
+                    else
+                    {
+                        _useYear = false;
+                    }
+                }
+                else
+                {
+                    cmbYear.Enabled = false;
+                    _useYear = false;
+                }
+                //
+                ApplyFilters();
+            }
+        }
+
+        private void cbxUseMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cbxUseMonth.Checked)
+                {
+                    cmbMonth.Enabled = true;
+                    if (cmbMonth.SelectedIndex > -1)
+                    {
+                        _month = cmbMonth.SelectedIndex + 1;
+                        _useMonth = true;
+                    }
+                    else
+                    {
+                        _useMonth = false;
+                    }
+                }
+                else
+                {
+                    cmbMonth.Enabled = false;
+                    _useMonth = false;
+                }
+                //
+                ApplyFilters();
+            }
+        }
+
+        private void cmbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cmbYear.SelectedIndex > -1)
+                {
+                    _year = Convert.ToInt32(cmbYear.Text);
+                    _useYear = true;
+                    ApplyFilters();
+                }
+            }
+        }
+
+        private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                if (cmbMonth.SelectedIndex > -1)
+                {
+                    _month = cmbMonth.SelectedIndex + 1;
+                    _useMonth = true;
+                    ApplyFilters();
+                }
+            }
         }
 
         // ---

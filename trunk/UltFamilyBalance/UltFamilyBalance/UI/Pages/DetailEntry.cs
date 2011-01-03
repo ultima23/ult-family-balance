@@ -82,7 +82,7 @@ namespace Ult.FamilyBalance.UI.Pages
                         orderby t.Group.Id ascending
                         select t;
             //
-            cmbEntityType.DisplayMember = "Name";
+            cmbEntityType.DisplayMember = "Description";
             cmbEntityType.DataSource = types;
         }
 
@@ -104,6 +104,9 @@ namespace Ult.FamilyBalance.UI.Pages
         {
             _entry.Amount = numAmount.Value;
             _entry.Date = dtpEntityDate.Value;
+            _entry.Year = dtpEntityDate.Value.Year;
+            _entry.Month = dtpEntityDate.Value.Month;
+            _entry.Day = dtpEntityDate.Value.Day;
             _entry.Note = txtEntryNote.Text;
             _entry.Type = cmbEntityType.SelectedItem as EntryType;
             _entry.DateUpdate = DateTime.Now;

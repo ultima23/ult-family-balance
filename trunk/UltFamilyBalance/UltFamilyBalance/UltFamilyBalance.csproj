@@ -72,6 +72,12 @@
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\CreditCount.cs" />
+    <Compile Include="UI\Forms\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\DetailCreditCount.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <EmbeddedResource Include="UI\Forms\FormExceptionReport.resx">
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\DetailCreditCount.resx">
       <DependentUpon>DetailCreditCount.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +167,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Db\DbUltFamilyBalance.rar" />
     <None Include="Properties\DataSources\Ult.FamilyBalance.Model.UltFamilyBalanceContext.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -238,10 +248,14 @@
     <None Include="Resources\resultset_next.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Db\Script\" />
     <Folder Include="Icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credit.ico" />
+    <None Include="Resources\user_go.png" />
+    <None Include="Resources\application.png" />
+    <None Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

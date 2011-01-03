@@ -217,9 +217,9 @@
           <Property xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Name="TypeId" a:GetterAccess="Protected" a:SetterAccess="Protected" Nullable="false" Type="Int32" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
           <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Name="Month" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Name="Day" Type="Int32" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Year" Type="Int32" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Month" Type="Int32" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Day" Type="Int32" Nullable="false" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="DateInsert" Type="DateTime" Nullable="false" />
           <Property Name="DateUpdate" Type="DateTime" />
