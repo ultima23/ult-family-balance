@@ -276,23 +276,23 @@ namespace Ult.FamilyBalance.UI
         private void mensiliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage("ReportOutgoingByMonth", typeof(PageEntryMonthReport), EntryDirection.OutgoingReference));
+            SetPage(CreatePage("ReportOutgoingByMonth", typeof(PageReportEntriesByMonth), EntryDirection.OutgoingReference));
         }
 
         private void mensiliToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage("ReportIncomingByMonth", typeof(PageEntryMonthReport), EntryDirection.IncomingReference));
+            SetPage(CreatePage("ReportIncomingByMonth", typeof(PageReportEntriesByMonth), EntryDirection.IncomingReference));
         }
 
         private void annualiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetPage(CreatePage("ReportOutgoingByYear", typeof(PageEntryYearReport), EntryDirection.OutgoingReference));
+            SetPage(CreatePage("ReportOutgoingByYear", typeof(PageReportEntriesByYear), EntryDirection.OutgoingReference));
         }
 
         private void annualiToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SetPage(CreatePage("ReportIncomingByYear", typeof(PageEntryYearReport), EntryDirection.IncomingReference));
+            SetPage(CreatePage("ReportIncomingByYear", typeof(PageReportEntriesByYear), EntryDirection.IncomingReference));
         }
 
         private void cambiaUtenteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -306,6 +306,12 @@ namespace Ult.FamilyBalance.UI
             {
                 Close();
             }
+        }
+
+        private void annualeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetPage(CreatePage("ReportTrandYear", typeof(PageReportTrendYear)));
+            
         }
 
         // --

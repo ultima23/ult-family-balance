@@ -15,7 +15,7 @@ using System.Data.EntityClient;
 
 namespace Ult.FamilyBalance.UI
 {
-    public partial class PageEntryYearReport : UserControl, IPage
+    public partial class PageReportEntriesByYear : UserControl, IPage
     {
 
         // -----------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ namespace Ult.FamilyBalance.UI
         #endregion
         // -----------------------------------------------------------------------------------------------------------
 
-        public PageEntryYearReport()
+        public PageReportEntriesByYear()
         {
             InitializeComponent();
         }
