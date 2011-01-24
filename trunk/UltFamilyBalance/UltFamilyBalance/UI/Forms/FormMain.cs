@@ -18,7 +18,7 @@ namespace Ult.FamilyBalance.UI
         #region FIELDS
 
         //
-        private IPage _page;
+        private IPage _activePage;
         //
         private Dictionary<string, IPage> _pages;
         //
@@ -42,7 +42,6 @@ namespace Ult.FamilyBalance.UI
             //
             _ufb = UltFamilyBalance.GetUltFamilyBalance();
             _ufb.Init("conn string not used now");
-            // _ufb.Login("Luca", "luca");
             // Culture
             Application.CurrentCulture = CultureInfo.GetCultureInfo("it-IT");
             // Initialization
@@ -60,9 +59,17 @@ namespace Ult.FamilyBalance.UI
         /// <summary>
         /// 
         /// </summary>
+        public IPage ActivePage
+        {
+            get { return _activePage; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasActivePage
         {
-            get { return _page != null; }
+            get { return _activePage != null; }
         }
 
         #endregion
@@ -76,7 +83,7 @@ namespace Ult.FamilyBalance.UI
         /// </summary>
         private void Init()
         {
-            _page = null;
+            _activePage = null;
             _pages = new Dictionary<string, IPage>();
         }
 
@@ -138,28 +145,28 @@ namespace Ult.FamilyBalance.UI
         /// <param name="page"></param>
         private void SetPage(IPage page)
         {
-            if (_page != page)
+            if (_activePage != page)
             {
                 if (HasActivePage)
                 {
-                    if (!_page.CanHide)
+                    if (!_activePage.CanHide)
                     {
-                        UIUtils.Alert("Current page {0} cannot be closed!", new object[] { _page.Title });
+                        UIUtils.Alert("Current page {0} cannot be closed!", new object[] { _activePage.Title });
                         return;
                     }
-                    tscMain.ContentPanel.Controls.Remove(_page.Control);
-                    _page.Close();
+                    tscMain.ContentPanel.Controls.Remove(_activePage.Control);
+                    _activePage.Close();
                 }
                 // 
                 tscMain.ContentPanel.Controls.Add(page.Control);
                 //
                 page.Open(tscMain.ContentPanel.Size);
                 // Current page
-                _page = page;
+                _activePage = page;
             }
             else
             {
-                _page.Refresh();
+                _activePage.Refresh();
             }
             //
             RefreshStatusBar();
@@ -183,7 +190,7 @@ namespace Ult.FamilyBalance.UI
 
             if (HasActivePage)
             {
-                toolStripStatusBarPage.Text = String.Format("Current page: {0} ", _page.Title);
+                toolStripStatusBarPage.Text = String.Format("Current page: {0} ", _activePage.Title);
             }
             else
             {
@@ -199,12 +206,18 @@ namespace Ult.FamilyBalance.UI
 
         public void Login()
         {
+            #if !DEBUG
             FormLogin frm = new FormLogin();
             frm.CanCancel = _ufb.IsUserLogged;
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 RefreshStatusBar();
             }
+            #else
+            _ufb.Login("luca", "luca");
+            RefreshStatusBar();
+            #endif
+
         }
 
         #endregion
@@ -222,24 +235,31 @@ namespace Ult.FamilyBalance.UI
             tmrStartup.Enabled = true;
         }
 
+        private void tmrStartup_Tick(object sender, EventArgs e)
+        {
+            tmrStartup.Enabled = false;
+            // Login
+            Login();
+        }
+
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (HasActivePage)
             {
-                _page.UpdateSize(tscMain.ContentPanel.Size);
+                _activePage.UpdateSize(tscMain.ContentPanel.Size);
             }
         }
 
         private void usciteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage("uscite", typeof(PageEntry), EntryDirection.OutgoingReference));
+            SetPage(CreatePage("EntryOutgoing", typeof(PageEntry), EntryDirection.OutgoingReference));
         }
 
         private void entrateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage("entrate", typeof(PageEntry), EntryDirection.IncomingReference));
+            SetPage(CreatePage("EntryIncoming", typeof(PageEntry), EntryDirection.IncomingReference));
         }
 
         private void totaliToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,19 +270,42 @@ namespace Ult.FamilyBalance.UI
         private void contoCorrenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // 
-            SetPage(CreatePage("conto", typeof(PageCreditCount)));
+            SetPage(CreatePage("Counts", typeof(PageCreditCount)));
         }
 
-        private void tmrStartup_Tick(object sender, EventArgs e)
+        private void mensiliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tmrStartup.Enabled = false;
-            // Login
-            Login();
+            // 
+            SetPage(CreatePage("ReportOutgoingByMonth", typeof(PageEntryMonthReport), EntryDirection.OutgoingReference));
+        }
+
+        private void mensiliToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // 
+            SetPage(CreatePage("ReportIncomingByMonth", typeof(PageEntryMonthReport), EntryDirection.IncomingReference));
+        }
+
+        private void annualiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetPage(CreatePage("ReportOutgoingByYear", typeof(PageEntryYearReport), EntryDirection.OutgoingReference));
+        }
+
+        private void annualiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SetPage(CreatePage("ReportIncomingByYear", typeof(PageEntryYearReport), EntryDirection.IncomingReference));
         }
 
         private void cambiaUtenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Login();
+        }
+
+        private void esciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (HasActivePage && ActivePage.CanHide)
+            {
+                Close();
+            }
         }
 
         // --

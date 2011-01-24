@@ -169,8 +169,6 @@ namespace Ult.FamilyBalance.UI
 
         private void ApplyFilters()
         {
-            // Save the currently selected row
-            SaveSelectedRow();
             // Incoming entries query
             var list =  from c in _creditCounts
                         where    (!_useYear || c.Year == _year)
@@ -196,10 +194,11 @@ namespace Ult.FamilyBalance.UI
 
         private void LoadYears()
         {
-            int[] years = DateTimeUtils.GetYearInterval(DetailCreditCount.PastYearsNumber, DetailCreditCount.YearsNumber);
+            int[] years = DateTimeUtils.GetYearInterval(UltFamilyBalance.FiltersPastYearsNumber, 
+                                                        UltFamilyBalance.FiltersYearsNumber);
 
             cmbYear.Items.Clear();
-            for (int i = 0; i < DetailCreditCount.YearsNumber; i++)
+            for (int i = 0; i < years.Length; i++)
             {
                 cmbYear.Items.Add(years[i]);
             }
@@ -221,11 +220,17 @@ namespace Ult.FamilyBalance.UI
             _context.Refresh(RefreshMode.StoreWins, _creditCounts);
         }
 
+
         private void SaveSelectedRow()
+        {
+            SaveSelectedRow(0);
+        }
+
+        private void SaveSelectedRow(int offeset)
         {
             if (dgvCreditCounts.SelectedRows.Count > 0)
             {
-                SetSelectedRow(dgvCreditCounts.SelectedRows[0].Index);
+                _index = dgvCreditCounts.SelectedRows[0].Index + offeset;
             }
             else
             {
@@ -281,10 +286,11 @@ namespace Ult.FamilyBalance.UI
                 // Delete user confirm
                 if (UIUtils.Confirm("Sei sicuro di voler eliminare il resoconto mensile corrente?\r\nQuesta operazione non potrà essere recuperata."))
                 {
+                    // Save the position
+                    SaveSelectedRow(-1);
+                    // Delete selected object
                     _context.DeleteObject(CurrentEntity);
                     _context.SaveChanges();
-                    // Move to previous entry
-                    MovePrev();
                     // Reloads data from database
                     LoadData();
                     // UI Refresh

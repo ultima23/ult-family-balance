@@ -76,6 +76,8 @@ namespace Ult.FamilyBalance.UI
             if (entity == null) throw new ArgumentNullException("entity", "Entity should not be null");
             // retrieve logger instance
             _log = Logger.GetDefaultLogger();
+            //
+            UIUtils.SetDefaultIcon(this);
             // Detail registering
             RegisterDetail(detail);
             // Initialization

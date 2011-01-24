@@ -40,6 +40,14 @@
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupEntryList = new System.Windows.Forms.GroupBox();
             this.dgvCreditCounts = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Incoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Outgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -59,14 +67,6 @@
             this.btnMoveNext = new System.Windows.Forms.Button();
             this.btnMovePrev = new System.Windows.Forms.Button();
             this.btnMoveFirst = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Month = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Incoming = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Outgoing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupTitle.SuspendLayout();
             this.groupEntryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCreditCounts)).BeginInit();
@@ -140,6 +140,101 @@
             this.dgvCreditCounts.Size = new System.Drawing.Size(483, 325);
             this.dgvCreditCounts.TabIndex = 1;
             this.dgvCreditCounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCreditCounts_CellDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.Visible = false;
+            this.Id.Width = 32;
+            // 
+            // Year
+            // 
+            this.Year.DataPropertyName = "Year";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Year.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Year.HeaderText = "Anno";
+            this.Year.Name = "Year";
+            this.Year.ReadOnly = true;
+            this.Year.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Year.Width = 42;
+            // 
+            // Month
+            // 
+            this.Month.DataPropertyName = "MonthName";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = null;
+            this.Month.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Month.HeaderText = "Mese";
+            this.Month.Name = "Month";
+            this.Month.ReadOnly = true;
+            this.Month.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Month.Width = 50;
+            // 
+            // Incoming
+            // 
+            this.Incoming.DataPropertyName = "Incoming";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Incoming.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Incoming.HeaderText = "Entrate";
+            this.Incoming.Name = "Incoming";
+            this.Incoming.ReadOnly = true;
+            this.Incoming.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Incoming.Width = 70;
+            // 
+            // Outgoing
+            // 
+            this.Outgoing.DataPropertyName = "Outgoing";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Outgoing.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Outgoing.HeaderText = "Uscite";
+            this.Outgoing.Name = "Outgoing";
+            this.Outgoing.ReadOnly = true;
+            this.Outgoing.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Outgoing.Width = 70;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Balance";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.Total.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Total.HeaderText = "Saldo";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Total.Width = 70;
+            // 
+            // User
+            // 
+            this.User.DataPropertyName = "UserName";
+            this.User.HeaderText = "Utente";
+            this.User.Name = "User";
+            this.User.ReadOnly = true;
+            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.User.Width = 70;
+            // 
+            // LastUpdate
+            // 
+            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LastUpdate.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.Format = "dd/MM/yyyy HH:mm:ss";
+            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle8;
+            this.LastUpdate.HeaderText = "Ultima Modifica";
+            this.LastUpdate.Name = "LastUpdate";
+            this.LastUpdate.ReadOnly = true;
             // 
             // btnDelete
             // 
@@ -317,18 +412,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "A partire dal";
+            this.label2.Text = "Mese";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Fino al";
+            this.label1.Text = "Anno";
             // 
             // btnMoveLast
             // 
@@ -369,101 +464,6 @@
             this.btnMoveFirst.Size = new System.Drawing.Size(26, 25);
             this.btnMoveFirst.TabIndex = 13;
             this.btnMoveFirst.UseVisualStyleBackColor = true;
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.Visible = false;
-            this.Id.Width = 32;
-            // 
-            // Year
-            // 
-            this.Year.DataPropertyName = "Year";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Year.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Year.HeaderText = "Anno";
-            this.Year.Name = "Year";
-            this.Year.ReadOnly = true;
-            this.Year.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Year.Width = 42;
-            // 
-            // Month
-            // 
-            this.Month.DataPropertyName = "MonthName";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.Month.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Month.HeaderText = "Mese";
-            this.Month.Name = "Month";
-            this.Month.ReadOnly = true;
-            this.Month.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Month.Width = 50;
-            // 
-            // Incoming
-            // 
-            this.Incoming.DataPropertyName = "Incoming";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Incoming.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Incoming.HeaderText = "Entrate";
-            this.Incoming.Name = "Incoming";
-            this.Incoming.ReadOnly = true;
-            this.Incoming.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Incoming.Width = 70;
-            // 
-            // Outgoing
-            // 
-            this.Outgoing.DataPropertyName = "Outgoing";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Outgoing.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Outgoing.HeaderText = "Uscite";
-            this.Outgoing.Name = "Outgoing";
-            this.Outgoing.ReadOnly = true;
-            this.Outgoing.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Outgoing.Width = 70;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Balance";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.Total.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Total.HeaderText = "Saldo";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Total.Width = 70;
-            // 
-            // User
-            // 
-            this.User.DataPropertyName = "UserName";
-            this.User.HeaderText = "Utente";
-            this.User.Name = "User";
-            this.User.ReadOnly = true;
-            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.User.Width = 70;
-            // 
-            // LastUpdate
-            // 
-            this.LastUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LastUpdate.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.Format = "dd/MM/yyyy HH:mm:ss";
-            this.LastUpdate.DefaultCellStyle = dataGridViewCellStyle8;
-            this.LastUpdate.HeaderText = "Ultima Modifica";
-            this.LastUpdate.Name = "LastUpdate";
-            this.LastUpdate.ReadOnly = true;
             // 
             // PageCreditCount
             // 

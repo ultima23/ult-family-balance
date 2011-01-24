@@ -93,7 +93,7 @@ namespace Ult.FamilyBalance.UI
                 }
                 else
                 {
-                    if (msg != null)
+                    if (!String.IsNullOrEmpty(msg))
                     {
                         UIUtils.Alert(msg);
                     }
