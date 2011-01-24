@@ -10,8 +10,9 @@ AS
 SELECT	CreditCountId,
 		CreditCountYear,
 		CreditCountMonth,
-		CreditCountIncoming,
-		CreditCountOutgoing,
+		CreditCountIncoming		= ISNULL(CreditCountIncoming, 0),
+		CreditCountOutgoing		= ISNULL(CreditCountOutgoing, 0),
+		CreditCountBalance		= ISNULL(CreditCountBalance, 0),
 		UserId
 FROM CreditCount a
 

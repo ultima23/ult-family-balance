@@ -120,6 +120,7 @@
             "Novembre",
             "Dicembre"});
             this.cmbMonth.Location = new System.Drawing.Point(83, 33);
+            this.cmbMonth.MaxDropDownItems = 12;
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(310, 21);
             this.cmbMonth.TabIndex = 1;

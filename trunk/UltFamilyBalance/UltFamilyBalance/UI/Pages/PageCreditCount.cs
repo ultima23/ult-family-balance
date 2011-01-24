@@ -220,7 +220,6 @@ namespace Ult.FamilyBalance.UI
             _context.Refresh(RefreshMode.StoreWins, _creditCounts);
         }
 
-
         private void SaveSelectedRow()
         {
             SaveSelectedRow(0);
@@ -262,8 +261,8 @@ namespace Ult.FamilyBalance.UI
         private void NewCreditCount()
         {
             CreditCount new_credit_count = new CreditCount();
-            new_credit_count.Year = DateTime.Now.Year;
-            new_credit_count.Month = DateTime.Now.Month;
+            new_credit_count.Year = _useYear ? _year : DateTime.Now.Year;
+            new_credit_count.Month = _useMonth ? _month : DateTime.Now.Month;
             new_credit_count.DateInsert = DateTime.Now;
             new_credit_count.DateUpdate = DateTime.Now;
             new_credit_count.User = UltFamilyBalance.GetUltFamilyBalance().User;

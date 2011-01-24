@@ -12,6 +12,7 @@ SELECT  [Year]            = [CreditCountYear],
         [IncomingCount]   = COUNT( CreditCountId ),
         [Outgoing]        = SUM( CreditCountOutgoing ),
         [OutgoingCount]   = COUNT( CreditCountId ),
+        [Balance]         = SUM( CreditCountBalance ),
         [Delta]           = SUM( CreditCountIncoming ) - SUM( CreditCountOutgoing )
 FROM vwCreditCount
 GROUP BY [CreditCountYear], [CreditCountMonth]

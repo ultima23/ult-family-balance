@@ -77,7 +77,7 @@ namespace Ult.FamilyBalance.UI.Pages
 
         private void LoadYears()
         {
-            int[] years = DateTimeUtils.GetYearInterval(UltFamilyBalance.FiltersYearsNumber, 
+            int[] years = DateTimeUtils.GetYearInterval(UltFamilyBalance.FiltersPastYearsNumber, 
                                                         UltFamilyBalance.FiltersYearsNumber);
 
             cmbYear.Items.Clear();
