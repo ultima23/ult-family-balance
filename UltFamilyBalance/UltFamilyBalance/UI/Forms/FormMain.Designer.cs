@@ -42,6 +42,7 @@ namespace Ult.FamilyBalance.UI
             this.tmrStartup = new System.Windows.Forms.Timer(this.components);
             this.toolStripUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusBarPage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cambiaUtenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurazioneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,27 +53,14 @@ namespace Ult.FamilyBalance.UI
             this.annualeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mensiliToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.completoToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perTipoToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perGruppoToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.annualiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.totaliToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perTipoToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perGruppoToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mensiliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.completoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perTipoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perGruppoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.annualiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.completoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perTipoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.perGruppoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiaUtenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -89,11 +77,11 @@ namespace Ult.FamilyBalance.UI
             // tscMain.ContentPanel
             // 
             this.tscMain.ContentPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.tscMain.ContentPanel.Size = new System.Drawing.Size(729, 456);
+            this.tscMain.ContentPanel.Size = new System.Drawing.Size(792, 547);
             this.tscMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tscMain.Location = new System.Drawing.Point(0, 24);
             this.tscMain.Name = "tscMain";
-            this.tscMain.Size = new System.Drawing.Size(729, 478);
+            this.tscMain.Size = new System.Drawing.Size(792, 569);
             this.tscMain.TabIndex = 0;
             this.tscMain.TopToolStripPanelVisible = false;
             // 
@@ -105,7 +93,7 @@ namespace Ult.FamilyBalance.UI
             this.toolStripStatusBarPage});
             this.statusBar.Location = new System.Drawing.Point(0, 0);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(729, 22);
+            this.statusBar.Size = new System.Drawing.Size(792, 22);
             this.statusBar.TabIndex = 0;
             // 
             // menuStrip1
@@ -118,7 +106,7 @@ namespace Ult.FamilyBalance.UI
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(729, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(792, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -193,6 +181,14 @@ namespace Ult.FamilyBalance.UI
             this.toolStripStatusBarPage.Size = new System.Drawing.Size(27, 17);
             this.toolStripStatusBarPage.Text = "-";
             // 
+            // cambiaUtenteToolStripMenuItem
+            // 
+            this.cambiaUtenteToolStripMenuItem.Image = global::Ult.FamilyBalance.Properties.Resources.user_go;
+            this.cambiaUtenteToolStripMenuItem.Name = "cambiaUtenteToolStripMenuItem";
+            this.cambiaUtenteToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.cambiaUtenteToolStripMenuItem.Text = "Cambia utente";
+            this.cambiaUtenteToolStripMenuItem.Click += new System.EventHandler(this.cambiaUtenteToolStripMenuItem_Click);
+            // 
             // configurazioneToolStripMenuItem
             // 
             this.configurazioneToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("configurazioneToolStripMenuItem.Image")));
@@ -206,6 +202,7 @@ namespace Ult.FamilyBalance.UI
             this.esciToolStripMenuItem.Name = "esciToolStripMenuItem";
             this.esciToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.esciToolStripMenuItem.Text = "Esci";
+            this.esciToolStripMenuItem.Click += new System.EventHandler(this.esciToolStripMenuItem_Click);
             // 
             // entrateToolStripMenuItem
             // 
@@ -238,7 +235,7 @@ namespace Ult.FamilyBalance.UI
             this.annualeToolStripMenuItem});
             this.totaliToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("totaliToolStripMenuItem.Image")));
             this.totaliToolStripMenuItem.Name = "totaliToolStripMenuItem";
-            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.totaliToolStripMenuItem.Text = "Totali";
             this.totaliToolStripMenuItem.Click += new System.EventHandler(this.totaliToolStripMenuItem_Click);
             // 
@@ -261,64 +258,22 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem1});
             this.entrateToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem2.Image")));
             this.entrateToolStripMenuItem2.Name = "entrateToolStripMenuItem2";
-            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
+            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.entrateToolStripMenuItem2.Text = "Entrate";
             // 
             // mensiliToolStripMenuItem1
             // 
-            this.mensiliToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.completoToolStripMenuItem2,
-            this.perTipoToolStripMenuItem2,
-            this.perGruppoToolStripMenuItem2});
             this.mensiliToolStripMenuItem1.Name = "mensiliToolStripMenuItem1";
             this.mensiliToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
             this.mensiliToolStripMenuItem1.Text = "Mensili";
-            // 
-            // completoToolStripMenuItem2
-            // 
-            this.completoToolStripMenuItem2.Name = "completoToolStripMenuItem2";
-            this.completoToolStripMenuItem2.Size = new System.Drawing.Size(139, 22);
-            this.completoToolStripMenuItem2.Text = "Totali";
-            // 
-            // perTipoToolStripMenuItem2
-            // 
-            this.perTipoToolStripMenuItem2.Name = "perTipoToolStripMenuItem2";
-            this.perTipoToolStripMenuItem2.Size = new System.Drawing.Size(139, 22);
-            this.perTipoToolStripMenuItem2.Text = "Per Tipo";
-            // 
-            // perGruppoToolStripMenuItem2
-            // 
-            this.perGruppoToolStripMenuItem2.Name = "perGruppoToolStripMenuItem2";
-            this.perGruppoToolStripMenuItem2.Size = new System.Drawing.Size(139, 22);
-            this.perGruppoToolStripMenuItem2.Text = "Per Gruppo";
+            this.mensiliToolStripMenuItem1.Click += new System.EventHandler(this.mensiliToolStripMenuItem1_Click);
             // 
             // annualiToolStripMenuItem1
             // 
-            this.annualiToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.totaliToolStripMenuItem1,
-            this.perTipoToolStripMenuItem3,
-            this.perGruppoToolStripMenuItem3});
             this.annualiToolStripMenuItem1.Name = "annualiToolStripMenuItem1";
-            this.annualiToolStripMenuItem1.Size = new System.Drawing.Size(120, 22);
+            this.annualiToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.annualiToolStripMenuItem1.Text = "Annuali";
-            // 
-            // totaliToolStripMenuItem1
-            // 
-            this.totaliToolStripMenuItem1.Name = "totaliToolStripMenuItem1";
-            this.totaliToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
-            this.totaliToolStripMenuItem1.Text = "Totali";
-            // 
-            // perTipoToolStripMenuItem3
-            // 
-            this.perTipoToolStripMenuItem3.Name = "perTipoToolStripMenuItem3";
-            this.perTipoToolStripMenuItem3.Size = new System.Drawing.Size(139, 22);
-            this.perTipoToolStripMenuItem3.Text = "Per Tipo";
-            // 
-            // perGruppoToolStripMenuItem3
-            // 
-            this.perGruppoToolStripMenuItem3.Name = "perGruppoToolStripMenuItem3";
-            this.perGruppoToolStripMenuItem3.Size = new System.Drawing.Size(139, 22);
-            this.perGruppoToolStripMenuItem3.Text = "Per Gruppo";
+            this.annualiToolStripMenuItem1.Click += new System.EventHandler(this.annualiToolStripMenuItem1_Click);
             // 
             // entrateToolStripMenuItem1
             // 
@@ -327,64 +282,22 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem});
             this.entrateToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem1.Image")));
             this.entrateToolStripMenuItem1.Name = "entrateToolStripMenuItem1";
-            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.entrateToolStripMenuItem1.Text = "Uscite";
             // 
             // mensiliToolStripMenuItem
             // 
-            this.mensiliToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.completoToolStripMenuItem,
-            this.perTipoToolStripMenuItem,
-            this.perGruppoToolStripMenuItem});
             this.mensiliToolStripMenuItem.Name = "mensiliToolStripMenuItem";
-            this.mensiliToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.mensiliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mensiliToolStripMenuItem.Text = "Mensili";
-            // 
-            // completoToolStripMenuItem
-            // 
-            this.completoToolStripMenuItem.Name = "completoToolStripMenuItem";
-            this.completoToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.completoToolStripMenuItem.Text = "Totali";
-            // 
-            // perTipoToolStripMenuItem
-            // 
-            this.perTipoToolStripMenuItem.Name = "perTipoToolStripMenuItem";
-            this.perTipoToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.perTipoToolStripMenuItem.Text = "Per tipo";
-            // 
-            // perGruppoToolStripMenuItem
-            // 
-            this.perGruppoToolStripMenuItem.Name = "perGruppoToolStripMenuItem";
-            this.perGruppoToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.perGruppoToolStripMenuItem.Text = "Per gruppo";
+            this.mensiliToolStripMenuItem.Click += new System.EventHandler(this.mensiliToolStripMenuItem_Click);
             // 
             // annualiToolStripMenuItem
             // 
-            this.annualiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.completoToolStripMenuItem1,
-            this.perTipoToolStripMenuItem1,
-            this.perGruppoToolStripMenuItem1});
             this.annualiToolStripMenuItem.Name = "annualiToolStripMenuItem";
-            this.annualiToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.annualiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.annualiToolStripMenuItem.Text = "Annuali";
-            // 
-            // completoToolStripMenuItem1
-            // 
-            this.completoToolStripMenuItem1.Name = "completoToolStripMenuItem1";
-            this.completoToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
-            this.completoToolStripMenuItem1.Text = "Totali";
-            // 
-            // perTipoToolStripMenuItem1
-            // 
-            this.perTipoToolStripMenuItem1.Name = "perTipoToolStripMenuItem1";
-            this.perTipoToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
-            this.perTipoToolStripMenuItem1.Text = "Per tipo";
-            // 
-            // perGruppoToolStripMenuItem1
-            // 
-            this.perGruppoToolStripMenuItem1.Name = "perGruppoToolStripMenuItem1";
-            this.perGruppoToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
-            this.perGruppoToolStripMenuItem1.Text = "Per gruppo";
+            this.annualiToolStripMenuItem.Click += new System.EventHandler(this.annualiToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
@@ -418,19 +331,11 @@ namespace Ult.FamilyBalance.UI
             this.toSQLToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.toSQLToolStripMenuItem.Text = "To SQL";
             // 
-            // cambiaUtenteToolStripMenuItem
-            // 
-            this.cambiaUtenteToolStripMenuItem.Image = global::Ult.FamilyBalance.Properties.Resources.user_go;
-            this.cambiaUtenteToolStripMenuItem.Name = "cambiaUtenteToolStripMenuItem";
-            this.cambiaUtenteToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.cambiaUtenteToolStripMenuItem.Text = "Cambia utente";
-            this.cambiaUtenteToolStripMenuItem.Click += new System.EventHandler(this.cambiaUtenteToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 502);
+            this.ClientSize = new System.Drawing.Size(792, 593);
             this.Controls.Add(this.tscMain);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -467,24 +372,12 @@ namespace Ult.FamilyBalance.UI
         private System.Windows.Forms.ToolStripMenuItem annualeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem entrateToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mensiliToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem completoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem perTipoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem perGruppoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem annualiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem completoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem perTipoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem perGruppoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem entrateToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mensiliToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem completoToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem annualiToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem configurazioneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esciToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem perTipoToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem perGruppoToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem totaliToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem perTipoToolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem perGruppoToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;

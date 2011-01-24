@@ -315,24 +315,24 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.contextGrid.Name = "contextGrid";
-            this.contextGrid.Size = new System.Drawing.Size(108, 70);
+            this.contextGrid.Size = new System.Drawing.Size(117, 70);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // btnMoveLast
@@ -461,7 +461,7 @@
             // Type
             // 
             this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.DataPropertyName = "TypeDescription";
+            this.Type.DataPropertyName = "TypeName";
             this.Type.HeaderText = "Categoria";
             this.Type.Name = "Type";
             this.Type.ReadOnly = true;

@@ -21,22 +21,6 @@ namespace Ult.FamilyBalance.UI.Pages
     {
 
         // -----------------------------------------------------------------------------------------------------------
-        #region CONSTANTS
-
-        /// <summary>
-        /// Numbers of years to show
-        /// </summary>
-        public const int YearsNumber = 10;
-
-        /// <summary>
-        /// Numbers of years in the past to show
-        /// </summary>
-        public const int PastYearsNumber = 2;
-
-        #endregion
-        // -----------------------------------------------------------------------------------------------------------
-
-        // -----------------------------------------------------------------------------------------------------------
         #region FIELDS
     
         // 
@@ -93,10 +77,11 @@ namespace Ult.FamilyBalance.UI.Pages
 
         private void LoadYears()
         {
-            int[] years = DateTimeUtils.GetYearInterval(DetailCreditCount.PastYearsNumber, DetailCreditCount.YearsNumber);
+            int[] years = DateTimeUtils.GetYearInterval(UltFamilyBalance.FiltersYearsNumber, 
+                                                        UltFamilyBalance.FiltersYearsNumber);
 
             cmbYear.Items.Clear();
-            for (int i = 0; i < DetailCreditCount.YearsNumber; i++)
+            for (int i = 0; i < years.Length; i++)
             {
                 cmbYear.Items.Add(years[i]);
             }

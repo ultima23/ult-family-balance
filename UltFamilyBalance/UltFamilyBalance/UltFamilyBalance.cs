@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 using Ult.Commons;
 using Ult.FamilyBalance.Model;
+using System.Data.SqlClient;
+using System.Data.EntityClient;
 
 
 namespace Ult.FamilyBalance
@@ -16,10 +17,67 @@ namespace Ult.FamilyBalance
     public class UltFamilyBalance
     {
 
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region CONSTANTS
+
+        /// <summary>
+        /// Numbers of years to show
+        /// </summary>
+        public const int FiltersYearsNumber = 6;
+
+        /// <summary>
+        /// Numbers of years in the past to show
+        /// </summary>
+        public const int FiltersPastYearsNumber = 4;
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region FIELDS
+
         /// <summary>
         /// 
         /// </summary>
         private static UltFamilyBalance _instance;
+
+        // Initialization
+        private bool _init;
+        //
+        private User _user;
+        //
+        private UltFamilyBalanceContext _context;
+        // 
+        private Logger _logger;
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region CONSTRUCTORS
+
+        private UltFamilyBalance()
+        {
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PROPERTIES
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PRIVATE METHODS
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region PUBLIC METHODS
 
         /// <summary>
         /// 
@@ -33,17 +91,6 @@ namespace Ult.FamilyBalance
             }
             return _instance;
         }
-
-
-
-        // Initialization
-        private bool _init;
-        //
-        private User _user;
-        //
-        private UltFamilyBalanceContext _context;
-        // 
-        private Logger _logger;
 
         /// <summary>
         /// 
@@ -217,10 +264,25 @@ namespace Ult.FamilyBalance
                 throw;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public SqlConnection GetSqlConnection()
+        {
+            return ((EntityConnection)_context.Connection).StoreConnection as SqlConnection;
+
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
 
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public enum UltFamilyBalanceStatus
     {
         Idle,

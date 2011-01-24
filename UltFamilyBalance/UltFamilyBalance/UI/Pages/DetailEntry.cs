@@ -82,7 +82,7 @@ namespace Ult.FamilyBalance.UI.Pages
                         orderby t.Group.Id ascending
                         select t;
             //
-            cmbEntityType.DisplayMember = "Description";
+            cmbEntityType.DisplayMember = "Name";
             cmbEntityType.DataSource = types;
         }
 
