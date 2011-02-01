@@ -10,6 +10,7 @@ CREATE VIEW [dbo].[vwEntriesByMonthAndType]
 AS
 
 SELECT	[EntryDirectionId]	= a.[EntryDirectionId],
+		[EntryTypeId]		= a.[EntryTypeId],
 		[Year]				= a.[Year],
 		[Month]				= a.[Month],
 		[MonthName]			= b.[MonthName],
@@ -20,7 +21,8 @@ SELECT	[EntryDirectionId]	= a.[EntryDirectionId],
 FROM
 (
 
-	SELECT  [EntryDirectionId]	= [EntryDirectionId],
+	SELECT  [EntryDirectionId],
+			[EntryTypeId],
 			[Year]				= [EntryYear],
 			[Month]				= [EntryMonth],
 			[Type]				= [EntryTypeName],
