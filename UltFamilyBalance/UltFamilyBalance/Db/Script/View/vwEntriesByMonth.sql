@@ -9,12 +9,12 @@ AS
 SELECT  [EntryDirectionId],
 		[Year]  = [EntryYear],
         [Month] = [EntryMonth],
-        [MonthName] = dbo.FnGetMonthName([EntryMonth]),
+        [MonthName] = [EntryMonthName],
         [Count] = COUNT(EntryId),
         [Total] = SUM(EntryAmount)
         
 FROM [vwEntries]
-GROUP BY [EntryDirectionId], [EntryDirectionName], [EntryDirectionDesc], [EntryYear], [EntryMonth]
+GROUP BY [EntryDirectionId], [EntryDirectionName], [EntryDirectionDesc], [EntryYear], [EntryMonth], [EntryMonthName]
 
 
 

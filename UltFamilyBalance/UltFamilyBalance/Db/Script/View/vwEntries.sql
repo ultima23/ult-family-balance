@@ -28,13 +28,17 @@ SELECT  a.[EntryId],
         e.[UserId],
         e.[UserName],
         e.[UserSurname],
-        e.[UserUsername]
+        e.[UserUsername],
+		[EntryMonthName] = f.[MonthName],
+		[EntryQuarter] = f.[Quarter],
+		[EntryQuarterName] = f.[QuarterName]
         
 FROM        [dbo].[Entry]           a
 INNER JOIN  [dbo].[EntryType]       b ON a.EntryTypeId = b.EntryTypeId 
 INNER JOIN  [dbo].[EntryTypeGroup]  c ON b.EntryTypeGroupId = c.EntryTypeGroupId
 INNER JOIN  [dbo].[EntryDirection]  d ON b.EntryDirectionId = d.EntryDirectionId
 INNER JOIN  [dbo].[User]			e ON a.UserId = e.UserId
+INNER JOIN  [vwQuartersMonths]		f ON a.EntryMonth = f.[Month]
 
 GO
 
