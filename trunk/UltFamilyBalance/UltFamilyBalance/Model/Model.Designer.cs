@@ -246,7 +246,7 @@ namespace Ult.FamilyBalance.Model
         /// <param name="year">Initial value of the Year property.</param>
         /// <param name="month">Initial value of the Month property.</param>
         /// <param name="incoming">Initial value of the Incoming property.</param>
-        /// <param name="outgoing">Initial value of the Outgoing property.</param>
+        /// <param name="entries">Initial value of the Outgoing property.</param>
         /// <param name="dateInsert">Initial value of the DateInsert property.</param>
         public static CreditCount CreateCreditCount(global::System.Int32 id, global::System.Int32 year, global::System.Int32 month, global::System.Decimal incoming, global::System.Decimal outgoing, global::System.DateTime dateInsert)
         {

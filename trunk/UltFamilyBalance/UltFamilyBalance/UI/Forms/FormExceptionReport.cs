@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
-using Ult.Core.Utils;
+using Ult.Util;
 
 namespace Ult.FamilyBalance
 {

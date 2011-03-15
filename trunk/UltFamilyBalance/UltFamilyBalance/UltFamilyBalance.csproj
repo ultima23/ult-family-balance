@@ -66,6 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\Forms\FormCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\FormCalc.Designer.cs">
+      <DependentUpon>FormCalc.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Forms\FormExceptionReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
       <DependentUpon>PageReportEntriesByMonth.cs</DependentUpon>
     </Compile>
     <Compile Include="UltFamilyBalance.cs" />
+    <EmbeddedResource Include="UI\Forms\FormCalc.resx">
+      <DependentUpon>FormCalc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\FormExceptionReport.resx">
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +290,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credit.ico" />
+    <None Include="Resources\coins_add.png" />
+    <None Include="Resources\coins.png" />
     <None Include="Resources\user_go.png" />
     <None Include="Resources\application.png" />
     <None Include="Resources\user.png" />
