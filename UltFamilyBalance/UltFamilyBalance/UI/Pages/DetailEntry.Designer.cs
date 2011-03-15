@@ -39,7 +39,7 @@
             this.cmbEntityType = new System.Windows.Forms.ComboBox();
             this.txtEntryNote = new System.Windows.Forms.TextBox();
             this.panelAmount = new System.Windows.Forms.Panel();
-            this.lblEntryAmount = new System.Windows.Forms.Label();
+            this.btnAmountCalc = new System.Windows.Forms.Button();
             this.numAmount = new System.Windows.Forms.NumericUpDown();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupEntry.SuspendLayout();
@@ -57,7 +57,7 @@
             this.groupEntry.Controls.Add(this.tlpEntry);
             this.groupEntry.Location = new System.Drawing.Point(3, -2);
             this.groupEntry.Name = "groupEntry";
-            this.groupEntry.Size = new System.Drawing.Size(408, 384);
+            this.groupEntry.Size = new System.Drawing.Size(394, 384);
             this.groupEntry.TabIndex = 0;
             this.groupEntry.TabStop = false;
             // 
@@ -68,7 +68,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpEntry.ColumnCount = 2;
             this.tlpEntry.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tlpEntry.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpEntry.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpEntry.Controls.Add(this.lblEntryAmountTitle, 0, 0);
             this.tlpEntry.Controls.Add(this.lblEntryDateTitle, 0, 1);
             this.tlpEntry.Controls.Add(this.lblEntryTypeTitle, 0, 2);
@@ -84,7 +84,7 @@
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpEntry.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpEntry.Size = new System.Drawing.Size(396, 359);
+            this.tlpEntry.Size = new System.Drawing.Size(382, 359);
             this.tlpEntry.TabIndex = 0;
             this.tlpEntry.TabStop = true;
             // 
@@ -145,30 +145,35 @@
             // 
             // dtpEntityDate
             // 
+            this.dtpEntityDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpEntityDate.CustomFormat = "dd/MM/yyyy";
             this.dtpEntityDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEntityDate.Location = new System.Drawing.Point(83, 33);
             this.dtpEntityDate.Name = "dtpEntityDate";
-            this.dtpEntityDate.Size = new System.Drawing.Size(303, 20);
+            this.dtpEntityDate.Size = new System.Drawing.Size(296, 20);
             this.dtpEntityDate.TabIndex = 1;
             // 
             // cmbEntityType
             // 
+            this.cmbEntityType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEntityType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEntityType.FormattingEnabled = true;
             this.cmbEntityType.Location = new System.Drawing.Point(83, 63);
             this.cmbEntityType.Name = "cmbEntityType";
-            this.cmbEntityType.Size = new System.Drawing.Size(303, 21);
+            this.cmbEntityType.Size = new System.Drawing.Size(296, 21);
             this.cmbEntityType.TabIndex = 2;
             // 
             // txtEntryNote
             // 
-            this.txtEntryNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtEntryNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEntryNote.Location = new System.Drawing.Point(83, 93);
             this.txtEntryNote.Multiline = true;
             this.txtEntryNote.Name = "txtEntryNote";
-            this.txtEntryNote.Size = new System.Drawing.Size(303, 263);
+            this.txtEntryNote.Size = new System.Drawing.Size(296, 263);
             this.txtEntryNote.TabIndex = 3;
             // 
             // panelAmount
@@ -176,23 +181,24 @@
             this.panelAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAmount.Controls.Add(this.lblEntryAmount);
+            this.panelAmount.Controls.Add(this.btnAmountCalc);
             this.panelAmount.Controls.Add(this.numAmount);
             this.panelAmount.Location = new System.Drawing.Point(83, 3);
             this.panelAmount.Name = "panelAmount";
-            this.panelAmount.Size = new System.Drawing.Size(310, 24);
+            this.panelAmount.Size = new System.Drawing.Size(296, 24);
             this.panelAmount.TabIndex = 0;
             this.panelAmount.TabStop = true;
             // 
-            // lblEntryAmount
+            // btnAmountCalc
             // 
-            this.lblEntryAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEntryAmount.AutoSize = true;
-            this.lblEntryAmount.Location = new System.Drawing.Point(290, 6);
-            this.lblEntryAmount.Name = "lblEntryAmount";
-            this.lblEntryAmount.Size = new System.Drawing.Size(13, 13);
-            this.lblEntryAmount.TabIndex = 10;
-            this.lblEntryAmount.Text = "€";
+            this.btnAmountCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAmountCalc.Image = global::Ult.FamilyBalance.Properties.Resources.coins_add;
+            this.btnAmountCalc.Location = new System.Drawing.Point(265, 0);
+            this.btnAmountCalc.Name = "btnAmountCalc";
+            this.btnAmountCalc.Size = new System.Drawing.Size(29, 24);
+            this.btnAmountCalc.TabIndex = 12;
+            this.btnAmountCalc.UseVisualStyleBackColor = true;
+            this.btnAmountCalc.Click += new System.EventHandler(this.btnAmountCalc_Click);
             // 
             // numAmount
             // 
@@ -206,7 +212,7 @@
             0,
             131072});
             this.numAmount.Name = "numAmount";
-            this.numAmount.Size = new System.Drawing.Size(284, 20);
+            this.numAmount.Size = new System.Drawing.Size(259, 20);
             this.numAmount.TabIndex = 1;
             this.numAmount.ThousandsSeparator = true;
             // 
@@ -221,12 +227,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupEntry);
             this.Name = "DetailEntry";
-            this.Size = new System.Drawing.Size(414, 385);
+            this.Size = new System.Drawing.Size(400, 385);
+            this.Load += new System.EventHandler(this.DetailEntry_Load);
             this.groupEntry.ResumeLayout(false);
             this.tlpEntry.ResumeLayout(false);
             this.tlpEntry.PerformLayout();
             this.panelAmount.ResumeLayout(false);
-            this.panelAmount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -246,7 +252,7 @@
         private System.Windows.Forms.TextBox txtEntryNote;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Panel panelAmount;
-        private System.Windows.Forms.Label lblEntryAmount;
         private System.Windows.Forms.NumericUpDown numAmount;
+        private System.Windows.Forms.Button btnAmountCalc;
     }
 }

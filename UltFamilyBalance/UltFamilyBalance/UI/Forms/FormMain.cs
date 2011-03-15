@@ -314,6 +314,14 @@ namespace Ult.FamilyBalance.UI
             
         }
 
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            FormTest test = new FormTest();
+            test.Show();
+            */
+        }
+
         // --
 
         #endregion

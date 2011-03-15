@@ -33,10 +33,8 @@
             this.tlpEntry = new System.Windows.Forms.TableLayoutPanel();
             this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblBalanceEuro = new System.Windows.Forms.Label();
             this.numBalance = new System.Windows.Forms.NumericUpDown();
             this.pnlIncoming = new System.Windows.Forms.Panel();
-            this.lblIncomingEuro = new System.Windows.Forms.Label();
             this.numIncoming = new System.Windows.Forms.NumericUpDown();
             this.lblMonthTitle = new System.Windows.Forms.Label();
             this.lblIncomingTitle = new System.Windows.Forms.Label();
@@ -44,10 +42,12 @@
             this.lblBalance = new System.Windows.Forms.Label();
             this.labelYearTitle = new System.Windows.Forms.Label();
             this.panelAmount = new System.Windows.Forms.Panel();
-            this.lblOutgoingEuro = new System.Windows.Forms.Label();
             this.numOutgoing = new System.Windows.Forms.NumericUpDown();
             this.cmbYear = new System.Windows.Forms.ComboBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnIncomingCalc = new System.Windows.Forms.Button();
+            this.btnOutgoingCalc = new System.Windows.Forms.Button();
+            this.btnBalanceCalc = new System.Windows.Forms.Button();
             this.groupEntry.SuspendLayout();
             this.tlpEntry.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,6 +104,8 @@
             // 
             // cmbMonth
             // 
+            this.cmbMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMonth.FormattingEnabled = true;
             this.cmbMonth.Items.AddRange(new object[] {
@@ -130,23 +132,13 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.lblBalanceEuro);
+            this.panel1.Controls.Add(this.btnBalanceCalc);
             this.panel1.Controls.Add(this.numBalance);
             this.panel1.Location = new System.Drawing.Point(83, 123);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(310, 24);
             this.panel1.TabIndex = 4;
             this.panel1.TabStop = true;
-            // 
-            // lblBalanceEuro
-            // 
-            this.lblBalanceEuro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBalanceEuro.AutoSize = true;
-            this.lblBalanceEuro.Location = new System.Drawing.Point(290, 6);
-            this.lblBalanceEuro.Name = "lblBalanceEuro";
-            this.lblBalanceEuro.Size = new System.Drawing.Size(13, 13);
-            this.lblBalanceEuro.TabIndex = 10;
-            this.lblBalanceEuro.Text = "€";
             // 
             // numBalance
             // 
@@ -160,7 +152,7 @@
             0,
             131072});
             this.numBalance.Name = "numBalance";
-            this.numBalance.Size = new System.Drawing.Size(284, 20);
+            this.numBalance.Size = new System.Drawing.Size(275, 20);
             this.numBalance.TabIndex = 1;
             this.numBalance.ThousandsSeparator = true;
             // 
@@ -169,23 +161,13 @@
             this.pnlIncoming.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlIncoming.Controls.Add(this.lblIncomingEuro);
+            this.pnlIncoming.Controls.Add(this.btnIncomingCalc);
             this.pnlIncoming.Controls.Add(this.numIncoming);
             this.pnlIncoming.Location = new System.Drawing.Point(83, 63);
             this.pnlIncoming.Name = "pnlIncoming";
             this.pnlIncoming.Size = new System.Drawing.Size(310, 24);
             this.pnlIncoming.TabIndex = 2;
             this.pnlIncoming.TabStop = true;
-            // 
-            // lblIncomingEuro
-            // 
-            this.lblIncomingEuro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIncomingEuro.AutoSize = true;
-            this.lblIncomingEuro.Location = new System.Drawing.Point(290, 6);
-            this.lblIncomingEuro.Name = "lblIncomingEuro";
-            this.lblIncomingEuro.Size = new System.Drawing.Size(13, 13);
-            this.lblIncomingEuro.TabIndex = 10;
-            this.lblIncomingEuro.Text = "€";
             // 
             // numIncoming
             // 
@@ -199,7 +181,7 @@
             0,
             131072});
             this.numIncoming.Name = "numIncoming";
-            this.numIncoming.Size = new System.Drawing.Size(284, 20);
+            this.numIncoming.Size = new System.Drawing.Size(275, 20);
             this.numIncoming.TabIndex = 1;
             this.numIncoming.ThousandsSeparator = true;
             // 
@@ -278,23 +260,13 @@
             this.panelAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAmount.Controls.Add(this.lblOutgoingEuro);
+            this.panelAmount.Controls.Add(this.btnOutgoingCalc);
             this.panelAmount.Controls.Add(this.numOutgoing);
             this.panelAmount.Location = new System.Drawing.Point(83, 93);
             this.panelAmount.Name = "panelAmount";
             this.panelAmount.Size = new System.Drawing.Size(310, 24);
             this.panelAmount.TabIndex = 3;
             this.panelAmount.TabStop = true;
-            // 
-            // lblOutgoingEuro
-            // 
-            this.lblOutgoingEuro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOutgoingEuro.AutoSize = true;
-            this.lblOutgoingEuro.Location = new System.Drawing.Point(290, 6);
-            this.lblOutgoingEuro.Name = "lblOutgoingEuro";
-            this.lblOutgoingEuro.Size = new System.Drawing.Size(13, 13);
-            this.lblOutgoingEuro.TabIndex = 10;
-            this.lblOutgoingEuro.Text = "€";
             // 
             // numOutgoing
             // 
@@ -308,12 +280,14 @@
             0,
             131072});
             this.numOutgoing.Name = "numOutgoing";
-            this.numOutgoing.Size = new System.Drawing.Size(284, 20);
+            this.numOutgoing.Size = new System.Drawing.Size(275, 20);
             this.numOutgoing.TabIndex = 1;
             this.numOutgoing.ThousandsSeparator = true;
             // 
             // cmbYear
             // 
+            this.cmbYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbYear.FormattingEnabled = true;
             this.cmbYear.Location = new System.Drawing.Point(83, 3);
@@ -326,6 +300,39 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // btnIncomingCalc
+            // 
+            this.btnIncomingCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIncomingCalc.Image = global::Ult.FamilyBalance.Properties.Resources.coins_add;
+            this.btnIncomingCalc.Location = new System.Drawing.Point(281, 0);
+            this.btnIncomingCalc.Name = "btnIncomingCalc";
+            this.btnIncomingCalc.Size = new System.Drawing.Size(29, 24);
+            this.btnIncomingCalc.TabIndex = 11;
+            this.btnIncomingCalc.UseVisualStyleBackColor = true;
+            this.btnIncomingCalc.Click += new System.EventHandler(this.btnIncomingCalc_Click);
+            // 
+            // btnOutgoingCalc
+            // 
+            this.btnOutgoingCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOutgoingCalc.Image = global::Ult.FamilyBalance.Properties.Resources.coins_add;
+            this.btnOutgoingCalc.Location = new System.Drawing.Point(281, 0);
+            this.btnOutgoingCalc.Name = "btnOutgoingCalc";
+            this.btnOutgoingCalc.Size = new System.Drawing.Size(29, 24);
+            this.btnOutgoingCalc.TabIndex = 12;
+            this.btnOutgoingCalc.UseVisualStyleBackColor = true;
+            this.btnOutgoingCalc.Click += new System.EventHandler(this.btnOutgoingCalc_Click);
+            // 
+            // btnBalanceCalc
+            // 
+            this.btnBalanceCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBalanceCalc.Image = global::Ult.FamilyBalance.Properties.Resources.coins_add;
+            this.btnBalanceCalc.Location = new System.Drawing.Point(281, 0);
+            this.btnBalanceCalc.Name = "btnBalanceCalc";
+            this.btnBalanceCalc.Size = new System.Drawing.Size(29, 24);
+            this.btnBalanceCalc.TabIndex = 12;
+            this.btnBalanceCalc.UseVisualStyleBackColor = true;
+            this.btnBalanceCalc.Click += new System.EventHandler(this.btnBalanceCalc_Click);
+            // 
             // DetailCreditCount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,13 +343,10 @@
             this.groupEntry.ResumeLayout(false);
             this.tlpEntry.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numBalance)).EndInit();
             this.pnlIncoming.ResumeLayout(false);
-            this.pnlIncoming.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numIncoming)).EndInit();
             this.panelAmount.ResumeLayout(false);
-            this.panelAmount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numOutgoing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -356,19 +360,19 @@
         private System.Windows.Forms.Label lblMonthTitle;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Panel pnlIncoming;
-        private System.Windows.Forms.Label lblIncomingEuro;
         private System.Windows.Forms.NumericUpDown numIncoming;
         private System.Windows.Forms.Label lblIncomingTitle;
         private System.Windows.Forms.Label lblOutgoingTitle;
         private System.Windows.Forms.Label lblBalance;
         private System.Windows.Forms.Label labelYearTitle;
         private System.Windows.Forms.Panel panelAmount;
-        private System.Windows.Forms.Label lblOutgoingEuro;
         private System.Windows.Forms.NumericUpDown numOutgoing;
         private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblBalanceEuro;
         private System.Windows.Forms.NumericUpDown numBalance;
         private System.Windows.Forms.ComboBox cmbYear;
+        private System.Windows.Forms.Button btnIncomingCalc;
+        private System.Windows.Forms.Button btnBalanceCalc;
+        private System.Windows.Forms.Button btnOutgoingCalc;
     }
 }

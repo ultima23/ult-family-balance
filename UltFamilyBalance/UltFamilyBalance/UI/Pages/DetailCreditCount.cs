@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Ult.FamilyBalance.Model;
 using Ult.Commons;
 using Ult.Util;
-using Ult.Core.Utils;
 using System.Globalization;
 
 
@@ -280,6 +279,52 @@ namespace Ult.FamilyBalance.UI.Pages
         }
 
         #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
+
+        // -----------------------------------------------------------------------------------------------------------
+        #region UI EVENT HANDLERS
+
+        private void btnIncomingCalc_Click(object sender, EventArgs e)
+        {
+            // Positioning
+            Point pos = btnIncomingCalc.PointToScreen(new Point(0,0));
+            // calc form
+            FormCalc calc = new FormCalc();
+            calc.Location = new Point(pos.X + btnIncomingCalc.Width - calc.Width, pos.Y + btnIncomingCalc.Height + 2);
+            if (calc.ShowDialog() == DialogResult.OK)
+            {
+                numIncoming.Value = calc.Total;
+            }
+        }
+
+        #endregion
+
+        private void btnOutgoingCalc_Click(object sender, EventArgs e)
+        {
+            // Positioning
+            Point pos = btnOutgoingCalc.PointToScreen(new Point(0,0));
+            // calc form
+            FormCalc calc = new FormCalc();
+            calc.Location = new Point(pos.X + btnOutgoingCalc.Width - calc.Width, pos.Y + btnOutgoingCalc.Height + 2);
+            if (calc.ShowDialog() == DialogResult.OK)
+            {
+                numOutgoing.Value = calc.Total;
+            }
+        }
+
+        private void btnBalanceCalc_Click(object sender, EventArgs e)
+        {
+            // Positioning
+            Point pos = btnBalanceCalc.PointToScreen(new Point(0,0));
+            // calc form
+            FormCalc calc = new FormCalc();
+            calc.Location = new Point(pos.X + btnBalanceCalc.Width - calc.Width, pos.Y + btnBalanceCalc.Height + 2);
+            if (calc.ShowDialog() == DialogResult.OK)
+            {
+                numBalance.Value = calc.Total;
+            }
+        }
         // -----------------------------------------------------------------------------------------------------------
 
     }

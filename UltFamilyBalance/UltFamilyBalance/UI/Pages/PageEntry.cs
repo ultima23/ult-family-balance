@@ -12,7 +12,6 @@ using Ult.FamilyBalance.Model;
 using System.Data.Objects;
 using Ult.Util;
 using Ult.Commons;
-using Ult.Core.Utils;
 
 namespace Ult.FamilyBalance.UI
 {
@@ -34,6 +33,8 @@ namespace Ult.FamilyBalance.UI
         private UltFamilyBalanceContext _context;
 
         private Logger _log;
+
+        private BindingSource _bindingsEntries;
 
         //
         private bool _useDateFrom;
@@ -172,24 +173,34 @@ namespace Ult.FamilyBalance.UI
             cbxMaxAmount.Checked = _amountMax > -1;
             numMinAmount.Enabled = _amountMin > -1;
             numMaxAmount.Enabled = _amountMax > -1;
+            btnThisMonth.Text = Ult.Util.Utils.Capitalize( DateTimeUtils.GetMonthName( DateTime.Now ) );
+            btnPrevMonth.Text = Ult.Util.Utils.Capitalize( DateTimeUtils.GetMonthName(DateTime.Now.AddMonths(-1)) );
         }
 
         private void ApplyFilters()
         {
             // Incoming entries query
-            var outgoing =  from e in _entries
+            var entries =  from e in _entries
                             where e.Type.Direction.Id == _direction.Id
                                  && (!_useDateTo || e.Date <= _dateTo)
                                  && (!_useDateFrom || e.Date >= _dateFrom)
                                  && (_type.Id == 0 || _type.Id == e.Type.Id)
                                  && (_amountMin == -1 || e.Amount >= _amountMin)
                                  && (_amountMax == -1 || e.Amount <= _amountMax)
-                            // orderby Date descending
                             select e;
+            _bindingsEntries.DataSource = entries;
+            _bindingsEntries.Sort = "Date ASC";
             // Incoming entries
             dgvEntries.AutoGenerateColumns = false;
-            dgvEntries.DataSource = outgoing;
-            // check position
+            dgvEntries.DataSource = _bindingsEntries;
+            // Total amount calc
+            decimal total = 0;
+            foreach (Entry e in entries)
+            {
+                total += e.Amount;
+            }
+            labelTotalAmount.Text = String.Format("{0:C2}", total);
+            // Check position
             if (_index > 0)
             {
                 SetSelectedRow(_index);
@@ -302,6 +313,8 @@ namespace Ult.FamilyBalance.UI
             _context = UltFamilyBalance.GetUltFamilyBalance().Context;
             // Current index
             _index = 0;
+            //
+            _bindingsEntries = new BindingSource();
             //
             DefaultFilters();
             // STATUS: Init
@@ -590,6 +603,29 @@ namespace Ult.FamilyBalance.UI
         private void btnMoveLast_Click(object sender, EventArgs e)
         {
             MoveLast();
+        }
+
+        private void btnThisMonth_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                _dateFrom = DateTimeUtils.GetFirstDayOfTheMonth();
+                _dateTo = DateTimeUtils.GetLastDayOfTheMonth();
+                RefreshFilters();
+                ApplyFilters();
+            }
+        }
+
+        private void btnPrevMonth_Click(object sender, EventArgs e)
+        {
+            if (_status != PageStatus.Processing)
+            {
+                DateTime prev_month = DateTime.Today.AddMonths(-1);
+                _dateFrom = DateTimeUtils.GetFirstDayOfTheMonth(prev_month);
+                _dateTo = DateTimeUtils.GetLastDayOfTheMonth(prev_month);
+                RefreshFilters();
+                ApplyFilters();
+            }
         }
 
         //---

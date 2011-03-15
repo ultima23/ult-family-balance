@@ -42,7 +42,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDetail.Location = new System.Drawing.Point(0, 0);
             this.panelDetail.Name = "panelDetail";
-            this.panelDetail.Size = new System.Drawing.Size(546, 317);
+            this.panelDetail.Padding = new System.Windows.Forms.Padding(3);
+            this.panelDetail.Size = new System.Drawing.Size(394, 296);
             this.panelDetail.TabIndex = 0;
             // 
             // panelButtons
@@ -51,9 +52,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelButtons.Controls.Add(this.btnSave);
             this.panelButtons.Controls.Add(this.btnCancel);
-            this.panelButtons.Location = new System.Drawing.Point(0, 316);
+            this.panelButtons.Location = new System.Drawing.Point(0, 295);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(546, 38);
+            this.panelButtons.Size = new System.Drawing.Size(394, 38);
             this.panelButtons.TabIndex = 1;
             // 
             // btnSave
@@ -61,7 +62,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::Ult.FamilyBalance.Properties.Resources.accept;
-            this.btnSave.Location = new System.Drawing.Point(381, 7);
+            this.btnSave.Location = new System.Drawing.Point(233, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 1;
@@ -75,7 +76,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::Ult.FamilyBalance.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(462, 7);
+            this.btnCancel.Location = new System.Drawing.Point(314, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 2;
@@ -88,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 356);
+            this.ClientSize = new System.Drawing.Size(394, 335);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelDetail);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

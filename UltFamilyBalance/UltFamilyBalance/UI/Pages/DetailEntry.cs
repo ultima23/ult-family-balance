@@ -276,5 +276,29 @@ namespace Ult.FamilyBalance.UI.Pages
         #endregion
         // -----------------------------------------------------------------------------------------------------------
 
+        // -----------------------------------------------------------------------------------------------------------
+        #region UI EVENT HANDLERS
+
+        private void DetailEntry_Load(object sender, EventArgs e)
+        {
+            numAmount.Select(0, numAmount.ToString().Length);
+        }
+
+        private void btnAmountCalc_Click(object sender, EventArgs e)
+        {
+            // Positioning
+            Point pos = btnAmountCalc.PointToScreen(new Point(0,0));
+            // calc form
+            FormCalc calc = new FormCalc();
+            calc.Location = new Point(pos.X + btnAmountCalc.Width - calc.Width, pos.Y + btnAmountCalc.Height + 2);
+            if (calc.ShowDialog() == DialogResult.OK)
+            {
+                numAmount.Value = calc.Total;
+            }
+        }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
+
     }
 }

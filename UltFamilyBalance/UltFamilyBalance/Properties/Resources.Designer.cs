@@ -81,6 +81,20 @@ namespace Ult.FamilyBalance.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap coins {
+            get {
+                object obj = ResourceManager.GetObject("coins", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap coins_add {
+            get {
+                object obj = ResourceManager.GetObject("coins_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap database_add {
             get {
                 object obj = ResourceManager.GetObject("database_add", resourceCulture);
