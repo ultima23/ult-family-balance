@@ -31,13 +31,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupTitle = new System.Windows.Forms.GroupBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupFilters = new System.Windows.Forms.GroupBox();
@@ -50,12 +50,12 @@
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvEntriesReportByType = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chrReportByType = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ColType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColNr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypePerc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chrReportByType = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupTitle.SuspendLayout();
             this.groupFilters.SuspendLayout();
             this.groupEntryList.SuspendLayout();
@@ -220,46 +220,8 @@
             this.dgvEntriesReportByType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEntriesReportByType.Size = new System.Drawing.Size(387, 235);
             this.dgvEntriesReportByType.TabIndex = 1;
+            this.dgvEntriesReportByType.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEntriesReportByType_CellDoubleClick);
             this.dgvEntriesReportByType.SelectionChanged += new System.EventHandler(this.dgvEntriesReportByType_SelectionChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.chrReportByType);
-            this.groupBox2.Location = new System.Drawing.Point(3, 277);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(621, 338);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            // 
-            // chrReportByType
-            // 
-            this.chrReportByType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Area3DStyle.Inclination = 50;
-            chartArea1.Area3DStyle.IsRightAngleAxes = false;
-            chartArea1.Name = "ChartReport";
-            this.chrReportByType.ChartAreas.Add(chartArea1);
-            legend1.BorderColor = System.Drawing.Color.Black;
-            legend1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
-            legend1.DockedToChartArea = "ChartReport";
-            legend1.Name = "Legend1";
-            this.chrReportByType.Legends.Add(legend1);
-            this.chrReportByType.Location = new System.Drawing.Point(3, 8);
-            this.chrReportByType.Name = "chrReportByType";
-            series1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
-            series1.ChartArea = "ChartReport";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "PieReport";
-            series1.ShadowOffset = 1;
-            this.chrReportByType.Series.Add(series1);
-            this.chrReportByType.Size = new System.Drawing.Size(615, 327);
-            this.chrReportByType.TabIndex = 0;
-            this.chrReportByType.Text = "chartReportByType";
             // 
             // ColType
             // 
@@ -307,6 +269,45 @@
             this.ColTypePerc.ReadOnly = true;
             this.ColTypePerc.Width = 54;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.chrReportByType);
+            this.groupBox2.Location = new System.Drawing.Point(3, 277);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(621, 338);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            // 
+            // chrReportByType
+            // 
+            this.chrReportByType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Area3DStyle.Inclination = 50;
+            chartArea1.Area3DStyle.IsRightAngleAxes = false;
+            chartArea1.Name = "ChartReport";
+            this.chrReportByType.ChartAreas.Add(chartArea1);
+            legend1.BorderColor = System.Drawing.Color.Black;
+            legend1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            legend1.DockedToChartArea = "ChartReport";
+            legend1.Name = "Legend1";
+            this.chrReportByType.Legends.Add(legend1);
+            this.chrReportByType.Location = new System.Drawing.Point(3, 8);
+            this.chrReportByType.Name = "chrReportByType";
+            series1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series1.ChartArea = "ChartReport";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "PieReport";
+            series1.ShadowOffset = 1;
+            this.chrReportByType.Series.Add(series1);
+            this.chrReportByType.Size = new System.Drawing.Size(615, 327);
+            this.chrReportByType.TabIndex = 0;
+            this.chrReportByType.Text = "chartReportByType";
+            // 
             // PageReportEntriesByMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -316,7 +317,7 @@
             this.Controls.Add(this.groupFilters);
             this.Controls.Add(this.groupEntryList);
             this.Controls.Add(this.groupBox1);
-            this.Name = "PageEntryReport";
+            this.Name = "PageReportEntriesByMonth";
             this.Size = new System.Drawing.Size(800, 620);
             this.groupTitle.ResumeLayout(false);
             this.groupTitle.PerformLayout();

@@ -6,33 +6,46 @@ GO
 CREATE VIEW [dbo].[vwReportTypeYear]
 AS
 
-SELECT	x.[Year],
-		x.[TypeId],
-		x.[Type],
-		[Avg] = CONVERT ( DECIMAL(12, 2), ISNULL( AVG (x.Total), 0) ),
-		[Min] = ISNULL( MIN (x.Total), 0) ,
-		[Max] = ISNULL( MAX (x.Total), 0)
-		
-FROM (
+SELECT	a.[Year],
+		a.[TypeId],
+		a.[Type],
+		a.[Total],
+		a.[Avg],
+		a.[Min],
+		a.[Max],
+		[Perc] = CASE WHEN (b.[Total] > 0) THEN (100 / b.[Total]) * a.[Total] ELSE 0 END
+FROM 
+(
 
 	SELECT	a.[Year],
-			a.[Quarter],
-			a.[QuarterName],
-			a.[Month],
-			a.[MonthName],
-			[DirectionId]	= b.[EntryDirectionId],
-			[Type]			= b.[EntryTypeName],
-			[TypeId]		= b.[EntryTypeId],
-			[Total]			= c.[Total]
+			a.[TypeId],
+			a.[Type],
+			[Total]		= ISNULL( SUM (a.[Total] ), 0 ),
+			[Avg]		= ISNULL( AVG (a.[Total]), 0) ,
+			[Min]		= ISNULL( MIN (a.[Total]), 0) ,
+			[Max]		= ISNULL( MAX (a.[Total]), 0)			
+			
+	FROM (
 
-	FROM			vwReportBase			a
-	CROSS	JOIN	EntryType				b
-	LEFT	JOIN	vwEntriesByMonthAndType	c	ON		c.[Year] = a.[Year] 
-													AND	c.[Month] = a.[Month] 
-													AND b.[EntryTypeId] = c.[EntryTypeId]
+		SELECT	a1.[Year],
+				a1.[Quarter],
+				a1.[QuarterName],
+				a1.[Month],
+				a1.[MonthName],
+				[Type]			= a2.[EntryTypeName],
+				[TypeId]		= a2.[EntryTypeId],
+				[Total]			= a3.[Total]
 
-) x
-GROUP BY x.[Year], x.[TypeId],x.[Type]
+		FROM			vwReportBase			a1
+		CROSS	JOIN	EntryType				a2
+		LEFT	JOIN	vwEntriesByMonthAndType	a3	ON		a3.[Year] = a1.[Year] 
+														AND	a3.[Month] = a1.[Month] 
+														AND a2.[EntryTypeId] = a3.[EntryTypeId]
+		WHERE a2.[EntryDirectionId] = 20 /* Uscite */
 
+	) a
+	GROUP BY a.[Year], a.[TypeId], a.[Type]
 
-
+) a
+INNER JOIN vwEntriesByYear b ON		a.[Year] = b.[Year]
+								AND b.[EntryDirectionId] = 20 /* Uscite */

@@ -46,6 +46,7 @@ namespace Ult.FamilyBalance.UI
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.totaliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.annualeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mensiliToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.annualiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,19 +205,27 @@ namespace Ult.FamilyBalance.UI
             // totaliToolStripMenuItem
             // 
             this.totaliToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.annualeToolStripMenuItem});
+            this.annualeToolStripMenuItem,
+            this.categoriaToolStripMenuItem});
             this.totaliToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("totaliToolStripMenuItem.Image")));
             this.totaliToolStripMenuItem.Name = "totaliToolStripMenuItem";
-            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.totaliToolStripMenuItem.Text = "Totali";
             this.totaliToolStripMenuItem.Click += new System.EventHandler(this.totaliToolStripMenuItem_Click);
             // 
             // annualeToolStripMenuItem
             // 
             this.annualeToolStripMenuItem.Name = "annualeToolStripMenuItem";
-            this.annualeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.annualeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.annualeToolStripMenuItem.Text = "Annuale";
             this.annualeToolStripMenuItem.Click += new System.EventHandler(this.annualeToolStripMenuItem_Click);
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.categoriaToolStripMenuItem.Text = "Categorie";
+            this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
             // entrateToolStripMenuItem2
             // 
@@ -225,7 +234,7 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem1});
             this.entrateToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem2.Image")));
             this.entrateToolStripMenuItem2.Name = "entrateToolStripMenuItem2";
-            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
+            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.entrateToolStripMenuItem2.Text = "Entrate";
             // 
             // mensiliToolStripMenuItem1
@@ -249,7 +258,7 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem});
             this.entrateToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem1.Image")));
             this.entrateToolStripMenuItem1.Name = "entrateToolStripMenuItem1";
-            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.entrateToolStripMenuItem1.Text = "Uscite";
             // 
             // mensiliToolStripMenuItem
@@ -318,13 +327,13 @@ namespace Ult.FamilyBalance.UI
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.creditsToolStripMenuItem.Text = "Credits";
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -392,6 +401,7 @@ namespace Ult.FamilyBalance.UI
         private System.Windows.Forms.Timer tmrStartup;
         private System.Windows.Forms.ToolStripMenuItem cambiaUtenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
     }
 }
 

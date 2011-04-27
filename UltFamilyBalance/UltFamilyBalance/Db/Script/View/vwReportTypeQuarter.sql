@@ -22,7 +22,6 @@ FROM (
 			a.[QuarterName],
 			a.[Month],
 			a.[MonthName],
-			[DirectionId]	= b.[EntryDirectionId],
 			[Type]			= b.[EntryTypeName],
 			[TypeId]		= b.[EntryTypeId],
 			[Total]			= c.[Total]
@@ -32,6 +31,7 @@ FROM (
 	LEFT	JOIN	vwEntriesByMonthAndType	c	ON		c.[Year] = a.[Year] 
 													AND	c.[Month] = a.[Month] 
 													AND b.[EntryTypeId] = c.[EntryTypeId]
+	WHERE b.[EntryDirectionId] = 20 /* Uscite */
 
 ) x
 GROUP BY x.[Year], x.[Quarter], x.[QuarterName], x.[TypeId],x.[Type]

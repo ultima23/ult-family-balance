@@ -146,7 +146,6 @@ namespace Ult.FamilyBalance.UI
             chrReportByType.Series["PieReport"]["PieLabelStyle"] = "Outside";
             chrReportByType.Series["PieReport"].Label = "#VALX: #VALY{#0.## '%'}";
             #region threshold settings
-
             // Set the threshold under which all points will be collected
             chrReportByType.Series["PieReport"]["CollectedThreshold"] = "5";
             // Set the threshold type to be a percentage of the pie
@@ -162,7 +161,6 @@ namespace Ult.FamilyBalance.UI
             chrReportByType.Series["PieReport"]["CollectedColor"] = "Green";
             // Set the tooltip of the collected pie slice
             chrReportByType.Series["PieReport"]["CollectedToolTip"] = "Altro";
-
             #endregion threshold settings
             //
             chrReportByType.Legends[0].Enabled = false;
@@ -189,7 +187,8 @@ namespace Ult.FamilyBalance.UI
                          "         [Total] " + 
                          "FROM vwEntriesByMonth " +
                          "WHERE      [EntryDirectionId] = @direction " +
-                         "       AND [Year] = @year";
+                         "       AND [Year] = @year " +
+                         "ORDER BY [Month] ASC";
             // Command creation
             SqlCommand cmd = new SqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
@@ -219,10 +218,12 @@ namespace Ult.FamilyBalance.UI
                          "         [Count], " +
                          "         [Type], " +
                          "         [Total], " + 
-                         "         [Perc] " +
+                         "         [Perc], " +
+                         "         [EntryTypeId] " +
                          "FROM vwEntriesByMonthAndType " +
                          "WHERE      [EntryDirectionId] = @direction " +
-                         "       AND [Year] = @year";
+                         "       AND [Year] = @year " +
+                         "ORDER BY [Total] DESC";
             // Command creation
             SqlCommand cmd = new SqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
@@ -272,15 +273,6 @@ namespace Ult.FamilyBalance.UI
                 _bindingEntryReportByType.DataSource = _bindingEntryReport;
                 _bindingEntryReportByType.DataMember = REPORT_RELATION_NAME;
                 _bindingEntryReportByType.Sort = "Perc DESC";
-
-                
-                // chrReportByType.Series[0].YValueMembers = "Perc";
-
-                // chrReportByType.DataSource = _bindingEntryReportByType;
-
-                // chrReportByType.Series["ReportByType"].XValueMember = "Perc";
-                // chrReportByType.Series["ReportByType"].YValueMembers = "Type";
-
             }
         }
 
@@ -390,16 +382,39 @@ namespace Ult.FamilyBalance.UI
         {
             if (_status != PageStatus.Processing)
             {
-                //string type = dgvEntriesReportByType.CurrentCell.OwningRow.Cells["ColType"].Value.ToString();
-                // Tracer.Trace(type);
                 int index = dgvEntriesReportByType.CurrentCell.RowIndex;
 			    // Explode selected country
                 for (int i=0; i<chrReportByType.Series["PieReport"].Points.Count; i++)
 			    {
 				    chrReportByType.Series["PieReport"].Points[i]["Exploded"] = i == index ? "true" : "false";
 			    }
+            }
+        }
 
-
+        private void dgvEntriesReportByType_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // 
+                DataRowView row = dgvEntriesReportByType.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                if (row != null)
+                {
+                    // Detail filters
+                    object[] args = new object[] { row["EntryTypeId"], 
+                                                   row["Year"], 
+                                                   null, 
+                                                   row["Month"],
+                                                   row["Type"],
+                                                 };
+                    // Entry list page
+                    PageEntryList page = new PageEntryList();
+                    page.ShowEntryTypeColumn = false;
+                    page.ShowEntryGroupColumn = false;
+                    // Form
+                    FormPage form = new FormPage(page, args);
+                    form.Width = 520;
+                    form.ShowDialog();
+                }
             }
         }
 

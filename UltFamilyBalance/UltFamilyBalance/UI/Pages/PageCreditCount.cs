@@ -270,6 +270,7 @@ namespace Ult.FamilyBalance.UI
             //
             FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, new_credit_count, new object[] { });
             form_detail.Title = "Nuovo " + Title;
+            form_detail.Width = 420;
             form_detail.ShowDialog();
             // Reloads data from database
             LoadData();

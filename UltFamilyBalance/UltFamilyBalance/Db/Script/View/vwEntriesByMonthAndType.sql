@@ -17,6 +17,9 @@ SELECT	[EntryDirectionId]	= a.[EntryDirectionId],
 		[Type]				= a.[Type],
 		[Count]				= a.[Count],
 		[Total]				= a.[Total],
+		[Avg]				= a.[Avg],
+		[Min]				= a.[Min],
+		[Max]				= a.[Max],
 		[Perc]				= CASE WHEN (b.Total > 0) THEN (100 / b.Total) * a.Total ELSE 0 END
 FROM
 (
@@ -27,7 +30,11 @@ FROM
 			[Month]				= [EntryMonth],
 			[Type]				= [EntryTypeName],
 			[Count]				= COUNT(EntryId),
-			[Total]				= SUM(EntryAmount)
+			[Total]				= SUM(EntryAmount),
+			[Avg]				= AVG(EntryAmount),
+			[Min]				= MIN(EntryAmount),
+			[Max]				= MAX(EntryAmount)
+			
 	FROM		[vwEntries]		a
 	GROUP BY [EntryDirectionId], [EntryYear], [EntryMonth], [EntryTypeId], [EntryTypeName]
 

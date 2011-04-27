@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,11 +38,13 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupTitle = new System.Windows.Forms.GroupBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupEntryList = new System.Windows.Forms.GroupBox();
             this.dgvEntriesReport = new System.Windows.Forms.DataGridView();
+            this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNrEntries = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvEntriesReportByType = new System.Windows.Forms.DataGridView();
             this.ColType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +53,6 @@
             this.ColTypePerc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chrReportByType = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNrEntries = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupTitle.SuspendLayout();
             this.groupEntryList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntriesReport)).BeginInit();
@@ -120,6 +120,34 @@
             this.dgvEntriesReport.TabIndex = 1;
             this.dgvEntriesReport.SelectionChanged += new System.EventHandler(this.dgvEntriesReport_SelectionChanged);
             // 
+            // ColMonth
+            // 
+            this.ColMonth.DataPropertyName = "Year";
+            this.ColMonth.HeaderText = "Anno";
+            this.ColMonth.Name = "ColMonth";
+            this.ColMonth.ReadOnly = true;
+            this.ColMonth.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColMonth.Width = 90;
+            // 
+            // ColNrEntries
+            // 
+            this.ColNrEntries.DataPropertyName = "Count";
+            this.ColNrEntries.HeaderText = "Nr";
+            this.ColNrEntries.Name = "ColNrEntries";
+            this.ColNrEntries.ReadOnly = true;
+            this.ColNrEntries.Width = 26;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.DataPropertyName = "Total";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColTotal.HeaderText = "Totale";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.ReadOnly = true;
+            this.ColTotal.Width = 80;
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -157,6 +185,7 @@
             this.dgvEntriesReportByType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEntriesReportByType.Size = new System.Drawing.Size(558, 235);
             this.dgvEntriesReportByType.TabIndex = 1;
+            this.dgvEntriesReportByType.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEntriesReportByType_CellDoubleClick);
             this.dgvEntriesReportByType.SelectionChanged += new System.EventHandler(this.dgvEntriesReportByType_SelectionChanged);
             // 
             // ColType
@@ -244,34 +273,6 @@
             this.chrReportByType.TabIndex = 0;
             this.chrReportByType.Text = "chartReportByType";
             // 
-            // ColMonth
-            // 
-            this.ColMonth.DataPropertyName = "Year";
-            this.ColMonth.HeaderText = "Anno";
-            this.ColMonth.Name = "ColMonth";
-            this.ColMonth.ReadOnly = true;
-            this.ColMonth.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColMonth.Width = 90;
-            // 
-            // ColNrEntries
-            // 
-            this.ColNrEntries.DataPropertyName = "Count";
-            this.ColNrEntries.HeaderText = "Nr";
-            this.ColNrEntries.Name = "ColNrEntries";
-            this.ColNrEntries.ReadOnly = true;
-            this.ColNrEntries.Width = 26;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.DataPropertyName = "Total";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColTotal.HeaderText = "Totale";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.ReadOnly = true;
-            this.ColTotal.Width = 80;
-            // 
             // PageReportEntriesByYear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,7 +281,7 @@
             this.Controls.Add(this.groupTitle);
             this.Controls.Add(this.groupEntryList);
             this.Controls.Add(this.groupBox1);
-            this.Name = "PageEntryYearReport";
+            this.Name = "PageReportEntriesByYear";
             this.Size = new System.Drawing.Size(800, 620);
             this.groupTitle.ResumeLayout(false);
             this.groupTitle.PerformLayout();
