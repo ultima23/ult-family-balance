@@ -82,8 +82,21 @@ namespace Ult.FamilyBalance.UI.Pages
                         orderby t.Group.Id ascending
                         select t;
             //
-            cmbEntityType.DisplayMember = "Name";
-            cmbEntityType.DataSource = types;
+            cmbEntryType.DisplayMember = "Name";
+            cmbEntryType.DataSource = types;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void RefreshUsers()
+        {
+            // User list
+            var users = from u in _context.Context.Users
+                        select u;
+            //
+            cmbEntryUser.DisplayMember = "Username";
+            cmbEntryUser.DataSource = users;
         }
 
         /// <summary>
@@ -91,10 +104,11 @@ namespace Ult.FamilyBalance.UI.Pages
         /// </summary>
         private void EntityToUI()
         {
-            numAmount.Value = _entry.Amount;
-            dtpEntityDate.Value = _entry.Date;
+            numEntryAmount.Value = _entry.Amount;
+            dtpEntryDate.Value = _entry.Date;
             txtEntryNote.Text = _entry.Note;
-            cmbEntityType.SelectedItem = _entry.Type;
+            cmbEntryType.SelectedItem = _entry.Type;
+            cmbEntryUser.SelectedItem = _entry.User;
         }
 
         /// <summary>
@@ -102,13 +116,14 @@ namespace Ult.FamilyBalance.UI.Pages
         /// </summary>
         private void UIToEntity()
         {
-            _entry.Amount = numAmount.Value;
-            _entry.Date = dtpEntityDate.Value;
-            _entry.Year = dtpEntityDate.Value.Year;
-            _entry.Month = dtpEntityDate.Value.Month;
-            _entry.Day = dtpEntityDate.Value.Day;
+            _entry.Amount = numEntryAmount.Value;
+            _entry.Date = dtpEntryDate.Value;
+            _entry.Year = dtpEntryDate.Value.Year;
+            _entry.Month = dtpEntryDate.Value.Month;
+            _entry.Day = dtpEntryDate.Value.Day;
             _entry.Note = txtEntryNote.Text;
-            _entry.Type = cmbEntityType.SelectedItem as EntryType;
+            _entry.Type = cmbEntryType.SelectedItem as EntryType;
+            _entry.User = cmbEntryUser.SelectedItem as User;
             _entry.DateUpdate = DateTime.Now;
             _entry.DateInsert = (_entry.EntityState == EntityState.Added) ? DateTime.Now : _entry.DateInsert;
         }
@@ -136,8 +151,9 @@ namespace Ult.FamilyBalance.UI.Pages
             // Page initalization
             _context = UltFamilyBalance.GetUltFamilyBalance();
             _entry = entity;
-            // Types refresh
+            // Refresh
             RefreshTypes();
+            RefreshUsers();
             // Binds UI componenets
             EntityToUI();
         }       
@@ -148,7 +164,7 @@ namespace Ult.FamilyBalance.UI.Pages
         /// <param name="args"></param>
         public void Refresh(params object[] args)
         {
-            numAmount.Focus();
+            numEntryAmount.Focus();
         }
 
         /// <summary>
@@ -172,20 +188,20 @@ namespace Ult.FamilyBalance.UI.Pages
                 // clear previous errors
                 errorProvider.Clear();
                 // Amout validation
-                if (numAmount.Value <= 0)
+                if (numEntryAmount.Value <= 0)
                 {
-                    errorProvider.SetError(numAmount, "L'importo è richiesto e deve essere maggiore di zero");
+                    errorProvider.SetError(numEntryAmount, "L'importo è richiesto e deve essere maggiore di zero");
                     entity_verified = false;
                 }
                 // Type validation
-                if (cmbEntityType.SelectedIndex == -1)
+                if (cmbEntryType.SelectedIndex == -1)
                 {
-                    errorProvider.SetError(cmbEntityType, String.Format("La categoria è richiestea e non è stata selezionata alcuna categoria", _entry.TypeName));
+                    errorProvider.SetError(cmbEntryType, String.Format("La categoria è richiestea e non è stata selezionata alcuna categoria", _entry.TypeName));
                     entity_verified = false;
                 }
                 else
                 {
-                    EntryType type = cmbEntityType.SelectedItem as EntryType;
+                    EntryType type = cmbEntryType.SelectedItem as EntryType;
                     // Note validation
                     if (type != null && type.NoteRequired > 0 && String.IsNullOrEmpty(txtEntryNote.Text))
                     {
@@ -281,21 +297,23 @@ namespace Ult.FamilyBalance.UI.Pages
 
         private void DetailEntry_Load(object sender, EventArgs e)
         {
-            numAmount.Select(0, numAmount.ToString().Length);
+            numEntryAmount.Select(0, numEntryAmount.ToString().Length);
         }
 
         private void btnAmountCalc_Click(object sender, EventArgs e)
         {
             // Positioning
-            Point pos = btnAmountCalc.PointToScreen(new Point(0,0));
+            Point pos = btnEntryAmountCalc.PointToScreen(new Point(0,0));
             // calc form
             FormCalc calc = new FormCalc();
-            calc.Location = new Point(pos.X + btnAmountCalc.Width - calc.Width, pos.Y + btnAmountCalc.Height + 2);
+            calc.Location = new Point(pos.X + btnEntryAmountCalc.Width - calc.Width, pos.Y + btnEntryAmountCalc.Height + 2);
             if (calc.ShowDialog() == DialogResult.OK)
             {
-                numAmount.Value = calc.Total;
+                numEntryAmount.Value = calc.Total;
             }
         }
+
+        // ---
 
         #endregion
         // -----------------------------------------------------------------------------------------------------------

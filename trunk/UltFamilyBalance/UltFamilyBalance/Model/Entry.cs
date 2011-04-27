@@ -28,6 +28,14 @@ namespace Ult.FamilyBalance.Model
         }
 
         /// <summary>
+        /// Shorthand to user username
+        /// </summary>
+        public string UserUsername
+        {
+            get { return User != null ? User.Username : "No user"; }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

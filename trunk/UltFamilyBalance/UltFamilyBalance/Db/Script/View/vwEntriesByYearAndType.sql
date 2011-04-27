@@ -7,6 +7,7 @@ CREATE VIEW [dbo].[vwEntriesByYearAndType]
 AS
 
 SELECT	[EntryDirectionId]	= a.[EntryDirectionId],
+		[EntryTypeId]		= a.[EntryTypeId],
 		[Year]				= a.[Year],
 		[Type]				= a.[Type],
 		[Count]				= a.[Count],
@@ -15,7 +16,8 @@ SELECT	[EntryDirectionId]	= a.[EntryDirectionId],
 FROM
 (
 
-	SELECT  [EntryDirectionId]	= [EntryDirectionId],
+	SELECT  [EntryDirectionId],
+			[EntryTypeId],
 			[Year]				= [EntryYear],
 			[Type]				= [EntryTypeName],
 			[Count]				= COUNT(EntryId),

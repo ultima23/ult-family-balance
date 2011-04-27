@@ -79,17 +79,29 @@
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\CreditCount.cs" />
+    <Compile Include="UI\Forms\FormPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Forms\FormPage.Designer.cs">
+      <DependentUpon>FormPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\PageReporTrendYear.cs">
+    <Compile Include="UI\Pages\PageEntryList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Pages\PageReporTrendYear.Designer.cs">
-      <DependentUpon>PageReporTrendYear.cs</DependentUpon>
+    <Compile Include="UI\Pages\PageEntryList.Designer.cs">
+      <DependentUpon>PageEntryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\PageReportTrendYear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PageReportTrendYear.Designer.cs">
+      <DependentUpon>PageReportTrendYear.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\PageReportEntriesByYear.cs">
       <SubType>UserControl</SubType>
@@ -152,6 +164,12 @@
     <Compile Include="UI\Pages\PageReportEntriesByMonth.Designer.cs">
       <DependentUpon>PageReportEntriesByMonth.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\PageReportTypeYear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PageReportTypeYear.Designer.cs">
+      <DependentUpon>PageReportTypeYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="UltFamilyBalance.cs" />
     <EmbeddedResource Include="UI\Forms\FormCalc.resx">
       <DependentUpon>FormCalc.cs</DependentUpon>
@@ -159,11 +177,17 @@
     <EmbeddedResource Include="UI\Forms\FormExceptionReport.resx">
       <DependentUpon>FormExceptionReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Forms\FormPage.resx">
+      <DependentUpon>FormPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Pages\PageReporTrendYear.resx">
-      <DependentUpon>PageReporTrendYear.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Pages\PageEntryList.resx">
+      <DependentUpon>PageEntryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\PageReportTrendYear.resx">
+      <DependentUpon>PageReportTrendYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageReportEntriesByYear.resx">
       <DependentUpon>PageReportEntriesByYear.cs</DependentUpon>
@@ -198,6 +222,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Pages\PageReportEntriesByMonth.resx">
       <DependentUpon>PageReportEntriesByMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\PageReportTypeYear.resx">
+      <DependentUpon>PageReportTypeYear.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config" />
     <EntityDeploy Include="Model\Model.edmx">

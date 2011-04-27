@@ -59,10 +59,16 @@ namespace Ult.FamilyBalance.UI
         #endregion
         // -----------------------------------------------------------------------------------------------------------
 
+        // -----------------------------------------------------------------------------------------------------------
+        #region CONSTRUCTOR
+
         public PageReportEntriesByYear()
         {
             InitializeComponent();
         }
+
+        #endregion
+        // -----------------------------------------------------------------------------------------------------------
 
         // -----------------------------------------------------------------------------------------------------------
         #region PROPERTIES
@@ -191,7 +197,8 @@ namespace Ult.FamilyBalance.UI
                          "         [Count], " +
                          "         [Type], " +
                          "         [Total], " + 
-                         "         [Perc] " +
+                         "         [Perc], " +
+                         "         [EntryTypeId] " +
                          "FROM vwEntriesByYearAndType " +
                          "WHERE      [EntryDirectionId] = @direction ";
             // Command creation
@@ -235,15 +242,6 @@ namespace Ult.FamilyBalance.UI
                 _bindingEntryReportByType.DataSource = _bindingEntryReport;
                 _bindingEntryReportByType.DataMember = REPORT_RELATION_NAME;
                 _bindingEntryReportByType.Sort = "Perc DESC";
-
-                
-                // chrReportByType.Series[0].YValueMembers = "Perc";
-
-                // chrReportByType.DataSource = _bindingEntryReportByType;
-
-                // chrReportByType.Series["ReportByType"].XValueMember = "Perc";
-                // chrReportByType.Series["ReportByType"].YValueMembers = "Type";
-
             }
         }
 
@@ -321,7 +319,7 @@ namespace Ult.FamilyBalance.UI
         // -----------------------------------------------------------------------------------------------------------
 
         // -----------------------------------------------------------------------------------------------------------
-        #region PUBLIC METHODS
+        #region EVENT HANDLERS
 
         private void dgvEntriesReport_SelectionChanged(object sender, EventArgs e)
         {
@@ -342,6 +340,34 @@ namespace Ult.FamilyBalance.UI
 			    {
 				    chrReportByType.Series["PieReport"].Points[i]["Exploded"] = i == index ? "true" : "false";
 			    }
+            }
+        }
+
+        private void dgvEntriesReportByType_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // 
+                DataRowView row = dgvEntriesReportByType.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                if (row != null)
+                {
+                    // Detail filters
+                    object[] args = new object[] { row["EntryTypeId"], 
+                                                   row["Year"], 
+                                                   null, 
+                                                   null,
+                                                   row["Type"]
+                                                 };
+                    // Entry list page
+                    PageEntryList page = new PageEntryList();
+                    page.ShowEntryTypeColumn = false;
+                    page.ShowEntryGroupColumn = false;
+                    // Form
+                    FormPage form = new FormPage(page, args);
+                    form.Width = 520;
+                    form.ShowDialog();
+
+                }
             }
         }
 

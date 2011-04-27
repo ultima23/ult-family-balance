@@ -322,6 +322,12 @@ namespace Ult.FamilyBalance.UI
             */
         }
 
+        private void categoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            SetPage(CreatePage("ReportTypeYear", typeof(PageReportTypeYear)));
+        }
+
         // --
 
         #endregion

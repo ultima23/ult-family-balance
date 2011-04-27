@@ -11,10 +11,14 @@ SELECT	a.[Year],
 		a.[MonthName],
 		[Type]			= b.[EntryTypeName],
 		[TypeId]		= b.[EntryTypeId],
-		[Total]			= ISNULL(c.[Total], 0)
+		[Total]			= ISNULL(c.[Total], 0),
+		[Avg]			= ISNULL(c.[Avg], 0),
+		[Min]			= ISNULL(c.[Min], 0),
+		[Max]			= ISNULL(c.[Max], 0)
 
 FROM			vwReportBase			a
 CROSS	JOIN	EntryType				b
-LEFT	JOIN	vwEntriesByMonthAndType	c	ON		c.[Year] = a.[Year] 
-												AND	c.[Month] = a.[Month] 
+LEFT	JOIN	vwEntriesByMonthAndType c	ON		a.[Year] = c.[Year] 
+												AND a.[Month] = c.[Month]
 												AND b.[EntryTypeId] = c.[EntryTypeId]
+WHERE b.[EntryDirectionId] = 20 /* Uscite */
