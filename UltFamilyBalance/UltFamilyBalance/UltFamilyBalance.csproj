@@ -97,6 +97,12 @@
     <Compile Include="UI\Pages\PageEntryList.Designer.cs">
       <DependentUpon>PageEntryList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\PageReportTrendMonth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PageReportTrendMonth.Designer.cs">
+      <DependentUpon>PageReportTrendMonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\PageReportTrendYear.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageEntryList.resx">
       <DependentUpon>PageEntryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\PageReportTrendMonth.resx">
+      <DependentUpon>PageReportTrendMonth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageReportTrendYear.resx">
       <DependentUpon>PageReportTrendYear.cs</DependentUpon>

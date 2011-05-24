@@ -328,6 +328,12 @@ namespace Ult.FamilyBalance.UI
             SetPage(CreatePage("ReportTypeYear", typeof(PageReportTypeYear)));
         }
 
+        private void mensileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetPage(CreatePage("ReportTrendMonth", typeof(PageReportTrendMonth)));
+            
+        }
+
         // --
 
         #endregion

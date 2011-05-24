@@ -51,8 +51,6 @@ namespace Ult.FamilyBalance.UI
         private PageStatus _status;
         // 
         private UltFamilyBalanceContext _context;
-        //
-        private Logger _log;
 
         
         private DataSet _data;
@@ -367,7 +365,7 @@ namespace Ult.FamilyBalance.UI
             if (_status != PageStatus.Processing)
             {
                 _series.Clear();
-                _series.Add(REPORT_SERIE_MISSING_INCOMING);
+                // _series.Add(REPORT_SERIE_MISSING_INCOMING);
                 _series.Add(REPORT_SERIE_MISSING_OUTGOING);
                 // Chart update
                 UpdateChartUI();

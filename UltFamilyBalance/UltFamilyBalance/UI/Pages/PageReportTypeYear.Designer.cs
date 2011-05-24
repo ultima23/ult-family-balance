@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupTitle = new System.Windows.Forms.GroupBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.grpTypeYear = new System.Windows.Forms.GroupBox();
@@ -50,28 +52,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.grpTypeYearDetail = new System.Windows.Forms.GroupBox();
             this.dgvTypeYearDetail = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.chartTypeDetail = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ColTypeDetailMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeDetailTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeDetailAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeDetailMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeDetailMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chartTypeYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ColTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypePerc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAvgCurr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAvgMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTypeMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblSpacer01 = new System.Windows.Forms.Label();
-            this.lblMonthAvg = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupTitle.SuspendLayout();
             this.grpTypeYear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypeYear)).BeginInit();
@@ -79,7 +74,7 @@
             this.grpTypeYearDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypeYearDetail)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartTypeDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTypeYear)).BeginInit();
             this.SuspendLayout();
             // 
             // groupTitle
@@ -120,8 +115,8 @@
             this.dgvTypeYear.AllowUserToDeleteRows = false;
             this.dgvTypeYear.AllowUserToResizeColumns = false;
             this.dgvTypeYear.AllowUserToResizeRows = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
-            this.dgvTypeYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
+            this.dgvTypeYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTypeYear.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -133,6 +128,8 @@
             this.ColTypeTotal,
             this.ColTypePerc,
             this.ColTypeAvg,
+            this.ColAvgCurr,
+            this.ColAvgMonth,
             this.ColTypeMax,
             this.ColTypeMin});
             this.dgvTypeYear.Location = new System.Drawing.Point(3, 9);
@@ -192,8 +189,8 @@
             this.dgvTypeYearDetail.AllowUserToDeleteRows = false;
             this.dgvTypeYearDetail.AllowUserToResizeColumns = false;
             this.dgvTypeYearDetail.AllowUserToResizeRows = false;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LightYellow;
-            this.dgvTypeYearDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.dgvTypeYearDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvTypeYearDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -216,54 +213,6 @@
             this.dgvTypeYearDetail.TabIndex = 1;
             this.dgvTypeYearDetail.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTypeYearDetail_CellDoubleClick);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.chartTypeDetail);
-            this.groupBox3.Location = new System.Drawing.Point(491, 323);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(304, 292);
-            this.groupBox3.TabIndex = 19;
-            this.groupBox3.TabStop = false;
-            // 
-            // chartTypeDetail
-            // 
-            this.chartTypeDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Area3DStyle.Inclination = 50;
-            chartArea2.Area3DStyle.IsRightAngleAxes = false;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.LabelStyle.IsStaggered = true;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LabelStyle.Format = "#0.00 \'€\'";
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisY2.LabelStyle.Format = "#0.00 \'€\'";
-            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea2.Name = "AreaTypeYearDetail";
-            this.chartTypeDetail.ChartAreas.Add(chartArea2);
-            this.chartTypeDetail.Location = new System.Drawing.Point(3, 8);
-            this.chartTypeDetail.Name = "chartTypeDetail";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "AreaTypeYearDetail";
-            series2.Color = System.Drawing.Color.Teal;
-            series2.CustomProperties = "EmptyPointValue=Zero";
-            series2.Enabled = false;
-            series2.IsValueShownAsLabel = true;
-            series2.LabelFormat = "#0.00 \'€\'";
-            series2.Name = "SerieOutgoingCount";
-            series2.XValueMember = "MonthName";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series2.YValueMembers = "Avg";
-            this.chartTypeDetail.Series.Add(series2);
-            this.chartTypeDetail.Size = new System.Drawing.Size(297, 281);
-            this.chartTypeDetail.TabIndex = 0;
-            this.chartTypeDetail.Text = "chartReportByType";
-            // 
             // ColTypeDetailMonth
             // 
             this.ColTypeDetailMonth.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -277,9 +226,9 @@
             // 
             this.ColTypeDetailTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeDetailTotal.DataPropertyName = "Total";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.Format = "C2";
-            this.ColTypeDetailTotal.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "C2";
+            this.ColTypeDetailTotal.DefaultCellStyle = dataGridViewCellStyle10;
             this.ColTypeDetailTotal.HeaderText = "Total";
             this.ColTypeDetailTotal.Name = "ColTypeDetailTotal";
             this.ColTypeDetailTotal.ReadOnly = true;
@@ -290,9 +239,9 @@
             // 
             this.ColTypeDetailAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeDetailAvg.DataPropertyName = "Avg";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.Format = "C2";
-            this.ColTypeDetailAvg.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "C2";
+            this.ColTypeDetailAvg.DefaultCellStyle = dataGridViewCellStyle11;
             this.ColTypeDetailAvg.HeaderText = "Media";
             this.ColTypeDetailAvg.Name = "ColTypeDetailAvg";
             this.ColTypeDetailAvg.ReadOnly = true;
@@ -304,9 +253,9 @@
             // 
             this.ColTypeDetailMax.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeDetailMax.DataPropertyName = "Max";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.Format = "C2";
-            this.ColTypeDetailMax.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "C2";
+            this.ColTypeDetailMax.DefaultCellStyle = dataGridViewCellStyle12;
             this.ColTypeDetailMax.HeaderText = "Max.";
             this.ColTypeDetailMax.Name = "ColTypeDetailMax";
             this.ColTypeDetailMax.ReadOnly = true;
@@ -318,15 +267,56 @@
             // 
             this.ColTypeDetailMin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeDetailMin.DataPropertyName = "Min";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle22.Format = "C2";
-            this.ColTypeDetailMin.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "C2";
+            this.ColTypeDetailMin.DefaultCellStyle = dataGridViewCellStyle13;
             this.ColTypeDetailMin.HeaderText = "Min.";
             this.ColTypeDetailMin.Name = "ColTypeDetailMin";
             this.ColTypeDetailMin.ReadOnly = true;
             this.ColTypeDetailMin.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColTypeDetailMin.Visible = false;
             this.ColTypeDetailMin.Width = 62;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.chartTypeYear);
+            this.groupBox3.Location = new System.Drawing.Point(3, 323);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(485, 294);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            // 
+            // chartTypeYear
+            // 
+            this.chartTypeYear.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Area3DStyle.Inclination = 50;
+            chartArea1.Area3DStyle.IsRightAngleAxes = false;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.LabelStyle.IsStaggered = true;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Format = "#0.00 \'€\'";
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisY2.LabelStyle.Format = "#0.00 \'€\'";
+            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.Name = "AreaTypeYearDetail";
+            this.chartTypeYear.ChartAreas.Add(chartArea1);
+            this.chartTypeYear.Location = new System.Drawing.Point(3, 8);
+            this.chartTypeYear.Name = "chartTypeYear";
+            series1.ChartArea = "AreaTypeYearDetail";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Name = "SerieTypeYear";
+            this.chartTypeYear.Series.Add(series1);
+            this.chartTypeYear.Size = new System.Drawing.Size(478, 283);
+            this.chartTypeYear.TabIndex = 0;
+            this.chartTypeYear.Text = "chartReportByType";
             // 
             // ColTypeName
             // 
@@ -341,9 +331,9 @@
             // 
             this.ColTypeTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeTotal.DataPropertyName = "Total";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "C2";
-            this.ColTypeTotal.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            this.ColTypeTotal.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColTypeTotal.HeaderText = "Totale";
             this.ColTypeTotal.Name = "ColTypeTotal";
             this.ColTypeTotal.ReadOnly = true;
@@ -354,9 +344,9 @@
             // 
             this.ColTypePerc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypePerc.DataPropertyName = "Perc";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "#0.## \'%\'";
-            this.ColTypePerc.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "#0.## \'%\'";
+            this.ColTypePerc.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColTypePerc.HeaderText = "%";
             this.ColTypePerc.Name = "ColTypePerc";
             this.ColTypePerc.ReadOnly = true;
@@ -367,154 +357,76 @@
             // 
             this.ColTypeAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeAvg.DataPropertyName = "Avg";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "C2";
-            this.ColTypeAvg.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            this.ColTypeAvg.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColTypeAvg.HeaderText = "Media";
             this.ColTypeAvg.Name = "ColTypeAvg";
             this.ColTypeAvg.ReadOnly = true;
             this.ColTypeAvg.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColTypeAvg.ToolTipText = "Media";
             this.ColTypeAvg.Width = 62;
+            // 
+            // ColAvgCurr
+            // 
+            this.ColAvgCurr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColAvgCurr.DataPropertyName = "CurrAvg";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "C2";
+            this.ColAvgCurr.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ColAvgCurr.HeaderText = "Media C";
+            this.ColAvgCurr.Name = "ColAvgCurr";
+            this.ColAvgCurr.ReadOnly = true;
+            this.ColAvgCurr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColAvgCurr.ToolTipText = "Media sui mesi passati";
+            this.ColAvgCurr.Width = 72;
+            // 
+            // ColAvgMonth
+            // 
+            this.ColAvgMonth.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColAvgMonth.DataPropertyName = "MonthAvg";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "C2";
+            this.ColAvgMonth.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ColAvgMonth.HeaderText = "Media 12";
+            this.ColAvgMonth.Name = "ColAvgMonth";
+            this.ColAvgMonth.ReadOnly = true;
+            this.ColAvgMonth.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColAvgMonth.ToolTipText = "Media su 12 mesi";
+            this.ColAvgMonth.Width = 78;
             // 
             // ColTypeMax
             // 
             this.ColTypeMax.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeMax.DataPropertyName = "Max";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Format = "C2";
-            this.ColTypeMax.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "C2";
+            this.ColTypeMax.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColTypeMax.HeaderText = "Max.";
             this.ColTypeMax.Name = "ColTypeMax";
             this.ColTypeMax.ReadOnly = true;
             this.ColTypeMax.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColTypeMax.Visible = false;
             this.ColTypeMax.Width = 62;
             // 
             // ColTypeMin
             // 
             this.ColTypeMin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColTypeMin.DataPropertyName = "Min";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "C2";
-            this.ColTypeMin.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "C2";
+            this.ColTypeMin.DefaultCellStyle = dataGridViewCellStyle8;
             this.ColTypeMin.HeaderText = "Min.";
             this.ColTypeMin.Name = "ColTypeMin";
             this.ColTypeMin.ReadOnly = true;
             this.ColTypeMin.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColTypeMin.Visible = false;
             this.ColTypeMin.Width = 62;
-            // 
-            // lblSpacer01
-            // 
-            this.lblSpacer01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSpacer01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpacer01.Location = new System.Drawing.Point(3, 329);
-            this.lblSpacer01.Name = "lblSpacer01";
-            this.lblSpacer01.Size = new System.Drawing.Size(304, 81);
-            this.lblSpacer01.TabIndex = 20;
-            this.lblSpacer01.Text = " Proiezione mensile";
-            this.lblSpacer01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblMonthAvg
-            // 
-            this.lblMonthAvg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMonthAvg.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblMonthAvg.Location = new System.Drawing.Point(311, 329);
-            this.lblMonthAvg.Name = "lblMonthAvg";
-            this.lblMonthAvg.Size = new System.Drawing.Size(88, 18);
-            this.lblMonthAvg.TabIndex = 21;
-            this.lblMonthAvg.Text = "Media Entrate";
-            this.lblMonthAvg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(311, 350);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 18);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Media Uscite";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(311, 371);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 18);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Max Uscite";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Location = new System.Drawing.Point(311, 392);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 18);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Min Uscite";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(402, 392);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 18);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Min Uscite";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label6.Location = new System.Drawing.Point(402, 371);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 18);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Max Uscite";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label7.Location = new System.Drawing.Point(402, 350);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 18);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Media Uscite";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label8.Location = new System.Drawing.Point(402, 329);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 18);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Media Entrate";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PageReportTypeYear
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblMonthAvg);
-            this.Controls.Add(this.lblSpacer01);
             this.Controls.Add(this.grpTypeYearDetail);
             this.Controls.Add(this.groupTitle);
             this.Controls.Add(this.groupFilters);
@@ -531,7 +443,7 @@
             this.grpTypeYearDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypeYearDetail)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartTypeDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTypeYear)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -548,7 +460,7 @@
         private System.Windows.Forms.GroupBox grpTypeYearDetail;
         private System.Windows.Forms.DataGridView dgvTypeYearDetail;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTypeDetail;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTypeYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeDetailMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeDetailTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeDetailAvg;
@@ -558,16 +470,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypePerc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeAvg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAvgCurr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAvgMonth;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeMax;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTypeMin;
-        private System.Windows.Forms.Label lblSpacer01;
-        private System.Windows.Forms.Label lblMonthAvg;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
     }
 }
