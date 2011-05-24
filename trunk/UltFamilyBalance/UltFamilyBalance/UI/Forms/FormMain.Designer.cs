@@ -62,6 +62,7 @@ namespace Ult.FamilyBalance.UI
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrStartup = new System.Windows.Forms.Timer(this.components);
+            this.mensileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -206,6 +207,7 @@ namespace Ult.FamilyBalance.UI
             // 
             this.totaliToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.annualeToolStripMenuItem,
+            this.mensileToolStripMenuItem,
             this.categoriaToolStripMenuItem});
             this.totaliToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("totaliToolStripMenuItem.Image")));
             this.totaliToolStripMenuItem.Name = "totaliToolStripMenuItem";
@@ -291,7 +293,7 @@ namespace Ult.FamilyBalance.UI
             this.toSQLToolStripMenuItem});
             this.exportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem.Image")));
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // toAccessToolStripMenuItem
@@ -342,6 +344,13 @@ namespace Ult.FamilyBalance.UI
             // 
             this.tmrStartup.Interval = 250;
             this.tmrStartup.Tick += new System.EventHandler(this.tmrStartup_Tick);
+            // 
+            // mensileToolStripMenuItem
+            // 
+            this.mensileToolStripMenuItem.Name = "mensileToolStripMenuItem";
+            this.mensileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mensileToolStripMenuItem.Text = "Mensile";
+            this.mensileToolStripMenuItem.Click += new System.EventHandler(this.mensileToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -402,6 +411,7 @@ namespace Ult.FamilyBalance.UI
         private System.Windows.Forms.ToolStripMenuItem cambiaUtenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mensileToolStripMenuItem;
     }
 }
 

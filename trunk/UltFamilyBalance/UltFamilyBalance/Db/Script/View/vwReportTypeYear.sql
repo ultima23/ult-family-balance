@@ -13,6 +13,8 @@ SELECT	a.[Year],
 		a.[Avg],
 		a.[Min],
 		a.[Max],
+		[MonthAvg] = a.[Total] / 12,
+		[CurrAvg] = a.[Total] / DATEPART(MM, GETDATE()),
 		[Perc] = CASE WHEN (b.[Total] > 0) THEN (100 / b.[Total]) * a.[Total] ELSE 0 END
 FROM 
 (

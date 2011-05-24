@@ -252,6 +252,7 @@ namespace Ult.FamilyBalance.UI
                 IDetail<CreditCount> detail = new DetailCreditCount();
                 //
                 FormDetail<CreditCount> form_detail = new FormDetail<CreditCount>(detail, CurrentEntity, new object[] { });
+                form_detail.Width = 420;
                 form_detail.Title = "Modifica " + Title;
                 form_detail.ShowDialog();
             }

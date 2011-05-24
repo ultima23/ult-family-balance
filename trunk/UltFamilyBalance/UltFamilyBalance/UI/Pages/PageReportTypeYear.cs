@@ -21,7 +21,6 @@ namespace Ult.FamilyBalance.UI.Pages
 
         protected const string PAGE_TITLE                               = "Report Uscite per Categoria";
 
-
         protected const string DATASET_NAME                             = "ReportTypeYear";
         protected const string DATASET_MASTER_NAME                      = "TableTypeYear";
         protected const string DATASET_DETAIL_NAME                      = "TableTypeYearDetail";
@@ -126,6 +125,8 @@ namespace Ult.FamilyBalance.UI.Pages
 		                 "       [Avg], " + 
 		                 "       [Min], " + 
 		                 "       [Max], " + 
+                         "       [MonthAvg], " + 
+                         "       [CurrAvg], " + 
                          "       [Perc] " + 
                          "FROM vwReportTypeYear " + 
                          "WHERE ISNULL( " + PARAM_YEAR + ", 0) = 0 OR [Year] = " + PARAM_YEAR + " " +
@@ -188,12 +189,25 @@ namespace Ult.FamilyBalance.UI.Pages
             dgvTypeYear.DataSource = _bindingTypeYear;
             dgvTypeYearDetail.DataSource = _bindingTypeYearDetail;
             // Chart binding
-            // ... todo ... chrTrendYear.DataSource = _bindingReportTrendYear;
+            chartTypeYear.DataSource = _bindingTypeYear;
+            chartTypeYear.Series["SerieTypeYear"].XValueMember = "Type";
+            chartTypeYear.Series["SerieTypeYear"].YValueMembers = "Perc";
+            chartTypeYear.Series["SerieTypeYear"].IsValueShownAsLabel = true;
+            chartTypeYear.Series["SerieTypeYear"]["PieLabelStyle"] = "Outside";
+            chartTypeYear.Series["SerieTypeYear"].Label = "#VALX: #VALY{#0.## '%'}";
+            // Threshold
+            chartTypeYear.Series["SerieTypeYear"]["CollectedThreshold"] = "3";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedThresholdUsePercent"] = "true";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedLabel"] = "Altro";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedLegendText"] = "Altro";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedSliceExploded"]= "false";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedColor"] = "Green";
+            chartTypeYear.Series["SerieTypeYear"]["CollectedToolTip"] = "Rimanente";
         }
 
         private void UpdateUI()
         {
-            chartTypeDetail.DataBind();
+            chartTypeYear.DataBind();
             UpdateFiltersUI();
         }
 
@@ -206,7 +220,7 @@ namespace Ult.FamilyBalance.UI.Pages
                 else serie.Enabled = false;
             }
             */
-            chartTypeDetail.DataBind();
+            chartTypeYear.DataBind();
         }
 
         private void UpdateFiltersUI()
@@ -348,14 +362,12 @@ namespace Ult.FamilyBalance.UI.Pages
             }
         }
 
-        #endregion
-
         private void dgvTypeYear_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 // 
-                DataRowView row = dgvTypeYearDetail.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                DataRowView row = dgvTypeYear.Rows[e.RowIndex].DataBoundItem as DataRowView;
                 if (row != null)
                 {
                     // Detail filters
@@ -404,7 +416,9 @@ namespace Ult.FamilyBalance.UI.Pages
             }
         }
 
+        // ---
 
+        #endregion
         // -----------------------------------------------------------------------------------------------------------
 
     }

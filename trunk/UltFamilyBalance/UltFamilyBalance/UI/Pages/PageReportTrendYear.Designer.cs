@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -39,14 +47,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupTitle = new System.Windows.Forms.GroupBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupFilters = new System.Windows.Forms.GroupBox();
@@ -54,14 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvTrendYear = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chrTrendYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupTrendType = new System.Windows.Forms.GroupBox();
-            this.rbtMissing = new System.Windows.Forms.RadioButton();
-            this.rbtDelta = new System.Windows.Forms.RadioButton();
-            this.rbtIncoming = new System.Windows.Forms.RadioButton();
-            this.rbtOutgoing = new System.Windows.Forms.RadioButton();
-            this.rbtBalance = new System.Windows.Forms.RadioButton();
             this.ColReportMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColReportBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCountDelta = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +64,14 @@
             this.ColEntriesInc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEntriesMiss = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColFiller = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chrTrendYear = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupTrendType = new System.Windows.Forms.GroupBox();
+            this.rbtMissing = new System.Windows.Forms.RadioButton();
+            this.rbtDelta = new System.Windows.Forms.RadioButton();
+            this.rbtIncoming = new System.Windows.Forms.RadioButton();
+            this.rbtOutgoing = new System.Windows.Forms.RadioButton();
+            this.rbtBalance = new System.Windows.Forms.RadioButton();
             this.groupTitle.SuspendLayout();
             this.groupFilters.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -177,206 +177,6 @@
             this.dgvTrendYear.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTrendYear.Size = new System.Drawing.Size(682, 283);
             this.dgvTrendYear.TabIndex = 1;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.chrTrendYear);
-            this.groupBox2.Location = new System.Drawing.Point(3, 324);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(688, 292);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            // 
-            // chrTrendYear
-            // 
-            this.chrTrendYear.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Area3DStyle.Inclination = 50;
-            chartArea1.Area3DStyle.IsRightAngleAxes = false;
-            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea1.AxisX.LabelStyle.IsStaggered = true;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.IsStartedFromZero = false;
-            chartArea1.AxisY.LabelStyle.Format = "#0.00 \'€\'";
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea1.AxisY2.LabelStyle.Format = "#0.00 \'€\'";
-            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea1.Name = "AreaTrendYear";
-            this.chrTrendYear.ChartAreas.Add(chartArea1);
-            this.chrTrendYear.Location = new System.Drawing.Point(3, 8);
-            this.chrTrendYear.Name = "chrTrendYear";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "AreaTrendYear";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.Red;
-            series1.CustomProperties = "EmptyPointValue=Zero";
-            series1.IsValueShownAsLabel = true;
-            series1.LabelFormat = "#0.00 \'€\'";
-            series1.MarkerBorderColor = System.Drawing.Color.Black;
-            series1.MarkerColor = System.Drawing.Color.Red;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series1.Name = "SerieBalance";
-            series1.XValueMember = "MonthName";
-            series1.YValueMembers = "CountBalance";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "AreaTrendYear";
-            series2.Color = System.Drawing.Color.Teal;
-            series2.CustomProperties = "EmptyPointValue=Zero";
-            series2.Enabled = false;
-            series2.IsValueShownAsLabel = true;
-            series2.LabelFormat = "#0.00 \'€\'";
-            series2.Name = "SerieOutgoingCount";
-            series2.XValueMember = "MonthName";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValueMembers = "CountOutgoing";
-            series3.ChartArea = "AreaTrendYear";
-            series3.CustomProperties = "EmptyPointValue=Zero";
-            series3.Enabled = false;
-            series3.IsValueShownAsLabel = true;
-            series3.LabelFormat = "#0.00 \'€\'";
-            series3.Name = "SerieOutgoingEntries";
-            series3.XValueMember = "MonthName";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series3.YValueMembers = "EntriesOutgoing";
-            series4.ChartArea = "AreaTrendYear";
-            series4.Enabled = false;
-            series4.IsValueShownAsLabel = true;
-            series4.LabelFormat = "#0.00 \'€\'";
-            series4.Name = "SerieIncomingCount";
-            series4.XValueMember = "MonthName";
-            series4.YValueMembers = "CountIncoming";
-            series5.ChartArea = "AreaTrendYear";
-            series5.Enabled = false;
-            series5.IsValueShownAsLabel = true;
-            series5.LabelFormat = "#0.00 \'€\'";
-            series5.Name = "SerieIncomingEntries";
-            series5.XValueMember = "MonthName";
-            series5.YValueMembers = "EntriesIncoming";
-            series6.ChartArea = "AreaTrendYear";
-            series6.Color = System.Drawing.Color.LimeGreen;
-            series6.Enabled = false;
-            series6.IsValueShownAsLabel = true;
-            series6.LabelFormat = "#0.00 \'€\'";
-            series6.Name = "SerieDeltaCount";
-            series6.XValueMember = "MonthName";
-            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series6.YValueMembers = "CountDelta";
-            series7.ChartArea = "AreaTrendYear";
-            series7.Color = System.Drawing.Color.Gold;
-            series7.Enabled = false;
-            series7.IsValueShownAsLabel = true;
-            series7.LabelFormat = "#0.00 \'€\'";
-            series7.Name = "SerieDeltaEntries";
-            series7.XValueMember = "MonthName";
-            series7.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series7.YValueMembers = "EntriesDelta";
-            series8.ChartArea = "AreaTrendYear";
-            series8.Color = System.Drawing.Color.Gray;
-            series8.Enabled = false;
-            series8.IsValueShownAsLabel = true;
-            series8.LabelFormat = "#0.00 \'€\'";
-            series8.Name = "SerieMissingIncoming";
-            series8.XValueMember = "MonthName";
-            series8.YValueMembers = "MissingIncoming";
-            series9.ChartArea = "AreaTrendYear";
-            series9.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            series9.Enabled = false;
-            series9.IsValueShownAsLabel = true;
-            series9.LabelFormat = "#0.00 \'€\'";
-            series9.Name = "SerieMissingOutgoing";
-            series9.XValueMember = "MonthName";
-            series9.YValueMembers = "MissingIncoming";
-            this.chrTrendYear.Series.Add(series1);
-            this.chrTrendYear.Series.Add(series2);
-            this.chrTrendYear.Series.Add(series3);
-            this.chrTrendYear.Series.Add(series4);
-            this.chrTrendYear.Series.Add(series5);
-            this.chrTrendYear.Series.Add(series6);
-            this.chrTrendYear.Series.Add(series7);
-            this.chrTrendYear.Series.Add(series8);
-            this.chrTrendYear.Series.Add(series9);
-            this.chrTrendYear.Size = new System.Drawing.Size(681, 281);
-            this.chrTrendYear.TabIndex = 0;
-            this.chrTrendYear.Text = "chartReportByType";
-            // 
-            // groupTrendType
-            // 
-            this.groupTrendType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupTrendType.Controls.Add(this.rbtMissing);
-            this.groupTrendType.Controls.Add(this.rbtDelta);
-            this.groupTrendType.Controls.Add(this.rbtIncoming);
-            this.groupTrendType.Controls.Add(this.rbtOutgoing);
-            this.groupTrendType.Controls.Add(this.rbtBalance);
-            this.groupTrendType.Location = new System.Drawing.Point(695, 324);
-            this.groupTrendType.Name = "groupTrendType";
-            this.groupTrendType.Size = new System.Drawing.Size(100, 292);
-            this.groupTrendType.TabIndex = 17;
-            this.groupTrendType.TabStop = false;
-            this.groupTrendType.Text = "Grafico";
-            // 
-            // rbtMissing
-            // 
-            this.rbtMissing.AutoSize = true;
-            this.rbtMissing.Location = new System.Drawing.Point(9, 111);
-            this.rbtMissing.Name = "rbtMissing";
-            this.rbtMissing.Size = new System.Drawing.Size(73, 17);
-            this.rbtMissing.TabIndex = 4;
-            this.rbtMissing.Text = "Mancante";
-            this.rbtMissing.UseVisualStyleBackColor = true;
-            this.rbtMissing.CheckedChanged += new System.EventHandler(this.rbtMissing_CheckedChanged);
-            // 
-            // rbtDelta
-            // 
-            this.rbtDelta.AutoSize = true;
-            this.rbtDelta.Location = new System.Drawing.Point(9, 88);
-            this.rbtDelta.Name = "rbtDelta";
-            this.rbtDelta.Size = new System.Drawing.Size(50, 17);
-            this.rbtDelta.TabIndex = 3;
-            this.rbtDelta.Text = "Delta";
-            this.rbtDelta.UseVisualStyleBackColor = true;
-            this.rbtDelta.CheckedChanged += new System.EventHandler(this.rbtDelta_CheckedChanged);
-            // 
-            // rbtIncoming
-            // 
-            this.rbtIncoming.AutoSize = true;
-            this.rbtIncoming.Location = new System.Drawing.Point(9, 65);
-            this.rbtIncoming.Name = "rbtIncoming";
-            this.rbtIncoming.Size = new System.Drawing.Size(59, 17);
-            this.rbtIncoming.TabIndex = 2;
-            this.rbtIncoming.Text = "Entrate";
-            this.rbtIncoming.UseVisualStyleBackColor = true;
-            this.rbtIncoming.CheckedChanged += new System.EventHandler(this.rbtIncoming_CheckedChanged);
-            // 
-            // rbtOutgoing
-            // 
-            this.rbtOutgoing.AutoSize = true;
-            this.rbtOutgoing.Location = new System.Drawing.Point(9, 42);
-            this.rbtOutgoing.Name = "rbtOutgoing";
-            this.rbtOutgoing.Size = new System.Drawing.Size(55, 17);
-            this.rbtOutgoing.TabIndex = 1;
-            this.rbtOutgoing.Text = "Uscite";
-            this.rbtOutgoing.UseVisualStyleBackColor = true;
-            this.rbtOutgoing.CheckedChanged += new System.EventHandler(this.rbtOutgoing_CheckedChanged);
-            // 
-            // rbtBalance
-            // 
-            this.rbtBalance.AutoSize = true;
-            this.rbtBalance.Checked = true;
-            this.rbtBalance.Location = new System.Drawing.Point(9, 19);
-            this.rbtBalance.Name = "rbtBalance";
-            this.rbtBalance.Size = new System.Drawing.Size(62, 17);
-            this.rbtBalance.TabIndex = 0;
-            this.rbtBalance.TabStop = true;
-            this.rbtBalance.Text = "Bilancio";
-            this.rbtBalance.UseVisualStyleBackColor = true;
-            this.rbtBalance.CheckedChanged += new System.EventHandler(this.rbtBalance_CheckedChanged);
             // 
             // ColReportMonth
             // 
@@ -501,6 +301,259 @@
             this.ColFiller.ReadOnly = true;
             this.ColFiller.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColFiller.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.chrTrendYear);
+            this.groupBox2.Location = new System.Drawing.Point(3, 324);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(688, 292);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            // 
+            // chrTrendYear
+            // 
+            this.chrTrendYear.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Area3DStyle.Inclination = 50;
+            chartArea1.Area3DStyle.IsRightAngleAxes = false;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.LabelStyle.IsStaggered = true;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Format = "#0.00 \'€\'";
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisY2.LabelStyle.Format = "#0.00 \'€\'";
+            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.Name = "AreaTrendYear";
+            this.chrTrendYear.ChartAreas.Add(chartArea1);
+            this.chrTrendYear.Location = new System.Drawing.Point(3, 8);
+            this.chrTrendYear.Name = "chrTrendYear";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "AreaTrendYear";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Red;
+            series1.CustomProperties = "EmptyPointValue=Zero";
+            series1.IsValueShownAsLabel = true;
+            series1.LabelFormat = "#0.00 \'€\'";
+            series1.MarkerBorderColor = System.Drawing.Color.Black;
+            series1.MarkerColor = System.Drawing.Color.Red;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series1.Name = "SerieBalance";
+            series1.XValueMember = "MonthName";
+            series1.YValueMembers = "CountBalance";
+            series2.ChartArea = "AreaTrendYear";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Teal;
+            series2.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series2.Enabled = false;
+            series2.IsValueShownAsLabel = true;
+            series2.LabelFormat = "#0.00 \'€\'";
+            series2.MarkerBorderColor = System.Drawing.Color.Black;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series2.Name = "SerieOutgoingCount";
+            series2.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series2.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series2.SmartLabelStyle.CalloutLineWidth = 0;
+            series2.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series2.XValueMember = "MonthName";
+            series2.YValueMembers = "CountOutgoing";
+            series3.ChartArea = "AreaTrendYear";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series3.Enabled = false;
+            series3.IsValueShownAsLabel = true;
+            series3.LabelFormat = "#0.00 \'€\'";
+            series3.MarkerBorderColor = System.Drawing.Color.Black;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series3.Name = "SerieOutgoingEntries";
+            series3.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series3.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series3.SmartLabelStyle.CalloutLineWidth = 0;
+            series3.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series3.XValueMember = "MonthName";
+            series3.YValueMembers = "EntriesOutgoing";
+            series4.ChartArea = "AreaTrendYear";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series4.Enabled = false;
+            series4.IsValueShownAsLabel = true;
+            series4.LabelFormat = "#0.00 \'€\'";
+            series4.MarkerBorderColor = System.Drawing.Color.Black;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series4.Name = "SerieIncomingCount";
+            series4.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series4.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series4.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series4.XValueMember = "MonthName";
+            series4.YValueMembers = "CountIncoming";
+            series5.ChartArea = "AreaTrendYear";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series5.Enabled = false;
+            series5.IsValueShownAsLabel = true;
+            series5.LabelFormat = "#0.00 \'€\'";
+            series5.MarkerBorderColor = System.Drawing.Color.Black;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series5.Name = "SerieIncomingEntries";
+            series5.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series5.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series5.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series5.XValueMember = "MonthName";
+            series5.YValueMembers = "EntriesIncoming";
+            series6.ChartArea = "AreaTrendYear";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.LimeGreen;
+            series6.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series6.Enabled = false;
+            series6.IsValueShownAsLabel = true;
+            series6.LabelFormat = "#0.00 \'€\'";
+            series6.MarkerBorderColor = System.Drawing.Color.Black;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series6.Name = "SerieDeltaCount";
+            series6.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series6.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series6.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series6.SmartLabelStyle.MaxMovingDistance = 8D;
+            series6.XValueMember = "MonthName";
+            series6.YValueMembers = "CountDelta";
+            series7.ChartArea = "AreaTrendYear";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Color = System.Drawing.Color.Gold;
+            series7.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series7.Enabled = false;
+            series7.IsValueShownAsLabel = true;
+            series7.LabelFormat = "#0.00 \'€\'";
+            series7.MarkerBorderColor = System.Drawing.Color.Black;
+            series7.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series7.Name = "SerieDeltaEntries";
+            series7.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series7.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series7.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series7.SmartLabelStyle.MaxMovingDistance = 8D;
+            series7.XValueMember = "MonthName";
+            series7.YValueMembers = "EntriesDelta";
+            series8.ChartArea = "AreaTrendYear";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Color = System.Drawing.Color.Gray;
+            series8.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series8.Enabled = false;
+            series8.IsValueShownAsLabel = true;
+            series8.LabelFormat = "#0.00 \'€\'";
+            series8.MarkerBorderColor = System.Drawing.Color.Black;
+            series8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series8.Name = "SerieMissingIncoming";
+            series8.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series8.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series8.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series8.XValueMember = "MonthName";
+            series8.YValueMembers = "MissingIncoming";
+            series9.ChartArea = "AreaTrendYear";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            series9.CustomProperties = "EmptyPointValue=Zero, LabelStyle=Right";
+            series9.Enabled = false;
+            series9.IsValueShownAsLabel = true;
+            series9.LabelFormat = "#0.00 \'€\'";
+            series9.MarkerBorderColor = System.Drawing.Color.Black;
+            series9.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series9.Name = "SerieMissingOutgoing";
+            series9.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.None;
+            series9.SmartLabelStyle.CalloutLineColor = System.Drawing.Color.Transparent;
+            series9.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+            series9.XValueMember = "MonthName";
+            series9.YValueMembers = "MissingOutgoing";
+            this.chrTrendYear.Series.Add(series1);
+            this.chrTrendYear.Series.Add(series2);
+            this.chrTrendYear.Series.Add(series3);
+            this.chrTrendYear.Series.Add(series4);
+            this.chrTrendYear.Series.Add(series5);
+            this.chrTrendYear.Series.Add(series6);
+            this.chrTrendYear.Series.Add(series7);
+            this.chrTrendYear.Series.Add(series8);
+            this.chrTrendYear.Series.Add(series9);
+            this.chrTrendYear.Size = new System.Drawing.Size(681, 281);
+            this.chrTrendYear.TabIndex = 0;
+            this.chrTrendYear.Text = "chartReportByType";
+            // 
+            // groupTrendType
+            // 
+            this.groupTrendType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupTrendType.Controls.Add(this.rbtMissing);
+            this.groupTrendType.Controls.Add(this.rbtDelta);
+            this.groupTrendType.Controls.Add(this.rbtIncoming);
+            this.groupTrendType.Controls.Add(this.rbtOutgoing);
+            this.groupTrendType.Controls.Add(this.rbtBalance);
+            this.groupTrendType.Location = new System.Drawing.Point(695, 324);
+            this.groupTrendType.Name = "groupTrendType";
+            this.groupTrendType.Size = new System.Drawing.Size(100, 292);
+            this.groupTrendType.TabIndex = 17;
+            this.groupTrendType.TabStop = false;
+            this.groupTrendType.Text = "Grafico";
+            // 
+            // rbtMissing
+            // 
+            this.rbtMissing.AutoSize = true;
+            this.rbtMissing.Location = new System.Drawing.Point(9, 111);
+            this.rbtMissing.Name = "rbtMissing";
+            this.rbtMissing.Size = new System.Drawing.Size(73, 17);
+            this.rbtMissing.TabIndex = 4;
+            this.rbtMissing.Text = "Mancante";
+            this.rbtMissing.UseVisualStyleBackColor = true;
+            this.rbtMissing.CheckedChanged += new System.EventHandler(this.rbtMissing_CheckedChanged);
+            // 
+            // rbtDelta
+            // 
+            this.rbtDelta.AutoSize = true;
+            this.rbtDelta.Location = new System.Drawing.Point(9, 88);
+            this.rbtDelta.Name = "rbtDelta";
+            this.rbtDelta.Size = new System.Drawing.Size(50, 17);
+            this.rbtDelta.TabIndex = 3;
+            this.rbtDelta.Text = "Delta";
+            this.rbtDelta.UseVisualStyleBackColor = true;
+            this.rbtDelta.CheckedChanged += new System.EventHandler(this.rbtDelta_CheckedChanged);
+            // 
+            // rbtIncoming
+            // 
+            this.rbtIncoming.AutoSize = true;
+            this.rbtIncoming.Location = new System.Drawing.Point(9, 65);
+            this.rbtIncoming.Name = "rbtIncoming";
+            this.rbtIncoming.Size = new System.Drawing.Size(59, 17);
+            this.rbtIncoming.TabIndex = 2;
+            this.rbtIncoming.Text = "Entrate";
+            this.rbtIncoming.UseVisualStyleBackColor = true;
+            this.rbtIncoming.CheckedChanged += new System.EventHandler(this.rbtIncoming_CheckedChanged);
+            // 
+            // rbtOutgoing
+            // 
+            this.rbtOutgoing.AutoSize = true;
+            this.rbtOutgoing.Location = new System.Drawing.Point(9, 42);
+            this.rbtOutgoing.Name = "rbtOutgoing";
+            this.rbtOutgoing.Size = new System.Drawing.Size(55, 17);
+            this.rbtOutgoing.TabIndex = 1;
+            this.rbtOutgoing.Text = "Uscite";
+            this.rbtOutgoing.UseVisualStyleBackColor = true;
+            this.rbtOutgoing.CheckedChanged += new System.EventHandler(this.rbtOutgoing_CheckedChanged);
+            // 
+            // rbtBalance
+            // 
+            this.rbtBalance.AutoSize = true;
+            this.rbtBalance.Checked = true;
+            this.rbtBalance.Location = new System.Drawing.Point(9, 19);
+            this.rbtBalance.Name = "rbtBalance";
+            this.rbtBalance.Size = new System.Drawing.Size(62, 17);
+            this.rbtBalance.TabIndex = 0;
+            this.rbtBalance.TabStop = true;
+            this.rbtBalance.Text = "Bilancio";
+            this.rbtBalance.UseVisualStyleBackColor = true;
+            this.rbtBalance.CheckedChanged += new System.EventHandler(this.rbtBalance_CheckedChanged);
             // 
             // PageReportTrendYear
             // 

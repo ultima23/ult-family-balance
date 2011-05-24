@@ -382,12 +382,16 @@ namespace Ult.FamilyBalance.UI
         {
             if (_status != PageStatus.Processing)
             {
-                int index = dgvEntriesReportByType.CurrentCell.RowIndex;
-			    // Explode selected country
-                for (int i=0; i<chrReportByType.Series["PieReport"].Points.Count; i++)
-			    {
-				    chrReportByType.Series["PieReport"].Points[i]["Exploded"] = i == index ? "true" : "false";
-			    }
+                if (dgvEntriesReportByType.CurrentCell != null)
+                {
+                    //
+                    int index = dgvEntriesReportByType.CurrentCell.RowIndex;
+			        // Explode selected country
+                    for (int i=0; i<chrReportByType.Series["PieReport"].Points.Count; i++)
+			        {
+				        chrReportByType.Series["PieReport"].Points[i]["Exploded"] = i == index ? "true" : "false";
+			        }
+                }
             }
         }
 
