@@ -225,7 +225,7 @@ namespace Ult.FamilyBalance.UI
             // Outgoing types 
             var types = from t in _context.EntryTypes
                         where t.Direction.Id == _direction.Id
-                        orderby t.Group.Id ascending
+                        // orderby t.Group.Id ascending
                         select t;
             List<EntryType> list = new List<EntryType>();
             list.Add((_direction.Id == EntryDirection.OutgoingId) ? EntryType.AllOutgoing : EntryType.AllIncoming);
