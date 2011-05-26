@@ -18,9 +18,11 @@ SELECT  a.[EntryId],
         b.[EntryTypeName],
         b.[EntryTypeDesc],
         b.[EntryTypeRequireNote],
+        /* 
         c.EntryTypeGroupId,
         c.EntryTypeGroupName,
         c.EntryTypeGroupDesc,
+		*/
         d.[EntryDirectionId],
         d.[EntryDirectionName],
         d.[EntryDirectionDesc],
@@ -35,7 +37,9 @@ SELECT  a.[EntryId],
         
 FROM        [dbo].[Entry]           a
 INNER JOIN  [dbo].[EntryType]       b ON a.EntryTypeId = b.EntryTypeId 
+/* 
 INNER JOIN  [dbo].[EntryTypeGroup]  c ON b.EntryTypeGroupId = c.EntryTypeGroupId
+*/
 INNER JOIN  [dbo].[EntryDirection]  d ON b.EntryDirectionId = d.EntryDirectionId
 INNER JOIN  [dbo].[User]			e ON a.UserId = e.UserId
 INNER JOIN  [vwQuartersMonths]		f ON a.EntryMonth = f.[Month]

@@ -46,6 +46,7 @@ namespace Ult.FamilyBalance.UI
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.totaliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.annualeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mensileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mensiliToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,6 @@ namespace Ult.FamilyBalance.UI
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrStartup = new System.Windows.Forms.Timer(this.components);
-            this.mensileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
             this.statusBar.SuspendLayout();
@@ -211,21 +211,28 @@ namespace Ult.FamilyBalance.UI
             this.categoriaToolStripMenuItem});
             this.totaliToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("totaliToolStripMenuItem.Image")));
             this.totaliToolStripMenuItem.Name = "totaliToolStripMenuItem";
-            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.totaliToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.totaliToolStripMenuItem.Text = "Totali";
             this.totaliToolStripMenuItem.Click += new System.EventHandler(this.totaliToolStripMenuItem_Click);
             // 
             // annualeToolStripMenuItem
             // 
             this.annualeToolStripMenuItem.Name = "annualeToolStripMenuItem";
-            this.annualeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.annualeToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.annualeToolStripMenuItem.Text = "Annuale";
             this.annualeToolStripMenuItem.Click += new System.EventHandler(this.annualeToolStripMenuItem_Click);
+            // 
+            // mensileToolStripMenuItem
+            // 
+            this.mensileToolStripMenuItem.Name = "mensileToolStripMenuItem";
+            this.mensileToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.mensileToolStripMenuItem.Text = "Mensile";
+            this.mensileToolStripMenuItem.Click += new System.EventHandler(this.mensileToolStripMenuItem_Click);
             // 
             // categoriaToolStripMenuItem
             // 
             this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
-            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.categoriaToolStripMenuItem.Text = "Categorie";
             this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
             // 
@@ -236,7 +243,7 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem1});
             this.entrateToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem2.Image")));
             this.entrateToolStripMenuItem2.Name = "entrateToolStripMenuItem2";
-            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.entrateToolStripMenuItem2.Size = new System.Drawing.Size(121, 22);
             this.entrateToolStripMenuItem2.Text = "Entrate";
             // 
             // mensiliToolStripMenuItem1
@@ -260,7 +267,7 @@ namespace Ult.FamilyBalance.UI
             this.annualiToolStripMenuItem});
             this.entrateToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("entrateToolStripMenuItem1.Image")));
             this.entrateToolStripMenuItem1.Name = "entrateToolStripMenuItem1";
-            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.entrateToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.entrateToolStripMenuItem1.Text = "Uscite";
             // 
             // mensiliToolStripMenuItem
@@ -345,13 +352,6 @@ namespace Ult.FamilyBalance.UI
             this.tmrStartup.Interval = 250;
             this.tmrStartup.Tick += new System.EventHandler(this.tmrStartup_Tick);
             // 
-            // mensileToolStripMenuItem
-            // 
-            this.mensileToolStripMenuItem.Name = "mensileToolStripMenuItem";
-            this.mensileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mensileToolStripMenuItem.Text = "Mensile";
-            this.mensileToolStripMenuItem.Click += new System.EventHandler(this.mensileToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +362,7 @@ namespace Ult.FamilyBalance.UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "Ult Family Balance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tscMain.BottomToolStripPanel.ResumeLayout(false);

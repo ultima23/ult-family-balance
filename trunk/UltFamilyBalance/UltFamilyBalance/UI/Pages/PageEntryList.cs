@@ -40,7 +40,6 @@ namespace Ult.FamilyBalance.UI.Pages
         private PageStatus _status;
 
         // Columns
-        private bool _showEntryGroupColumn;
 
         private bool _showEntryTypeColumn;
 
@@ -123,12 +122,6 @@ namespace Ult.FamilyBalance.UI.Pages
 
         #endregion IPage Members
 
-        public bool ShowEntryGroupColumn
-        {
-            get { return _showEntryGroupColumn; }
-            set { _showEntryGroupColumn = value; }
-        }
-
         public bool ShowEntryTypeColumn
         {
             get { return _showEntryTypeColumn; }
@@ -167,9 +160,11 @@ namespace Ult.FamilyBalance.UI.Pages
 		                 "       EntryTypeId, " +
 		                 "       EntryTypeName, " +
 		                 "       EntryTypeDesc, " +
+                         /*
 		                 "       EntryTypeGroupId, " +
 		                 "       EntryTypeGroupName, " +
 		                 "       EntryTypeGroupDesc, " +
+                         */
 		                 "       EntryNote, " +
                          "       UserUsername " +
                          " FROM vwEntries " +
@@ -269,7 +264,6 @@ namespace Ult.FamilyBalance.UI.Pages
 
         private void UpdateGridUI()
         {
-            ColEntryGroup.Visible = _showEntryGroupColumn;
             ColEntryType.Visible = _showEntryTypeColumn;
         }
 

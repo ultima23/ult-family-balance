@@ -364,7 +364,6 @@ namespace Ult.FamilyBalance.UI
                     // Entry list page
                     PageEntryList page = new PageEntryList();
                     page.ShowEntryTypeColumn = false;
-                    page.ShowEntryGroupColumn = false;
                     // Form
                     FormPage form = new FormPage(page, args);
                     form.Width = 520;

@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvEntries = new System.Windows.Forms.DataGridView();
+            this.lblTotalTit = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.ColEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEntryAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColEntryGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEntryType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEntryNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEntryUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTotalTit = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntries)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +49,8 @@
             this.dgvEntries.AllowUserToOrderColumns = true;
             this.dgvEntries.AllowUserToResizeColumns = false;
             this.dgvEntries.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Info;
-            this.dgvEntries.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            this.dgvEntries.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -61,7 +60,6 @@
             this.dgvEntries.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColEntryDate,
             this.ColEntryAmount,
-            this.ColEntryGroup,
             this.ColEntryType,
             this.ColEntryNote,
             this.ColEntryUser});
@@ -77,13 +75,34 @@
             this.dgvEntries.Size = new System.Drawing.Size(633, 391);
             this.dgvEntries.TabIndex = 0;
             // 
+            // lblTotalTit
+            // 
+            this.lblTotalTit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalTit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotalTit.Location = new System.Drawing.Point(3, 398);
+            this.lblTotalTit.Name = "lblTotalTit";
+            this.lblTotalTit.Size = new System.Drawing.Size(74, 18);
+            this.lblTotalTit.TabIndex = 1;
+            this.lblTotalTit.Text = "Totale";
+            this.lblTotalTit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotal.Location = new System.Drawing.Point(81, 398);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(77, 18);
+            this.lblTotal.TabIndex = 2;
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ColEntryDate
             // 
             this.ColEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColEntryDate.DataPropertyName = "EntryDate";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Format = "dd/MM/yyyy";
-            this.ColEntryDate.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.ColEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColEntryDate.HeaderText = "Data";
             this.ColEntryDate.Name = "ColEntryDate";
             this.ColEntryDate.ReadOnly = true;
@@ -94,23 +113,14 @@
             // 
             this.ColEntryAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ColEntryAmount.DataPropertyName = "EntryAmount";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "C2";
-            this.ColEntryAmount.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C2";
+            this.ColEntryAmount.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColEntryAmount.HeaderText = "Importo";
             this.ColEntryAmount.Name = "ColEntryAmount";
             this.ColEntryAmount.ReadOnly = true;
             this.ColEntryAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColEntryAmount.Width = 80;
-            // 
-            // ColEntryGroup
-            // 
-            this.ColEntryGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColEntryGroup.DataPropertyName = "EntryTypeGroupName";
-            this.ColEntryGroup.HeaderText = "Gruppo";
-            this.ColEntryGroup.Name = "ColEntryGroup";
-            this.ColEntryGroup.ReadOnly = true;
-            this.ColEntryGroup.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ColEntryType
             // 
@@ -140,27 +150,6 @@
             this.ColEntryUser.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColEntryUser.Width = 80;
             // 
-            // lblTotalTit
-            // 
-            this.lblTotalTit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTotalTit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotalTit.Location = new System.Drawing.Point(3, 398);
-            this.lblTotalTit.Name = "lblTotalTit";
-            this.lblTotalTit.Size = new System.Drawing.Size(74, 18);
-            this.lblTotalTit.TabIndex = 1;
-            this.lblTotalTit.Text = "Totale";
-            this.lblTotalTit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotal.Location = new System.Drawing.Point(81, 398);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(77, 18);
-            this.lblTotal.TabIndex = 2;
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // PageEntryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,7 +171,6 @@
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColEntryUser;
