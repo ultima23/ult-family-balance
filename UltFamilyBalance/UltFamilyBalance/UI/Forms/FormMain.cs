@@ -235,18 +235,53 @@ namespace Ult.FamilyBalance.UI
             tmrStartup.Enabled = true;
         }
 
-        private void tmrStartup_Tick(object sender, EventArgs e)
-        {
-            tmrStartup.Enabled = false;
-            // Login
-            Login();
-        }
-
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (HasActivePage)
             {
                 _activePage.UpdateSize(tscMain.ContentPanel.Size);
+            }
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            #if !DEBUG
+            if (UIUtils.YesNo("Si desidera arrestare il server database?"))
+            {
+                // Stops the server
+                SqlServerUtils.StopServer(30000, "Attendere l'arresto del server database ...");
+            }
+            #endif
+        }
+
+        private void tmrStartup_Tick(object sender, EventArgs e)
+        {
+            // error message
+            string errorMessage = string.Empty;
+            // Stops the timer
+            tmrStartup.Enabled = false;
+            // SQL Server service check
+            if (SqlServerUtils.Exists())
+            {
+                if (SqlServerUtils.StartServer(30000, "Attendere l'avvio del server database ..."))
+                {
+                    // Login
+                    Login();
+                }
+                else
+                {
+                    errorMessage = "SQL Service cannot be started, the program cannot be executed and will be closed";
+                }
+            }
+            else
+            {
+                errorMessage = "SQL Service does not exists on this PC, the program cannot be executed and will be closed";
+            }
+            // If in error, display error and exit program
+            if (!String.IsNullOrEmpty(errorMessage))
+            {
+                UIUtils.Error(errorMessage);
+                Application.Exit();
             }
         }
 
