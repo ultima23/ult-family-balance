@@ -22,7 +22,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Ult.FamilyBalance", "FK_Entry_EntryType", "EntryType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Ult.FamilyBalance.Model.EntryType), "Entry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Ult.FamilyBalance.Model.Entry), true)]
 [assembly: EdmRelationshipAttribute("Ult.FamilyBalance", "FK_Entry_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Ult.FamilyBalance.Model.User), "Entry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Ult.FamilyBalance.Model.Entry), true)]
 [assembly: EdmRelationshipAttribute("Ult.FamilyBalance", "FK_EntryType_EntryDirection", "EntryDirection", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Ult.FamilyBalance.Model.EntryDirection), "EntryType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Ult.FamilyBalance.Model.EntryType), true)]
-[assembly: EdmRelationshipAttribute("Ult.FamilyBalance", "FK_EntryType_EntryTypeGroup", "EntryTypeGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Ult.FamilyBalance.Model.EntryTypeGroup), "EntryType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Ult.FamilyBalance.Model.EntryType), true)]
 
 #endregion
 
@@ -141,22 +140,6 @@ namespace Ult.FamilyBalance.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<EntryTypeGroup> EntryTypeGroups
-        {
-            get
-            {
-                if ((_EntryTypeGroups == null))
-                {
-                    _EntryTypeGroups = base.CreateObjectSet<EntryTypeGroup>("EntryTypeGroups");
-                }
-                return _EntryTypeGroups;
-            }
-        }
-        private ObjectSet<EntryTypeGroup> _EntryTypeGroups;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<User> Users
         {
             get
@@ -206,14 +189,6 @@ namespace Ult.FamilyBalance.Model
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the EntryTypeGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEntryTypeGroups(EntryTypeGroup entryTypeGroup)
-        {
-            base.AddObject("EntryTypeGroups", entryTypeGroup);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUsers(User user)
@@ -246,7 +221,7 @@ namespace Ult.FamilyBalance.Model
         /// <param name="year">Initial value of the Year property.</param>
         /// <param name="month">Initial value of the Month property.</param>
         /// <param name="incoming">Initial value of the Incoming property.</param>
-        /// <param name="entries">Initial value of the Outgoing property.</param>
+        /// <param name="outgoing">Initial value of the Outgoing property.</param>
         /// <param name="dateInsert">Initial value of the DateInsert property.</param>
         public static CreditCount CreateCreditCount(global::System.Int32 id, global::System.Int32 year, global::System.Int32 month, global::System.Decimal incoming, global::System.Decimal outgoing, global::System.DateTime dateInsert)
         {
@@ -1196,30 +1171,6 @@ namespace Ult.FamilyBalance.Model
         private global::System.Byte _NoteRequired;
         partial void OnNoteRequiredChanging(global::System.Byte value);
         partial void OnNoteRequiredChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        protected Nullable<global::System.Int32> GroupId
-        {
-            get
-            {
-                return _GroupId;
-            }
-            set
-            {
-                OnGroupIdChanging(value);
-                ReportPropertyChanging("GroupId");
-                _GroupId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GroupId");
-                OnGroupIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _GroupId;
-        partial void OnGroupIdChanging(Nullable<global::System.Int32> value);
-        partial void OnGroupIdChanged();
 
         #endregion
     
@@ -1281,176 +1232,6 @@ namespace Ult.FamilyBalance.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EntryDirection>("Ult.FamilyBalance.FK_EntryType_EntryDirection", "EntryDirection", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Ult.FamilyBalance", "FK_EntryType_EntryTypeGroup", "EntryTypeGroup")]
-        public EntryTypeGroup Group
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntryTypeGroup>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryTypeGroup").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntryTypeGroup>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryTypeGroup").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<EntryTypeGroup> GroupReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<EntryTypeGroup>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryTypeGroup");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<EntryTypeGroup>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryTypeGroup", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Ult.FamilyBalance", Name="EntryTypeGroup")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class EntryTypeGroup : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new EntryTypeGroup object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="description">Initial value of the Description property.</param>
-        public static EntryTypeGroup CreateEntryTypeGroup(global::System.Int32 id, global::System.String name, global::System.String description)
-        {
-            EntryTypeGroup entryTypeGroup = new EntryTypeGroup();
-            entryTypeGroup.Id = id;
-            entryTypeGroup.Name = name;
-            entryTypeGroup.Description = description;
-            return entryTypeGroup;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Ult.FamilyBalance", "FK_EntryType_EntryTypeGroup", "EntryType")]
-        public EntityCollection<EntryType> Types
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<EntryType>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryType");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<EntryType>("Ult.FamilyBalance.FK_EntryType_EntryTypeGroup", "EntryType", value);
                 }
             }
         }
