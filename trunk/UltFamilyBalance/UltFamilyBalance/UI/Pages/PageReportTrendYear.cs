@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.EntityClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
 using Ult.Commons;
 using Ult.FamilyBalance.Model;
 using Ult.FamilyBalance.UI.Pages;
-using System.Data.SqlClient;
-using System.Data.EntityClient;
-using System.Windows.Forms.DataVisualization.Charting;
+
 using Ult.Util;
 
 namespace Ult.FamilyBalance.UI
@@ -180,7 +182,7 @@ namespace Ult.FamilyBalance.UI
         private SqlCommand CreateCommandTrendYear(SqlConnection connection, int year)
         {
             // Query
-            string sql = "SELECT	[Year], " + 
+            string sql = "SELECT [Year], " + 
 		                 "       [Month], " +
                          "       [MonthName], " +
 		                 "       [EntriesOutgoing], " + 
@@ -193,7 +195,8 @@ namespace Ult.FamilyBalance.UI
 		                 "       [MissingIncoming], " + 
 		                 "       [MissingOutgoing] " + 
                          "FROM vwReportTrendYear " + 
-                         "WHERE [Year] = @year";
+                         "WHERE [Year] = @year " +
+                         "ORDER BY [Month] asc";
             // Command creation
             SqlCommand cmd = new SqlCommand(sql, connection);
             cmd.CommandType = CommandType.Text;
