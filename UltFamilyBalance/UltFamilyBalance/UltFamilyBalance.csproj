@@ -91,6 +91,12 @@
     <Compile Include="UI\Forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\PageReportGroupYear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Pages\PageReportGroupYear.Designer.cs">
+      <DependentUpon>PageReportGroupYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\PageEntryList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Pages\PageReportGroupYear.resx">
+      <DependentUpon>PageReportGroupYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Pages\PageEntryList.resx">
       <DependentUpon>PageEntryList.cs</DependentUpon>

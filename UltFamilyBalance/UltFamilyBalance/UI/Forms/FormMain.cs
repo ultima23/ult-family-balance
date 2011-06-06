@@ -369,6 +369,12 @@ namespace Ult.FamilyBalance.UI
             
         }
 
+        private void gruppiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetPage(CreatePage("ReportGroupYear", typeof(PageReportGroupYear)));
+            
+        }
+
         // --
 
         #endregion

@@ -160,11 +160,6 @@ namespace Ult.FamilyBalance.UI.Pages
 		                 "       EntryTypeId, " +
 		                 "       EntryTypeName, " +
 		                 "       EntryTypeDesc, " +
-                         /*
-		                 "       EntryTypeGroupId, " +
-		                 "       EntryTypeGroupName, " +
-		                 "       EntryTypeGroupDesc, " +
-                         */
 		                 "       EntryNote, " +
                          "       UserUsername " +
                          " FROM vwEntries " +

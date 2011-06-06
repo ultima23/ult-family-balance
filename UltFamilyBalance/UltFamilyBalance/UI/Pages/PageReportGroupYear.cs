@@ -12,22 +12,22 @@ using Ult.Util;
 
 namespace Ult.FamilyBalance.UI.Pages
 {
-    public partial class PageReportTypeYear : UserControl, IPage
+    public partial class PageReportGroupYear : UserControl, IPage
     {
-
 
         // -----------------------------------------------------------------------------------------------------------
         #region CONSTANTS
 
-        protected const string PAGE_TITLE                               = "Report Uscite per Categoria";
+        protected const string PAGE_TITLE                               = "Report uscite per gruppi";
 
-        protected const string DATASET_NAME                             = "ReportTypeYear";
-        protected const string DATASET_MASTER_NAME                      = "TableTypeYear";
-        protected const string DATASET_DETAIL_NAME                      = "TableTypeYearDetail";
+        protected const string DATASET_NAME                             = "ReportGroups";
+        protected const string DATASET_MASTER_NAME                      = "TableGroups";
+        protected const string DATASET_DETAIL_NAME                      = "TableGroupsDetail";
+        protected const string DATASET_TABLE_BALANCE                    = "TableBalance";
 
-        protected const string DATASET_RELATION_NAME                    = "RelationTypeYear";
-        protected const string DATASET_RELATION_MASTER_FIELD            = "TypeId";
-        protected const string DATASET_RELATION_DETAIL_FIELD            = "TypeId";
+        protected const string DATASET_RELATION_NAME                    = "RelationGroups";
+        protected const string DATASET_RELATION_MASTER_FIELD            = "EntryGroupId";
+        protected const string DATASET_RELATION_DETAIL_FIELD            = "EntryGroupId";
 
         protected const string PARAM_YEAR                               = "@year";
 
@@ -46,14 +46,16 @@ namespace Ult.FamilyBalance.UI.Pages
         //
         private DataSet _dataset;
         //
-        private SqlDataAdapter _adapterTypeYear;
-        private SqlDataAdapter _adapterTypeYearDetail;
+        private SqlDataAdapter _adapterGroupsYear;
+        private SqlDataAdapter _adapterGroupsYearDetail;
+        private SqlDataAdapter _adapterLastMonthBalance;
         //
-        private SqlCommand _commandTypeYear;
-        private SqlCommand _commandTypeYearDetail;
+        private SqlCommand _commandGroupsYear;
+        private SqlCommand _commandGroupsYearDetail;
+        private SqlCommand _commandLastMonthBalance;
         //
-        private BindingSource _bindingTypeYear;
-        private BindingSource _bindingTypeYearDetail;
+        private BindingSource _bindingGroupsYear;
+        private BindingSource _bindingGroupsYearDetail;
 
         #endregion
         // -----------------------------------------------------------------------------------------------------------
@@ -61,7 +63,7 @@ namespace Ult.FamilyBalance.UI.Pages
         // -----------------------------------------------------------------------------------------------------------
         #region CONSTRUCTORS
 
-        public PageReportTypeYear()
+        public PageReportGroupYear()
         {
             InitializeComponent();
         }
@@ -115,20 +117,16 @@ namespace Ult.FamilyBalance.UI.Pages
         // -----------------------------------------------------------------------------------------------------------
         #region PRIVATE METHODS
 
-        private SqlCommand CreateTypeYearCommand(SqlConnection connection)
+        private SqlCommand CreateGroupsCommand(SqlConnection connection)
         {
             // Query
-            string sql = "SELECT [Year]," + 
-		                 "       [TypeId], " +
-                         "       [Type], " +
+            string sql = "SELECT [Selected] = 0, " +
+                         "       [Year], " + 
+		                 "       [EntryGroupId], " +
+                         "       [Group], " +
                          "       [Total], " + 
-		                 "       [Avg], " + 
-		                 "       [Min], " + 
-		                 "       [Max], " + 
-                         "       [MonthAvg], " + 
-                         "       [CurrAvg], " + 
-                         "       [Perc] " + 
-                         "FROM vwReportTypeYear " + 
+		                 "       [Avg] " + 
+                         "FROM vwReportGroupYear " + 
                          "WHERE ISNULL( " + PARAM_YEAR + ", 0) = 0 OR [Year] = " + PARAM_YEAR + " " +
                          "ORDER BY [Total] DESC";
             // Command creation
@@ -144,19 +142,17 @@ namespace Ult.FamilyBalance.UI.Pages
             return cmd;
         }
 
-        private SqlCommand CreateTypeYearDetailCommand(SqlConnection connection)
+        private SqlCommand CreateGroupsDetailCommand(SqlConnection connection)
         {
             // Query
-            string sql = "SELECT [Year]," + 
-		                 "       [Month], " +
-                         "       [MonthName], " +
-		                 "       [Type], " + 
-		                 "       [TypeId], " + 
+            string sql = "SELECT [Year], " + 
+		                 "       [Month], " + 
+		                 "       [MonthName], " + 
+		                 "       [EntryGroupId], " + 
+		                 "       [Group], " + 
 		                 "       [Total], " + 
-                         "       [Avg], " + 
-                         "       [Min], " + 
-                         "       [Max] " + 
-                         "FROM vwReportTypeMonth " + 
+		                 "       [Avg] " + 
+                         "FROM vwReportGroupMonth " + 
                          "WHERE     ISNULL( " + PARAM_YEAR + ", 0) = 0 OR [Year] = " + PARAM_YEAR + " " +
                          "ORDER BY [Month] ASC";
             // Command creation
@@ -172,9 +168,50 @@ namespace Ult.FamilyBalance.UI.Pages
             return cmd;
         }
 
-        /*
+        private SqlCommand CreateLastMonthBalanceCommand(SqlConnection connection)
+        {
+            // Query
+            string sql = "SELECT	a.[YEAR], " +
+			             "        	a.[Month], " +
+			             "        	b.[MonthName], " +
+			             "        	a.[Balance] " +
+	                     "FROM		    vwCreditCountByMonth			a " +
+	                     "INNER JOIN	dbo.FnGetLastClosedMonth(@year)	b	ON		a.[Year] = b.[Year] " +
+						 "        	                                            AND a.[Month] = b.[Month]";
+            // Command creation
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            cmd.CommandType = CommandType.Text;
+            // Year parameter
+            SqlParameter paramYear = new SqlParameter();
+            paramYear.ParameterName = PARAM_YEAR;
+            paramYear.DbType = DbType.Int32;
+            // Parameter adding
+            cmd.Parameters.Add(paramYear);
+            // Returns the command
+            return cmd;
+        }
 
-         */
+        private void CalcBalance()
+        {
+            decimal total           = 0;
+            decimal correction      = 0;
+            decimal total_corrected = 0;
+            // Total
+            total = Convert.ToDecimal(_dataset.Tables[DATASET_TABLE_BALANCE].Rows[0]["Balance"] ?? 0);
+            // Correction
+            foreach (DataRow row in _dataset.Tables[DATASET_MASTER_NAME].Rows)
+            {
+                if (Convert.ToBoolean(row["Selected"])) correction += Convert.ToDecimal(row["Total"]);
+            }
+            // Total corrected
+            total_corrected = total - correction;
+
+            // Display
+            lblTotal.Text = String.Format("{0:#0.00} €", total);
+            lblCorrection.Text = String.Format("{0:#0.00} €", correction);
+            lblTotalCorrect.Text = String.Format("{0:#0.00} €", total_corrected);
+        }
+
         private void InitUI()
         {
             // Years combobox loading
@@ -186,44 +223,16 @@ namespace Ult.FamilyBalance.UI.Pages
                 cmbYear.Items.Add(years[i]);
             }
             // Columns creation
-            dgvTypeYear.AutoGenerateColumns = false;
-            dgvTypeYearDetail.AutoGenerateColumns = false;
+            dgvGroupsYear.AutoGenerateColumns = false;
+            dgvGroupsYearDetail.AutoGenerateColumns = false;
             // Grid binding
-            dgvTypeYear.DataSource = _bindingTypeYear;
-            dgvTypeYearDetail.DataSource = _bindingTypeYearDetail;
-            // Chart binding
-            chartTypeYear.DataSource = _bindingTypeYear;
-            chartTypeYear.Series["SerieTypeYear"].XValueMember = "Type";
-            chartTypeYear.Series["SerieTypeYear"].YValueMembers = "Perc";
-            chartTypeYear.Series["SerieTypeYear"].IsValueShownAsLabel = true;
-            chartTypeYear.Series["SerieTypeYear"]["PieLabelStyle"] = "Outside";
-            chartTypeYear.Series["SerieTypeYear"].Label = "#VALX: #VALY{#0.## '%'}";
-            // Threshold
-            chartTypeYear.Series["SerieTypeYear"]["CollectedThreshold"] = "3";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedThresholdUsePercent"] = "true";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedLabel"] = "Altro";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedLegendText"] = "Altro";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedSliceExploded"]= "false";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedColor"] = "Green";
-            chartTypeYear.Series["SerieTypeYear"]["CollectedToolTip"] = "Rimanente";
+            dgvGroupsYear.DataSource = _bindingGroupsYear;
+            dgvGroupsYearDetail.DataSource = _bindingGroupsYearDetail;
         }
 
         private void UpdateUI()
         {
-            chartTypeYear.DataBind();
             UpdateFiltersUI();
-        }
-
-        private void UpdateChartUI()
-        {
-            /* ... todo ...
-            foreach (Series serie in chartTypeDetail.Series)
-            {
-                if (_series.Contains(serie.Name)) serie.Enabled = true;
-                else serie.Enabled = false;
-            }
-            */
-            chartTypeYear.DataBind();
         }
 
         private void UpdateFiltersUI()
@@ -234,13 +243,18 @@ namespace Ult.FamilyBalance.UI.Pages
         private void LoadData(int year)
         {
             // Sets parameters
-            _commandTypeYear.Parameters[PARAM_YEAR].Value = year;
-            _commandTypeYearDetail.Parameters[PARAM_YEAR].Value = year;
+            _commandGroupsYear.Parameters[PARAM_YEAR].Value = year;
+            _commandGroupsYearDetail.Parameters[PARAM_YEAR].Value = year;
+            _commandLastMonthBalance.Parameters[PARAM_YEAR].Value = year;
             // Data loading (prima il dettaglio)
             _dataset.Tables[DATASET_DETAIL_NAME].Clear();
             _dataset.Tables[DATASET_MASTER_NAME].Clear();
-            _adapterTypeYear.Fill(_dataset, DATASET_MASTER_NAME);
-            _adapterTypeYearDetail.Fill(_dataset, DATASET_DETAIL_NAME);
+            _dataset.Tables[DATASET_TABLE_BALANCE].Clear();
+            _adapterGroupsYear.Fill(_dataset, DATASET_MASTER_NAME);
+            _adapterGroupsYearDetail.Fill(_dataset, DATASET_DETAIL_NAME);
+            _adapterLastMonthBalance.Fill(_dataset, DATASET_TABLE_BALANCE);
+            //
+            CalcBalance();
         }
 
         private void BindData()
@@ -253,14 +267,12 @@ namespace Ult.FamilyBalance.UI.Pages
                                                         _dataset.Tables[DATASET_MASTER_NAME].Columns[DATASET_RELATION_MASTER_FIELD],
                                                         _dataset.Tables[DATASET_DETAIL_NAME].Columns[DATASET_RELATION_DETAIL_FIELD] ) );
                 // Creates master bindings
-                _bindingTypeYear.DataSource = _dataset;
-                _bindingTypeYear.DataMember = DATASET_MASTER_NAME;
+                _bindingGroupsYear.DataSource = _dataset;
+                _bindingGroupsYear.DataMember = DATASET_MASTER_NAME;
                 // Creates detail bindings
-                _bindingTypeYearDetail.DataSource = _bindingTypeYear;
-                _bindingTypeYearDetail.DataMember = DATASET_RELATION_NAME;
+                _bindingGroupsYearDetail.DataSource = _bindingGroupsYear;
+                _bindingGroupsYearDetail.DataMember = DATASET_RELATION_NAME;
             }
-            // Update the chart
-            UpdateChartUI();
         }
 
         #endregion
@@ -281,21 +293,19 @@ namespace Ult.FamilyBalance.UI.Pages
             _dataset = new DataSet(DATASET_NAME);
             _dataset.Tables.Add(DATASET_MASTER_NAME);
             _dataset.Tables.Add(DATASET_DETAIL_NAME);
-            // Default chars serie
-            /*
-            ... todo ...
-            _series = new List<string>();
-            _series.Add(REPORT_SERIE_BALANCE);
-            */
+            _dataset.Tables.Add(DATASET_TABLE_BALANCE);
             // Commands creation
-            _commandTypeYear = CreateTypeYearCommand(UltFamilyBalance.GetUltFamilyBalance().GetSqlConnection());
-            _commandTypeYearDetail = CreateTypeYearDetailCommand(UltFamilyBalance.GetUltFamilyBalance().GetSqlConnection());
+            SqlConnection connection = UltFamilyBalance.GetUltFamilyBalance().GetSqlConnection();
+            _commandGroupsYear = CreateGroupsCommand(connection);
+            _commandGroupsYearDetail = CreateGroupsDetailCommand(connection);
+            _commandLastMonthBalance = CreateLastMonthBalanceCommand(connection);
             // Adapters
-            _adapterTypeYear = new SqlDataAdapter(_commandTypeYear);
-            _adapterTypeYearDetail = new SqlDataAdapter(_commandTypeYearDetail);
+            _adapterGroupsYear = new SqlDataAdapter(_commandGroupsYear);
+            _adapterGroupsYearDetail = new SqlDataAdapter(_commandGroupsYearDetail);
+            _adapterLastMonthBalance = new SqlDataAdapter(_commandLastMonthBalance);
             // Binding sources
-            _bindingTypeYear = new BindingSource();
-            _bindingTypeYearDetail = new BindingSource();
+            _bindingGroupsYear = new BindingSource();
+            _bindingGroupsYearDetail = new BindingSource();
             // UI initialization
             InitUI();
             // STATUS: Active
@@ -365,12 +375,12 @@ namespace Ult.FamilyBalance.UI.Pages
             }
         }
 
-        private void dgvTypeYear_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvGroupsYear_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 // 
-                DataRowView row = dgvTypeYear.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                DataRowView row = dgvGroupsYear.Rows[e.RowIndex].DataBoundItem as DataRowView;
                 if (row != null)
                 {
                     // Detail filters
@@ -391,12 +401,13 @@ namespace Ult.FamilyBalance.UI.Pages
             }
         }
 
-        private void dgvTypeYearDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvGroupsYearDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
+                /*
                 // 
-                DataRowView row = dgvTypeYearDetail.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                DataRowView row = dgvGroupsYearDetail.Rows[e.RowIndex].DataBoundItem as DataRowView;
                 if (row != null)
                 {
                     // Detail filters
@@ -414,6 +425,23 @@ namespace Ult.FamilyBalance.UI.Pages
                     form.Width = 520;
                     form.ShowDialog();
                 }
+                */
+            }
+        }
+
+        private void dgvGroupsYear_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                CalcBalance();
+            }
+        }
+
+        private void dgvGroupsYear_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvGroupsYear.IsCurrentCellDirty)
+            {
+                dgvGroupsYear.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
 

@@ -181,15 +181,16 @@ namespace Ult.FamilyBalance.UI
         {
             // Incoming entries query
             var entries =  from e in _entries
-                            where e.Type.Direction.Id == _direction.Id
+                           where e.Type.Direction.Id == _direction.Id
                                  && (!_useDateTo || e.Date <= _dateTo)
                                  && (!_useDateFrom || e.Date >= _dateFrom)
                                  && (_type.Id == 0 || _type.Id == e.Type.Id)
                                  && (_amountMin == -1 || e.Amount >= _amountMin)
                                  && (_amountMax == -1 || e.Amount <= _amountMax)
-                            select e;
+                           orderby e.Date descending
+                           select e;
+            
             _bindingsEntries.DataSource = entries;
-            _bindingsEntries.Sort = "Date ASC";
             // Incoming entries
             dgvEntries.AutoGenerateColumns = false;
             dgvEntries.DataSource = _bindingsEntries;
